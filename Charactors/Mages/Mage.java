@@ -1,4 +1,6 @@
-package Charactors;
+package Charactors.Mages;
+
+import Charactors.Character;
 
 public class Mage extends Character {
     public Mage(String name, double price, int attack, int defence, int health, int speed) {
