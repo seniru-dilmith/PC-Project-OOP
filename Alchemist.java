@@ -1,5 +1,5 @@
 public class Alchemist extends Healer{
     public Alchemist() {
-        super("Alchemist", 95, 10, 8, 9, 6);
+        super("Alchemist", 150, 13, 13, 13, 13);
     }
 }

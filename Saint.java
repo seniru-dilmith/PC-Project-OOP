@@ -1,5 +1,5 @@
 public class Saint extends Healer{
     public Saint() {
-        super("Saint", 95, 10, 8, 9, 6);
+        super("Saint", 200, 16, 14, 17, 9);
     }
 }

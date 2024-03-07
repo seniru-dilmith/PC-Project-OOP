@@ -3,3 +3,4 @@ public class MythicalCreatures extends Character{
         super(name, price, attack, defence, health, speed);
     }
 }
+

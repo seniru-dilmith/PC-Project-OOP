@@ -1,5 +1,5 @@
 public class Medic extends Healer{
     public Medic() {
-        super("Medic", 95, 10, 8, 9, 6);
+        super("Medic", 125, 12, 9, 10, 7);
     }
 }

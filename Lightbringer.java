@@ -1,5 +1,5 @@
 public class Lightbringer extends Healer{
     public Lightbringer() {
-        super("Lightbringer", 95, 10, 8, 9, 6);
+        super("Lightbringer", 260, 17, 15, 19, 12);
     }
 }
