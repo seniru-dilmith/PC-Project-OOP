@@ -1,4 +1,4 @@
-package Charactors;
+package Charactors.MythicalCreatures;
 
 import Charactors.MythicalCreatures.MythicalCreatures;
 

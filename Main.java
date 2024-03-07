@@ -1,13 +1,16 @@
-import Charactors.Healers.Soother;
-import Charactors.Mages.Mage;
-import Charactors.Mages.Warlock;
-import Charactors.MythicalCreatures.Dragon;
+import Charactors.Archers.*;
+import Charactors.Healers.*;
+import Charactors.Knights.*;
+import Charactors.Mages.*;
+import Charactors.MythicalCreatures.*;
 
 public class Main {
     public static void main(String[] args) {
         Warlock warlock = new Warlock();
         Soother soother = new Soother();
         Dragon dragon = new Dragon();
+        Squire squire = new Squire();
+        Shooter shooter = new Shooter();
 
         System.out.println(warlock.getAttack());
         System.out.println(warlock.getSpeed());
@@ -17,6 +20,13 @@ public class Main {
         System.out.println();
         System.out.println(dragon.getAttack());
         System.out.println(dragon.getSpeed());
+        System.out.println();
+        System.out.println(squire.getAttack());
+        System.out.println(squire.getSpeed());
+        System.out.println();
+        System.out.println(shooter.getAttack());
+        System.out.println(shooter.getSpeed());
+
     }
 }
 

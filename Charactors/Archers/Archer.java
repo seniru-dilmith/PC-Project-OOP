@@ -1,4 +1,6 @@
-package Charactors;
+package Charactors.Archers;
+
+import Charactors.Character;
 
 public class Archer extends Character {
 
