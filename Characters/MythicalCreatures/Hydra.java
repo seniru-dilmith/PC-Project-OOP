@@ -1,9 +1,8 @@
 package Characters.MythicalCreatures;
 
 import Characters.Categories.Marshlander;
-import Characters.Mages.Eldritch;
 
-public class Hydra extends MythicalCreatures implements Marshlander {
+public class Hydra extends MythicalCreature implements Marshlander {
 
     public static Hydra hydra;
     private Hydra() {

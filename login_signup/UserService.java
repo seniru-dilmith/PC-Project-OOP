@@ -11,8 +11,11 @@ public class UserService {
 
     private static User currentUser = null;
 
-    public static void signUp(){
+    public static boolean signUp(){
         retrieveUsers();
+
+        System.out.println("Enter your name: ");
+        String name = scanner.nextLine();
 
         System.out.println("Enter your username: ");
         String username = scanner.nextLine();
@@ -21,14 +24,19 @@ public class UserService {
         String password = scanner.nextLine();
 
         if (!previouslyTaken(username)){
-           User newUser = new User(username,password);
+           User newUser = new User(username, name, password);
            addUser(newUser);
+           newUser.setID(userList.size());
+
         }
 
         if (username.isEmpty() || password.isEmpty()){
             System.out.println("Username or Password cannot be empty!!!");
         }
+
+
         saveUsers(userList);
+        return true;
     }
 
     private static void addUser(User user) {
@@ -45,29 +53,28 @@ public class UserService {
         return false;
     }
 
-    public static void login(){
+    public static User login(){
         retrieveUsers();
-        //User user = new User();
-        //Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Your User Name: ");
         String username  = scanner.nextLine();
         System.out.println("Enter Your Password: ");
         String password  = scanner.nextLine();
 
-        authorizeUser(username,password);
-
+        currentUser = authorizeUser(username,password);
+        return currentUser;
     }
 
-    public static void authorizeUser(String username, String password){
+    public static User authorizeUser(String username, String password){
 
         for(User user: userList){
             if(user.getUsername().equals(username) && user.getPassword().equals(password)){
                 currentUser = user;
                 System.out.println("Login Successful!");
-                return;
+                return currentUser;
             }
         }
         System.out.println("Invalid Login! Try again.");
+        return null;
     }
 
 
@@ -87,6 +94,10 @@ public class UserService {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void updateUserCount() {
+
     }
 
     public static User getCurrentUser() {

@@ -1,9 +1,8 @@
 package Characters.MythicalCreatures;
 
 import Characters.Categories.Marshlander;
-import Characters.Mages.Eldritch;
 
-public class Basilisk extends MythicalCreatures implements Marshlander {
+public class Basilisk extends MythicalCreature implements Marshlander {
 
     public static Basilisk basilisk;
     private  Basilisk() {

@@ -1,9 +1,8 @@
 package Characters.MythicalCreatures;
 
 import Characters.Categories.SunChildren;
-import Characters.Mages.Eldritch;
 
-public class Phoenix extends MythicalCreatures implements SunChildren {
+public class Phoenix extends MythicalCreature implements SunChildren {
 
     public static Phoenix phoenix;
     private Phoenix() {

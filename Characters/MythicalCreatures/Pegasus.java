@@ -1,9 +1,8 @@
 package Characters.MythicalCreatures;
 
 import Characters.Categories.Mystics;
-import Characters.Mages.Eldritch;
 
-public class Pegasus extends MythicalCreatures implements Mystics {
+public class Pegasus extends MythicalCreature implements Mystics {
 
     public static Pegasus pegasus;
 

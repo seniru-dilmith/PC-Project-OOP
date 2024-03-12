@@ -1,5 +1,8 @@
 package Characters;
 
+import Equipment.Armour;
+import Equipment.Artefact;
+
 public class Character {
     private String name;
     private double price;
@@ -7,6 +10,8 @@ public class Character {
     private int defence;
     private int health;
     private int speed;
+    private Armour armour = null;
+    private Artefact artefact = null;
 
     public Character(String name, double price, int attack, int defence, int health, int speed) {
         this.name = name;
@@ -15,6 +20,22 @@ public class Character {
         this.defence = defence;
         this.health = health;
         this.speed = speed;
+    }
+
+    public Armour getArmour() {
+        return armour;
+    }
+
+    public void setArmour(Armour armour) {
+        armour = armour;
+    }
+
+    public Artefact getArtefact() {
+        return artefact;
+    }
+
+    public void setArtefact(Artefact artefact) {
+        this.artefact = artefact;
     }
 
     public String getName() {
@@ -63,6 +84,16 @@ public class Character {
 
     public void setSpeed(int speed) {
         this.speed = speed;
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + getName() +
+                "Price: " + getPrice() +
+                "Attack: " + getAttack() +
+                "Defence: " + getDefence() +
+                "Health: " + getHealth() +
+                "Speed: " + getSpeed();
     }
 }
 
