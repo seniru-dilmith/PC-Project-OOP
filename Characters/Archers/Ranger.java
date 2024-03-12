@@ -1,9 +1,17 @@
 package Characters.Archers;
 
-import Characters.Categories.Category;
+import Characters.Categories.Highlander;
 
-public class Ranger extends Archer{
-    public Ranger() {
-        super("Ranger", 115, 14, 5, 8,10, Category.Highlander);
+public class Ranger extends Archer implements Highlander {
+
+    public static Ranger ranger;
+    private Ranger() {
+        super("Ranger", 115, 14, 5, 8,10);
+    }
+    public static Ranger getInstance() {
+        if (ranger == null) {
+            ranger = new Ranger();
+        }
+        return ranger;
     }
 }

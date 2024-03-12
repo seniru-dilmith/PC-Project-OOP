@@ -1,11 +1,19 @@
 package Characters.Archers;
 
-import Characters.Categories.Category;
+import Characters.Categories.SunChildren;
 
-public class Sunfire extends Archer {
+public class Sunfire extends Archer implements SunChildren {
 
-    public Sunfire(){
-        super("Sunfire", 160, 15, 5, 7,14, Category.SunChildren);
+    public static Sunfire sunfire;
+
+    private Sunfire(){
+        super("Sunfire", 160, 15, 5, 7,14);
     }
 
+    public static Sunfire getInstance() {
+        if (sunfire == null) {
+            sunfire = new Sunfire();
+        }
+        return sunfire;
+    }
 }

@@ -1,10 +1,17 @@
 package Characters.Archers;
 
-import Characters.Categories.Category;
+import Characters.Categories.SunChildren;
 
-public class Zing extends Archer{
+public class Zing extends Archer implements SunChildren {
+    public static Zing zing;
+    private Zing(){
+        super("Zing",200,16,9,11,14);
+    }
 
-    public Zing(){
-        super("Zing",200,16,9,11,14, Category.SunChildren);
+    public static Zing getInstance(){
+        if (zing == null){
+            zing = new Zing();
+        }
+        return zing;
     }
 }

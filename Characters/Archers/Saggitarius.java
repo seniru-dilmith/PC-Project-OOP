@@ -1,11 +1,20 @@
 package Characters.Archers;
 
-import Characters.Categories.Category;
+import Characters.Categories.Mystics;
 
-public class Saggitarius extends Archer {
+public class Saggitarius extends Archer implements Mystics {
 
-    public Saggitarius(){
-        super("Saggitarius",230,18,7,12,17, Category.Mystics);
+    public static Saggitarius saggitarius;
+
+    private Saggitarius(){
+        super("Saggitarius",230,18,7,12,17);
+    }
+
+    public static Saggitarius getInstance() {
+        if (saggitarius == null) {
+            saggitarius = new Saggitarius();
+        }
+        return saggitarius;
     }
 
 }

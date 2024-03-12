@@ -1,7 +1,5 @@
 package Characters;
 
-import Characters.Categories.Category;
-
 public class Character {
     private String name;
     private double price;
@@ -9,16 +7,14 @@ public class Character {
     private int defence;
     private int health;
     private int speed;
-    private Category category;
 
-    public Character(String name, double price, int attack, int defence, int health, int speed, Category category) {
+    public Character(String name, double price, int attack, int defence, int health, int speed) {
         this.name = name;
         this.price = price;
         this.attack = attack;
         this.defence = defence;
         this.health = health;
         this.speed = speed;
-        this.category = category;
     }
 
     public String getName() {
@@ -68,12 +64,6 @@ public class Character {
     public void setSpeed(int speed) {
         this.speed = speed;
     }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 }
+
+

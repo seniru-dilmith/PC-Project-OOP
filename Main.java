@@ -1,8 +1,3 @@
-import Characters.Archers.*;
-import Characters.Healers.*;
-import Characters.Knights.*;
-import Characters.Mages.*;
-import Characters.MythicalCreatures.*;
 import login_signup.User;
 import login_signup.UserService;
 
@@ -10,11 +5,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Warlock warlock = new Warlock();
-        Soother soother = new Soother();
-        Dragon dragon = new Dragon();
-        Squire squire = new Squire();
-        Shooter shooter = new Shooter();
 
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -38,38 +28,6 @@ public class Main {
                     break;
             }
         }
-
-
-//        User newUser=new User("vinuka","123");
-//        newUser.
-
-
-        // if login is successful
-
-        // go to inventory
-
-
-        // battles
-        // selecting home ground
-        // selecting opponent
-        // go to battle
-        //                [Name of Attacking Player] vs. [Name of Defending Player]
-        //        Turn 1: [Name of Attacking Player]
-        //[Attacking character] attacks [Defending character]
-        //[Defending Character]’s health: [new health of defender after attack]
-        //[Attacking Character]’s health: [new health of attacker after attack]
-        //        (If the defender died, print [Defending Character] died!)
-        //        (Repeat the part in blue for each turn)
-        //[Winner] won! OR draw
-        //                [Attacking Player] XP: [new XP value] gold coins: [new gold coin value]
-        //[Defending Player] XP: [new XP value] gold coins: [new gold coin value]
-
-
-        // when a new user registers
-        // army from all five characters (must)
-        // 500gc at the beginning
-
-        // an army must contain all 05 types
     }
 
     public static void options() {
