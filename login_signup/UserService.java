@@ -54,6 +54,10 @@ public class UserService {
         return false;
     }
 
+    public static ArrayList<User> getUserList() {
+        return userList;
+    }
+
     public static User login(){
 
         retrieveUsers();
@@ -105,18 +109,19 @@ public class UserService {
         }
     }
 
-    public static User selectRandomPlayer(){
-        Random random= new Random();
-        int randomIndex= random.nextInt(userList.size());
-        User oponent=userList.get(randomIndex);
-        displayPlayerStats(oponent);
-        return oponent;
-    }
+//    public static User selectRandomPlayer(){
+//
+//        Random random= new Random();
+//        int randomIndex= random.nextInt(userList.size());
+//        User opponent=userList.get(randomIndex);
+//        displayOpponentStats(opponent);
+//        return opponent;
+//    }
 
-    public static void displayPlayerStats(User user){
-        System.out.println(user.getName());
-        System.out.println(user.getXP());
-    }
+//    public static void displayOpponentStats(User user){
+//        System.out.println(user.getName());
+//        System.out.println(user.getXP());
+//    }
 
 
 

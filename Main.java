@@ -4,27 +4,22 @@ import Characters.Healers.*;
 import Characters.Knights.*;
 import Characters.Mages.*;
 import Characters.MythicalCreatures.*;
-import Equipment.Armour;
-import Equipment.Artefact;
-import login_signup.User;
+import Equipment.*;
 import login_signup.*;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.util.*;
 
 //main class
 public class Main {
 
-    public static User currentUser;
-    private static ArrayList<Character> armyToBattle = new ArrayList<>();
-    private static ArrayList<Archer> archers = new ArrayList<>();
-    private static ArrayList<Knight> knights = new ArrayList<>();
-    private static ArrayList<Mage> mages = new ArrayList<>();
-    private static ArrayList<Healer> healers = new ArrayList<>();
-    private static ArrayList<MythicalCreature> mythicalCreatures = new ArrayList<>();
-    
+    public static User currentUser, opponentPlayer;
+    public static  ArrayList<User> userList = UserService.getUserList();
+    private static ArrayList<Character> armyToBattle = new ArrayList<>(), opponentArmy = new ArrayList<>();
+    private static ArrayList<Archer> archers = new ArrayList<>(), opponentArchers = new ArrayList<>();
+    private static ArrayList<Knight> knights = new ArrayList<>(), opponentKnights = new ArrayList<>();
+    private static ArrayList<Mage> mages = new ArrayList<>(), opponentMages = new ArrayList<>();
+    private static ArrayList<Healer> healers = new ArrayList<>(), opponentHealers = new ArrayList<>();
+    private static ArrayList<MythicalCreature> mythicalCreatures = new ArrayList<>(), opponentMythicalCreatures = new ArrayList<>();
     public static boolean isArmyReady() {
         boolean ready = false;
 
@@ -46,12 +41,36 @@ public class Main {
             customizeTroops();
         }
         return ready;
+    }
+    public static boolean isOpponentReady() {
+        boolean ready = false;
+
+        opponentArchers = opponentPlayer.getArchers();
+        opponentKnights = opponentPlayer.getKnights();
+        opponentMages = opponentPlayer.getMages();
+        opponentHealers = opponentPlayer.getHealers();
+        opponentMythicalCreatures = opponentPlayer.getMythicalCreatures();
+
+        try {
+            opponentArmy.add(opponentArchers.get(opponentArchers.size() - 1));
+            opponentArmy.add(opponentKnights.get(opponentKnights.size() - 1));
+            opponentArmy.add(opponentMages.get(opponentMages.size() - 1));
+            opponentArmy.add(opponentHealers.get(opponentHealers.size() - 1));
+            opponentArmy.add(opponentMythicalCreatures.get(opponentMythicalCreatures.size() - 1));
+            ready = true;
+        } catch (IndexOutOfBoundsException e) {
+            ready = false;
+        }
+        return ready;
 
     }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);  // scanner object to read inputs from user
             firstScreen();
             gameFlow();
+
+
 
     }
 
@@ -109,6 +128,8 @@ public class Main {
                     if (isArmyReady()) {
                         System.out.println("Battle Begins!");
                         selectHomeGround();
+                        selectRandomPlayer();
+                        battle(armyToBattle, opponentArmy);
                     } else {
                         customizeTroops();
                     }
@@ -251,11 +272,30 @@ public class Main {
                 Character character = selectCharacter();
                 assert character != null;
                 if (character.getArmour() != null) {
-                    System.out.println("You already have an armour equipped!");
+                    System.out.println("You already have an armour equipped!\n" +
+                            "It will be replaced with the new armour!");
+                    if (currentUser.getGoldCoins() >= Armour.chainmail.getPrice()) {
+                        currentUser.setGoldCoins(currentUser.getGoldCoins()-Armour.chainmail.getPrice());
+                        character.setArmour(Armour.chainmail);
+                        character.setPrice(Armour.chainmail.getPrice() + (int) (Armour.chainmail.getPrice()*0.2));
+                        character.adjustStatsByArmour();
+                        UserService.updateFile();
+                    }
+                    else{
+                        System.out.println("Not Enough Gold Coins!");
+                    }
                     purchaseArmour();
                 }
-                character.setArmour(Armour.chainmail);
-                UserService.updateFile();
+                if (currentUser.getGoldCoins() >= Armour.chainmail.getPrice()) {
+                    currentUser.setGoldCoins(currentUser.getGoldCoins()-Armour.chainmail.getPrice());
+                    character.setArmour(Armour.chainmail);
+                    character.IncrementPrice((int) (Armour.chainmail.getPrice()*0.2));
+                    character.adjustStatsByArmour();
+                    UserService.updateFile();
+                }
+                else{
+                    System.out.println("Not Enough Gold Coins!");
+                }
                 customizeEquipments();
                 break;
 
@@ -263,11 +303,32 @@ public class Main {
                 character = selectCharacter();
                 assert character != null;
                 if (character.getArmour() != null) {
-                    System.out.println("You already have an armour equipped!");
+                    System.out.println("You already have an armour equipped!\n" +
+                            "It will be replaced with the new armour!");
+                    if (currentUser.getGoldCoins() >= Armour.regalia.getPrice()) {
+                        currentUser.setGoldCoins(currentUser.getGoldCoins()-Armour.regalia.getPrice());
+                        character.setArmour(Armour.regalia);
+                        character.IncrementPrice((int) (Armour.regalia.getPrice()*0.2));
+                        character.adjustStatsByArmour();
+                        UserService.updateFile();
+                    }
+                    else{
+                        System.out.println("Not Enough Gold Coins!");
+
+                    }
                     purchaseArmour();
                 }
-                character.setArmour(Armour.regalia);
-                UserService.updateFile();
+                if (currentUser.getGoldCoins() >= Armour.regalia.getPrice()) {
+                    currentUser.setGoldCoins(currentUser.getGoldCoins()-Armour.regalia.getPrice());
+                    character.setArmour(Armour.regalia);
+                    character.IncrementPrice((int) (Armour.regalia.getPrice()*0.2));
+                    character.adjustStatsByArmour();
+                    UserService.updateFile();
+                }
+                else{
+                    System.out.println("Not Enough Gold Coins!");
+
+                }
                 customizeEquipments();
                 break;
 
@@ -278,8 +339,17 @@ public class Main {
                     System.out.println("You already have an armour equipped!");
                     purchaseArmour();
                 }
-                character.setArmour(Armour.fleece);
-                UserService.updateFile();
+                if (currentUser.getGoldCoins() >= Armour.fleece.getPrice()){
+                    currentUser.setGoldCoins(currentUser.getGoldCoins()-Armour.fleece.getPrice());
+                    character.setArmour(Armour.fleece);
+                    character.IncrementPrice((int) (Armour.fleece.getPrice()*0.2));
+                    character.adjustStatsByArmour();
+                    UserService.updateFile();
+                }
+                else{
+                    System.out.println("Not Enough Gold Coins!");
+
+                }
                 customizeEquipments();
                 break;
             
@@ -313,8 +383,17 @@ public class Main {
                     System.out.println("You already have an artefact equipped!");
                     purchaseArtefacts();
                 }
-                character.setArtefact(Artefact.Excalibur);
-                UserService.updateFile();
+                if (currentUser.getGoldCoins() >= Artefact.Excalibur.getPrice()) {
+                    currentUser.setGoldCoins(currentUser.getGoldCoins()-Artefact.Excalibur.getPrice());
+                    character.setArtefact(Artefact.Excalibur);
+                    character.IncrementPrice((int) (Artefact.Excalibur.getPrice()*0.2));
+                    character.adjustStatsByArtefact();
+                    UserService.updateFile();
+                }
+                else{
+                    System.out.println("Not Enough Gold Coins!");
+                }
+
                 customizeEquipments();
                 break;
 
@@ -325,8 +404,17 @@ public class Main {
                     System.out.println("You already have an artefact equipped!");
                     purchaseArtefacts();
                 }
-                character.setArtefact(Artefact.Amulet);
-                UserService.updateFile();
+                if (currentUser.getGoldCoins() >= Artefact.Amulet.getPrice()) {
+                    currentUser.setGoldCoins(currentUser.getGoldCoins()-Artefact.Amulet.getPrice());
+                    character.setArtefact(Artefact.Amulet);
+                    character.IncrementPrice((int) (Artefact.Amulet.getPrice()*0.2));
+                    character.adjustStatsByArtefact();
+                    UserService.updateFile();
+                }
+                else{
+                    System.out.println("Not Enough Gold Coins!");
+
+                }
                 customizeEquipments();
                 break;
 
@@ -337,8 +425,17 @@ public class Main {
                     System.out.println("You already have an artefact equipped!");
                     purchaseArtefacts();
                 }
-                character.setArtefact(Artefact.Crystal);
-                UserService.updateFile();
+                if (currentUser.getGoldCoins() >= Artefact.Crystal.getPrice()) {
+                    currentUser.setGoldCoins(currentUser.getGoldCoins()-Artefact.Crystal.getPrice());
+                    character.setArtefact(Artefact.Crystal);
+                    character.IncrementPrice((int) (Artefact.Crystal.getPrice()*0.2));
+                    character.adjustStatsByArtefact();
+                    UserService.updateFile();
+                }
+                else{
+                    System.out.println("Not Enough Gold Coins!");
+
+                }
                 customizeEquipments();
                 break;
 
@@ -356,42 +453,30 @@ public class Main {
 
 
     }
+
+
+
     
     public static Character selectCharacter(){
-        System.out.println("Archers: Enter, ");
-        System.out.print("1: Add to Shooter\t");
-        System.out.print("2: Add to Ranger\t");
-        System.out.print("3: Add to Sunfire\t");
-        System.out.print("4: Add to Zing\t");
-        System.out.print("5: Add to Saggitarius");
-        System.out.println();
-        System.out.println("Knights: Enter, ");
-        System.out.print("6: Add to Squire\t");
-        System.out.print("7: Add to Cavalier\t");
-        System.out.print("8: Add to Templar\t");
-        System.out.print("9: Add to Zoro\t");
-        System.out.print("10: Add to Swiftblade");
-        System.out.println();
-        System.out.println("Mages: Enter, ");
-        System.out.print("11: Add to Warlock\t");
-        System.out.print("12: Add to Illusionist\t");
-        System.out.print("13: Add to Enchanter\t");
-        System.out.print("14: Add to Conjurer\t");
-        System.out.print("15: Add to Eldritch");
-        System.out.println();
-        System.out.println("Healers: Enter, ");
-        System.out.print("16: Add to Soother\t");
-        System.out.print("17: Add to Medic\t");
-        System.out.print("18: Add to Alchemist\t");
-        System.out.print("19: Add to Saint\t");
-        System.out.print("20: Add to Lightbringer");
-        System.out.println();
-        System.out.println("Mythical Creatures: Enter, ");
-        System.out.print("21: Add to Dragon\t");
-        System.out.print("22: Add to Basilisk\t");
-        System.out.print("23: Add to Hydra\t");
-        System.out.print("24: Add to Pheonix\t");
-        System.out.print("25: Add to Pegasus\n");
+        System.out.println("Select Character");
+        System.out.println("|--------------------------------------------------------------------|");
+        System.out.println("| Category             | Options (Select Character)                  |");
+        System.out.println("|--------------------------------------------------------------------|");
+        System.out.println("| Archers              | 1: Shooter    2: Ranger       3: Sunfire    |");
+        System.out.println("|                      | 4: Zing       5: Saggitarius                |");
+        System.out.println("|--------------------------------------------------------------------|");
+        System.out.println("| Knights              | 6: Squire     7: Cavalier     8: Templar    |");
+        System.out.println("|                      | 9: Zoro       10: Swiftblade                |");
+        System.out.println("|--------------------------------------------------------------------|");
+        System.out.println("| Mages                | 11: Warlock   12: Illusionist               |");
+        System.out.println("|                      | 13: Enchanter 14: Conjurer    15: Eldritch  |");
+        System.out.println("|--------------------------------------------------------------------|");
+        System.out.println("| Healers              | 16: Soother   17: Medic       18: Alchemist |");
+        System.out.println("|                      | 19: Saint     20: Lightbringer              |");
+        System.out.println("|--------------------------------------------------------------------|");
+        System.out.println("| Mythical Creatures   | 21: Dragon    22: Basilisk     23: Hydra    |");
+        System.out.println("|                      | 24: Phoenix   25: Pegasus                   |");
+        System.out.println("|--------------------------------------------------------------------|");
 
         Scanner scanner = new Scanner(System.in);
 
@@ -622,21 +707,24 @@ public class Main {
         System.out.println("Enter 3: Back");
 
 
-        int choice = scanner.nextInt();
+        String choice = scanner.nextLine();
         switch (choice) {
-            case 1:
+            case "1":
                 purchaseTroops();
                 break;
 
-            case 2:
+            case "2":
                 sellTroops();
                 break;
 
-            case 3:
+            case "3":
                 battleOptions();
                 break;
 
-
+            default:
+                System.out.println("Invalid Input. Please Try Again!");
+                customizeTroops();
+                break;
         }
 
     }
@@ -651,34 +739,39 @@ public class Main {
         System.out.println("Enter 5: Purchase Mythical Creature");
         System.out.println("Enter 6: Back");
 
-        int choice = scanner.nextInt();
+        String choice = scanner.nextLine();
         switch (choice) {
-            case 1:
+            case "1":
                 purchaseArcher();
                 break;
 
-            case 2:
+            case "2":
                 purchaseKnight();
                 break;
 
-            case 3:
+            case "3":
                 purchaseMage();
                 break;
 
-            case 4:
+            case "4":
                 purchaseHealer();
                 break;
 
-            case 5:
+            case "5":
                 purchaseMythicalCreature();
                 break;
 
-            case 6:
+            case "6":
                 if (isArmyReady()) {
                     selectHomeGround();
                 } else {
                     customizeTroops();
                 }
+                break;
+
+            default:
+                System.out.println("Invalid Input. Please Try Again!");
+                purchaseTroops();
                 break;
         }
 
@@ -698,50 +791,96 @@ public class Main {
             System.out.println("Enter 4: Purchase Zing");
             System.out.println("Enter 5: Purchase Saggitarius");
             System.out.println("Enter 6: Back");
-            int choice = scanner.nextInt();
+            String choice = scanner.nextLine();
             switch (choice) {
-                case 1:
-                    currentUser.getArchers().add(User.getShooter());
-                    currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getShooter().getPrice());
-                    UserService.updateFile();
-                    System.out.println("Shooter Added Successfully!");
+                case "1":
+                    if (!currentUser.getArchers().contains(User.getShooter())) {
+                        if (currentUser.getGoldCoins() >= User.getShooter().getPrice()) {
+                            currentUser.getArchers().add(User.getShooter());
+                            currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getShooter().getPrice());
+                            UserService.updateFile();
+                            System.out.println("Shooter Added Successfully!");
+                        } else {
+                            System.out.println("Not Enough Gold Coins!");
+                        }
+                    }else {
+                        System.out.println("You already have a Shooter!");
+                    }
                     purchaseTroops();
                     break;
 
-                case 2:
-                    currentUser.getArchers().add(User.getRanger());
-                    currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getRanger().getPrice());
-                    UserService.updateFile();
-                    System.out.println("Ranger Added Successfully!");
+                case "2":
+                    if (!currentUser.getArchers().contains(User.getRanger())) {
+                        if (currentUser.getGoldCoins() >= User.getRanger().getPrice()) {
+                            currentUser.getArchers().add(User.getRanger());
+                            currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getRanger().getPrice());
+                            UserService.updateFile();
+                            System.out.println("Ranger Added Successfully!");
+                        } else {
+                            System.out.println("Not Enough Gold Coins!");
+                        }
+                    }else {
+                        System.out.println("You already have a Ranger!");
+                    }
+
                     purchaseTroops();
                     break;
 
-                case 3:
-                    currentUser.getArchers().add(User.getSunfire());
-                    currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getSunfire().getPrice());
-                    UserService.updateFile();
-                    System.out.println("Sunfire Added Successfully!");
+                case "3":
+                    if (!currentUser.getArchers().contains(User.getSunfire())) {
+                        if (currentUser.getGoldCoins() >= User.getSunfire().getPrice()) {
+                            currentUser.getArchers().add(User.getSunfire());
+                            currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getSunfire().getPrice());
+                            UserService.updateFile();
+                            System.out.println("Sunfire Added Successfully!");
+                        } else {
+                            System.out.println("Not Enough Gold Coins!");
+                        }
+                    }else {
+                        System.out.println("You already have a Sunfire!");
+                    }
                     purchaseTroops();
                     break;
 
-                case 4:
-                    currentUser.getArchers().add(User.getZing());
-                    currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getZing().getPrice());
-                    UserService.updateFile();
-                    System.out.println("Zing Added Successfully!");
+                case "4":
+                    if (!currentUser.getArchers().contains(User.getZing())) {
+                        if (currentUser.getGoldCoins() >= User.getZing().getPrice()) {
+                            currentUser.getArchers().add(User.getZing());
+                            currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getZing().getPrice());
+                            UserService.updateFile();
+                            System.out.println("Zing Added Successfully!");
+                        } else {
+                            System.out.println("Not Enough Gold Coins!");
+                        }
+                    }else {
+                        System.out.println("You already have a Zing!");
+                    }
                     purchaseTroops();
                     break;
 
-                case 5:
-                    currentUser.getArchers().add(User.getSaggitarus());
-                    currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getSaggitarus().getPrice());
-                    UserService.updateFile();
-                    System.out.println("Saggitarius Added Successfully!");
+                case "5":
+                    if (!currentUser.getArchers().contains(User.getSaggitarus())) {
+                        if (currentUser.getGoldCoins() >= User.getSaggitarus().getPrice()) {
+                            currentUser.getArchers().add(User.getSaggitarus());
+                            currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getSaggitarus().getPrice());
+                            UserService.updateFile();
+                            System.out.println("Saggitarius Added Successfully!");
+                        } else {
+                            System.out.println("Not Enough Gold Coins!");
+                        }
+                    }else {
+                        System.out.println("You already have a Saggitarius!");
+                    }
                     purchaseTroops();
                     break;
 
-                case 6:
+                case "6":
                     purchaseTroops();
+                    break;
+
+                default:
+                    System.out.println("Invalid Input. Please Try Again!");
+                    purchaseArcher();
                     break;
             }
 
@@ -762,50 +901,95 @@ public class Main {
         System.out.println("Enter 4: Purchase Zoro");
         System.out.println("Enter 5: Purchase SwiftBlade");
         System.out.println("Enter 6: Back");
-        int choice = scanner.nextInt();
+        String choice = scanner.nextLine();
         switch (choice) {
-            case 1:
-                currentUser.getKnights().add(User.getSquire());
-                currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getSquire().getPrice());
-                UserService.updateFile();
-                System.out.println("Squire Added Successfully!");
+            case "1":
+                if (!currentUser.getKnights().contains(User.getSquire())) {
+                    if (currentUser.getGoldCoins() >= User.getSquire().getPrice()) {
+                        currentUser.getKnights().add(User.getSquire());
+                        currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getSquire().getPrice());
+                        UserService.updateFile();
+                        System.out.println("Squire Added Successfully!");
+                    } else {
+                        System.out.println("Not Enough Gold Coins!");
+                    }
+                }else {
+                    System.out.println("You already have a Squire!");
+                }
                 purchaseTroops();
                 break;
 
-            case 2:
-                currentUser.getKnights().add(User.getCavalier());
-                currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getCavalier().getPrice());
-                UserService.updateFile();
-                System.out.println("Cavalier Added Successfully!");
+            case "2":
+                if (!currentUser.getKnights().contains(User.getCavalier())) {
+                    currentUser.getKnights().add(User.getCavalier());
+                    if (currentUser.getGoldCoins() >= User.getCavalier().getPrice()) {
+                        currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getCavalier().getPrice());
+                        UserService.updateFile();
+                        System.out.println("Cavalier Added Successfully!");
+                    } else {
+                        System.out.println("Not Enough Gold Coins!");
+                    }
+                }else {
+                    System.out.println("You already have a Cavalier!");
+                }
                 purchaseTroops();
                 break;
 
-            case 3:
-                currentUser.getKnights().add(User.getTemplar());
-                currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getTemplar().getPrice());
-                UserService.updateFile();
-                System.out.println("Templar Added Successfully!");
+            case "3":
+                if (!currentUser.getKnights().contains(User.getTemplar())) {
+                    if (currentUser.getGoldCoins() >= User.getTemplar().getPrice()) {
+                        currentUser.getKnights().add(User.getTemplar());
+                        currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getTemplar().getPrice());
+                        UserService.updateFile();
+                        System.out.println("Templar Added Successfully!");
+                    } else {
+                        System.out.println("Not Enough Gold Coins!");
+                    }
+                }else {
+                    System.out.println("You already have a Templar!");
+                }
                 purchaseTroops();
                 break;
 
-            case 4:
-                currentUser.getKnights().add(User.getZoro());
-                currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getZoro().getPrice());
-                UserService.updateFile();
-                System.out.println("Zoro Added Successfully!");
+            case "4":
+                if (!currentUser.getKnights().contains(User.getZoro())) {
+                    if (currentUser.getGoldCoins() >= User.getZoro().getPrice()) {
+                        currentUser.getKnights().add(User.getZoro());
+                        currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getZoro().getPrice());
+                        UserService.updateFile();
+                        System.out.println("Zoro Added Successfully!");
+                    } else {
+                        System.out.println("Not Enough Gold Coins!");
+                    }
+                }else {
+                    System.out.println("You already have a Zoro!");
+                }
                 purchaseTroops();
                 break;
 
-            case 5:
-                currentUser.getKnights().add(User.getSwiftblade());
-                currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getSwiftblade().getPrice());
-                UserService.updateFile();
-                System.out.println("Swiftblade Added Successfully!");
+            case "5":
+                if (!currentUser.getKnights().contains(User.getSwiftblade())) {
+                    if (currentUser.getGoldCoins() >= User.getSwiftblade().getPrice()) {
+                        currentUser.getKnights().add(User.getSwiftblade());
+                        currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getSwiftblade().getPrice());
+                        UserService.updateFile();
+                        System.out.println("Swiftblade Added Successfully!");
+                    } else {
+                        System.out.println("Not Enough Gold Coins!");
+                    }
+                }else {
+                    System.out.println("You already have a Swiftblade!");
+                }
                 purchaseTroops();
                 break;
 
-            case 6:
+            case "6":
                 purchaseTroops();
+                break;
+
+            default:
+                System.out.println("Invalid Input. Please Try Again!");
+                purchaseKnight();
                 break;
         }
 
@@ -824,52 +1008,91 @@ public class Main {
         System.out.println("Enter 4: Purchase Conjurer");
         System.out.println("Enter 5: Purchase Eldritch");
         System.out.println("Enter 6: Back");
-        int choice = scanner.nextInt();
+        String choice = scanner.nextLine();
         switch (choice) {
-            case 1:
-                currentUser.getMages().add(User.getWarlock());
-                currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getWarlock().getPrice());
-                UserService.updateFile();
-                System.out.println("Warlock Added Successfully!");
+            case "1":
+
+                if (currentUser.getGoldCoins() >= User.getWarlock().getPrice()) {
+                    currentUser.getMages().add(User.getWarlock());
+                    currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getWarlock().getPrice());
+                    UserService.updateFile();
+                    System.out.println("Warlock Added Successfully!");
+                }else {
+                    System.out.println("Not Enough Gold Coins!");
+                }
                 purchaseTroops();
                 break;
 
-            case 2:
-                currentUser.getMages().add(User.getIllusionist());
-                currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getIllusionist().getPrice());
-                UserService.updateFile();
-                System.out.println("Illusionist Added Successfully!");
+            case "2":
+                if (currentUser.getGoldCoins() >= User.getIllusionist().getPrice()) {
+                    currentUser.getMages().add(User.getIllusionist());
+                    currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getIllusionist().getPrice());
+                    UserService.updateFile();
+                    System.out.println("Illusionist Added Successfully!");
+                }else {
+                    System.out.println("Not Enough Gold Coins!");
+                }
                 purchaseTroops();
                 break;
 
-            case 3:
-                currentUser.getMages().add(User.getEnchanter());
-                currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getEnchanter().getPrice());
-                UserService.updateFile();
-                System.out.println("Enchanter Added Successfully!");
+            case "3":
+                if (!currentUser.getMages().contains(User.getEnchanter())) {
+                    if (currentUser.getGoldCoins() >= User.getIllusionist().getPrice()) {
+                        currentUser.getMages().add(User.getEnchanter());
+                        currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getEnchanter().getPrice());
+                        UserService.updateFile();
+                        System.out.println("Enchanter Added Successfully!");
+                    } else {
+                        System.out.println("Not Enough Gold Coins!");
+                    }
+                } else {
+                    System.out.println("You already have an Enchanter!");
+                }
                 purchaseTroops();
                 break;
 
-            case 4:
-                currentUser.getMages().add(User.getConjurer());
-                currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getConjurer().getPrice());
-                UserService.updateFile();
-                System.out.println("Conjurer Added Successfully!");
+            case "4":
+                if (!currentUser.getMages().contains(User.getConjurer())) {
+                    if (currentUser.getGoldCoins() >= User.getConjurer().getPrice()) {
+                        currentUser.getMages().add(User.getConjurer());
+                        currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getConjurer().getPrice());
+                        UserService.updateFile();
+                        System.out.println("Conjurer Added Successfully!");
+                    } else {
+                        System.out.println("Not Enough Gold Coins!");
+                    }
+                } else {
+                     System.out.println("You already have a Conjurer!");
+                }
                 purchaseTroops();
                 break;
 
-            case 5:
-                currentUser.getMages().add(User.getEldritch());
-                currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getEldritch().getPrice());
-                UserService.updateFile();
-                System.out.println("Eldritch Added Successfully!");
+            case "5":
+                if (!currentUser.getMages().contains(User.getEldritch())) {
+                    if (currentUser.getGoldCoins() >= User.getEldritch().getPrice()) {
+                        currentUser.getMages().add(User.getEldritch());
+                        currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getEldritch().getPrice());
+                        UserService.updateFile();
+                        System.out.println("Eldritch Added Successfully!");
+                    } else {
+                        System.out.println("Not Enough Gold Coins!");
+                    }
+                } else {
+                    System.out.println("You already have an Eldritch!");
+                }
                 purchaseTroops();
                 break;
 
-            case 6:
+            case "6":
                 purchaseTroops();
+                break;
+
+            default:
+                System.out.println("Invalid Input. Please Try Again!");
+                purchaseMage();
                 break;
         }
+
 
     }
     public static void purchaseHealer(){
@@ -885,50 +1108,96 @@ public class Main {
         System.out.println("Enter 4: Purchase Saint");
         System.out.println("Enter 5: Purchase Lightbringer");
         System.out.println("Enter 6: Back");
-        int choice = scanner.nextInt();
+        String choice = scanner.nextLine();
         switch (choice) {
-            case 1:
-                currentUser.getHealers().add(User.getSoother());
-                currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getSoother().getPrice());
-                UserService.updateFile();
-                System.out.println("Soother Added Successfully!");
+            case "1":
+                if (!currentUser.getHealers().contains(User.getSoother())){
+                    if (currentUser.getGoldCoins() >= User.getSoother().getPrice()) {
+                        currentUser.getHealers().add(User.getSoother());
+                        currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getSoother().getPrice());
+                        UserService.updateFile();
+                        System.out.println("Soother Added Successfully!");
+                    } else {
+                        System.out.println("Not Enough Gold Coins!");
+                    }
+                } else {
+                    System.out.println("You already have a Soother!");
+                }
                 purchaseTroops();
                 break;
 
-            case 2:
-                currentUser.getHealers().add(User.getMedic());
-                currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getMedic().getPrice());
-                UserService.updateFile();
-                System.out.println("Medic Added Successfully!");
+            case "2":
+                if (!currentUser.getHealers().contains(User.getMedic())) {
+                    if (currentUser.getGoldCoins() >= User.getMedic().getPrice()) {
+                        currentUser.getHealers().add(User.getMedic());
+                        currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getMedic().getPrice());
+                        UserService.updateFile();
+                        System.out.println("Medic Added Successfully!");
+                    } else {
+                        System.out.println("Not Enough Gold Coins!");
+                    }
+                } else {
+                    System.out.println("You already have a Medic!");
+                }
+
                 purchaseTroops();
                 break;
 
-            case 3:
-                currentUser.getHealers().add(User.getAlchemist());
-                currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getAlchemist().getPrice());
-                UserService.updateFile();
-                System.out.println("Alchemist Added Successfully!");
+            case "3":
+                if (!currentUser.getHealers().contains(User.getAlchemist())) {
+                    if (currentUser.getGoldCoins() >= User.getAlchemist().getPrice()) {
+                        currentUser.getHealers().add(User.getAlchemist());
+                        currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getAlchemist().getPrice());
+                        UserService.updateFile();
+                        System.out.println("Alchemist Added Successfully!");
+                    } else {
+                        System.out.println("Not Enough Gold Coins!");
+                    }
+                } else {
+                    System.out.println("You already have an Alchemist!");
+                }
                 purchaseTroops();
                 break;
 
-            case 4:
-                currentUser.getHealers().add(User.getSaint());
-                currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getSaint().getPrice());
-                UserService.updateFile();
-                System.out.println("Saint Added Successfully!");
+            case "4":
+                if (!currentUser.getHealers().contains(User.getSaint())) {
+                    if (currentUser.getGoldCoins() >= User.getSaint().getPrice()) {
+                        currentUser.getHealers().add(User.getSaint());
+                        currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getSaint().getPrice());
+                        UserService.updateFile();
+                        System.out.println("Saint Added Successfully!");
+                    } else {
+                        System.out.println("Not Enough Gold Coins!");
+                    }
+                } else {
+                    System.out.println("You already have a Saint!");
+                }
                 purchaseTroops();
                 break;
 
-            case 5:
-                currentUser.getHealers().add(User.getLightBringer());
-                currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getLightBringer().getPrice());
-                UserService.updateFile();
-                System.out.println("Lightbringer Added Successfully!");
+            case "5":
+                if (!currentUser.getHealers().contains(User.getLightBringer())) {
+                    if (currentUser.getGoldCoins() >= User.getLightBringer().getPrice()) {
+                        currentUser.getHealers().add(User.getLightBringer());
+                        currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getLightBringer().getPrice());
+                        UserService.updateFile();
+                        System.out.println("Lightbringer Added Successfully!");
+                    }else {
+                        System.out.println("Not Enough Gold Coins!");
+                    }
+                } else {
+                    System.out.println("You already have a Lightbringer!");
+                }
                 purchaseTroops();
                 break;
 
-            case 6:
+            case "6":
                 purchaseTroops();
+                break;
+
+            default:
+                System.out.println("Invalid Input. Please Try Again!");
+                purchaseHealer();
                 break;
         }
 
@@ -947,50 +1216,95 @@ public class Main {
         System.out.println("Enter 4: Purchase Pheonix");
         System.out.println("Enter 5: Purchase pegasus");
         System.out.println("Enter 6: Back");
-        int choice = scanner.nextInt();
+        String choice = scanner.nextLine();
         switch (choice) {
-            case 1:
-                currentUser.getMythicalCreatures().add(User.getDragon());
-                currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getDragon().getPrice());
-                UserService.updateFile();
-                System.out.println("Dragon Added Successfully!");
+            case "1":
+                if (!currentUser.getMythicalCreatures().contains(User.getDragon())) {
+                    if (currentUser.getGoldCoins() >= User.getDragon().getPrice()) {
+                        currentUser.getMythicalCreatures().add(User.getDragon());
+                        currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getDragon().getPrice());
+                        UserService.updateFile();
+                        System.out.println("Dragon Added Successfully!");
+                    } else {
+                        System.out.println("Not Enough Gold Coins!");
+                    }
+                }else {
+                    System.out.println("You already have a Dragon!");
+                }
                 purchaseTroops();
                 break;
 
-            case 2:
-                currentUser.getMythicalCreatures().add(User.getBasilisk());
-                currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getBasilisk().getPrice());
-                UserService.updateFile();
-                System.out.println("Basilisk Added Successfully!");
+            case "2":
+                if (!currentUser.getMythicalCreatures().contains(User.getBasilisk())) {
+                    if (currentUser.getGoldCoins() >= User.getBasilisk().getPrice()) {
+                        currentUser.getMythicalCreatures().add(User.getBasilisk());
+                        currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getBasilisk().getPrice());
+                        UserService.updateFile();
+                        System.out.println("Basilisk Added Successfully!");
+                    } else {
+                        System.out.println("Not Enough Gold Coins!");
+                    }
+                }else {
+                    System.out.println("You already have a Basilisk!");
+                }
                 purchaseTroops();
                 break;
 
-            case 3:
-                currentUser.getMythicalCreatures().add(User.getHydra());
-                currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getHydra().getPrice());
-                UserService.updateFile();
-                System.out.println("Hydra Added Successfully!");
+            case "3":
+                if (!currentUser.getMythicalCreatures().contains(User.getHydra())) {
+                    if (currentUser.getGoldCoins() >= User.getHydra().getPrice()) {
+                        currentUser.getMythicalCreatures().add(User.getHydra());
+                        currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getHydra().getPrice());
+                        UserService.updateFile();
+                        System.out.println("Hydra Added Successfully!");
+                    } else {
+                        System.out.println("Not Enough Gold Coins!");
+                    }
+                }else {
+                    System.out.println("You already have a Hydra!");
+                }
                 purchaseTroops();
                 break;
 
-            case 4:
-                currentUser.getMythicalCreatures().add(User.getPhoenix());
-                currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getPhoenix().getPrice());
-                UserService.updateFile();
-                System.out.println("Phoenix Added Successfully!");
+            case "4":
+                if (!currentUser.getMythicalCreatures().contains(User.getPhoenix())) {
+                    if (currentUser.getGoldCoins() >= User.getPhoenix().getPrice()) {
+                        currentUser.getMythicalCreatures().add(User.getPhoenix());
+                        currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getPhoenix().getPrice());
+                        UserService.updateFile();
+                        System.out.println("Phoenix Added Successfully!");
+                    } else {
+                        System.out.println("Not Enough Gold Coins!");
+                    }
+                }else {
+                    System.out.println("You already have a Phoenix!");
+                }
                 purchaseTroops();
                 break;
 
-            case 5:
-                currentUser.getMythicalCreatures().add(User.getPegasus());
-                currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getPegasus().getPrice());
-                UserService.updateFile();
-                System.out.println("Pegasus Added Successfully!");
+            case "5":
+                if (!currentUser.getMythicalCreatures().contains(User.getPegasus())) {
+                    if (currentUser.getGoldCoins() >= User.getPegasus().getPrice()) {
+                        currentUser.getMythicalCreatures().add(User.getPegasus());
+                        currentUser.setGoldCoins(currentUser.getGoldCoins() - User.getPegasus().getPrice());
+                        UserService.updateFile();
+                        System.out.println("Pegasus Added Successfully!");
+                    } else {
+                        System.out.println("Not Enough Gold Coins!");
+                    }
+                }else {
+                    System.out.println("You already have a Pegasus!");
+                }
                 purchaseTroops();
                 break;
 
-            case 6:
+            case "6":
                 purchaseTroops();
+                break;
+
+            default:
+                System.out.println("Invalid Input. Please Try Again!");
+                purchaseMythicalCreature();
                 break;
         }
 
@@ -1008,35 +1322,40 @@ public class Main {
         System.out.println("Enter 5: Sell Mythical Creature");
         System.out.println("Enter 6: Back");
 
-        int choice = scanner.nextInt();
+        String choice = scanner.nextLine();
         switch (choice) {
-            case 1:
+            case "1":
                 sellArcher();
                 UserService.updateFile();
                 break;
 
-            case 2:
+            case "2":
                 sellKnight();
                 UserService.updateFile();
                 break;
 
-            case 3:
+            case "3":
                 sellMage();
                 UserService.updateFile();
                 break;
 
-            case 4:
+            case "4":
                 sellHealer();
                 UserService.updateFile();
                 break;
 
-            case 5:
+            case "5":
                 sellMythicalCreature();
                 UserService.updateFile();
                 break;
 
-            case 6:
+            case "6":
                 customizeTroops();
+                break;
+
+            default:
+                System.out.println("Invalid Input. Please Try Again!");
+                sellTroops();
                 break;
         }
 
@@ -1076,36 +1395,41 @@ public class Main {
         System.out.println("Enter 4: Sell Zing");
         System.out.println("Enter 5: Sell Saggitarius");
         System.out.println("Enter 6: Back");
-        int choice = scanner.nextInt();
+        String choice = scanner.nextLine();
         ArrayList<Archer> current_archers = currentUser.getArchers();
         switch (choice) {
-            case 1:
+            case "1":
                 removeCharacter(current_archers, "Shooter");
                 UserService.updateFile();
                 break;
 
-            case 2:
+            case "2":
                 removeCharacter(current_archers, "Ranger");
                 UserService.updateFile();
                 break;
 
-            case 3:
+            case "3":
                 removeCharacter(current_archers, "Sunfire");
                 UserService.updateFile();
                 break;
 
-            case 4:
+            case "4":
                 removeCharacter(current_archers, "Zing");
                 UserService.updateFile();
                 break;
 
-            case 5:
+            case "5":
                 removeCharacter(current_archers, "Saggitarius");
                 UserService.updateFile();
                 break;
 
-            case 6:
+            case "6":
                 sellTroops();
+                break;
+
+            default:
+                System.out.println("Invalid Input. Please Try Again!");
+                sellArcher();
                 break;
         }
 
@@ -1124,37 +1448,42 @@ public class Main {
             System.out.println("Enter 4: Sell Zoro");
             System.out.println("Enter 5: Sell SwiftBlade");
             System.out.println("Enter 6: Back");
-            int choice = scanner.nextInt();
+            String choice = scanner.nextLine();
             ArrayList<Knight> current_knights = currentUser.getKnights();
             boolean found = false;
             switch (choice) {
-                case 1:
+                case "1":
                     removeCharacter(current_knights, "Squire");
                     UserService.updateFile();
                     break;
 
-                case 2:
+                case "2":
                     removeCharacter(current_knights, "Cavalier");
                     UserService.updateFile();
                     break;
 
-                case 3:
+                case "3":
                     removeCharacter(current_knights, "Templar");
                     UserService.updateFile();
                     break;
 
-                case 4:
+                case "4":
                     removeCharacter(current_knights, "Zoro");
                     UserService.updateFile();
                     break;
 
-                case 5:
+                case "5":
                     removeCharacter(current_knights, "SwiftBlade");
                     UserService.updateFile();
                     break;
 
-                case 6:
+                case "6":
                     sellTroops();
+                    break;
+
+                default:
+                    System.out.println("Invalid Input. Please Try Again!");
+                    sellKnight();
                     break;
             }
     }
@@ -1172,36 +1501,41 @@ public class Main {
         System.out.println("Enter 4: Sell Conjurer");
         System.out.println("Enter 5: Sell Eldritch");
         System.out.println("Enter 6: Back");
-        int choice = scanner.nextInt();
+        String choice = scanner.nextLine();
         ArrayList<Mage> current_mages = currentUser.getMages();
         switch (choice) {
-            case 1:
+            case "1":
                 removeCharacter(current_mages, "Warlock");
                 UserService.updateFile();
                 break;
 
-            case 2:
+            case "2":
                 removeCharacter(current_mages, "Illusionist");
                 UserService.updateFile();
                 break;
 
-            case 3:
+            case "3":
                 removeCharacter(current_mages, "Enchanter");
                 UserService.updateFile();
                 break;
 
-            case 4:
+            case "4":
                 removeCharacter(current_mages, "Conjurer");
                 UserService.updateFile();
                 break;
 
-            case 5:
+            case "5":
                 removeCharacter(current_mages, "Eldritch");
                 UserService.updateFile();
                 break;
 
-            case 6:
+            case "6":
                 sellTroops();
+                break;
+
+            default:
+                System.out.println("Invalid Input. Please Try Again!");
+                sellMage();
                 break;
         }
     }
@@ -1218,36 +1552,41 @@ public class Main {
         System.out.println("Enter 4: Sell Saint");
         System.out.println("Enter 5: Sell Lightbringer");
         System.out.println("Enter 6: Back");
-        int choice = scanner.nextInt();
+        String choice = scanner.nextLine();
         ArrayList<Healer> current_healers = currentUser.getHealers();
         switch (choice) {
-            case 1:
+            case "1":
                 removeCharacter(current_healers, "Soother");
                 UserService.updateFile();
                 break;
 
-            case 2:
+            case "2":
                 removeCharacter(current_healers, "Medic");
                 UserService.updateFile();
                 break;
 
-            case 3:
+            case "3":
                 removeCharacter(current_healers, "Alchemist");
                 UserService.updateFile();
                 break;
 
-            case 4:
+            case "4":
                 removeCharacter(current_healers, "Saint");
                 UserService.updateFile();
                 break;
 
-            case 5:
+            case "5":
                 removeCharacter(current_healers, "Lightbringer");
                 UserService.updateFile();
                 break;
 
-            case 6:
+            case "6":
                 sellTroops();
+                break;
+
+            default:
+                System.out.println("Invalid Input. Please Try Again!");
+                sellHealer();
                 break;
         }
     }
@@ -1264,36 +1603,41 @@ public class Main {
         System.out.println("Enter 4: Sell Pheonix");
         System.out.println("Enter 5: Sell pegasus");
         System.out.println("Enter 6: Back");
-        int choice = scanner.nextInt();
+        String choice = scanner.nextLine();
         ArrayList<MythicalCreature> current_mythicalCreatures = currentUser.getMythicalCreatures();
         switch (choice) {
-            case 1:
+            case "1":
                 removeCharacter(current_mythicalCreatures, "Dragon");
                 UserService.updateFile();
                 break;
 
-            case 2:
+            case "2":
                 removeCharacter(current_mythicalCreatures, "Basillisk");
                 UserService.updateFile();
                 break;
 
-            case 3:
+            case "3":
                 removeCharacter(current_mythicalCreatures, "Hydra");
                 UserService.updateFile();
                 break;
 
-            case 4:
+            case "4":
                 removeCharacter(current_mythicalCreatures, "Pheonix");
                 UserService.updateFile();
                 break;
 
-            case 5:
+            case "5":
                 removeCharacter(current_mythicalCreatures, "Pegasus");
                 UserService.updateFile();
                 break;
 
-            case 6:
+            case "6":
                 sellTroops();
+                break;
+
+            default:
+                System.out.println("Invalid Input. Please Try Again!");
+                sellMythicalCreature();
                 break;
         }
 
@@ -1306,23 +1650,101 @@ public class Main {
         return (int) (price*0.9);
     }
 
-    public static void selectOponent(){
-        Scanner scanner=new Scanner(System.in);
-        int skip =0;
+    public static void selectRandomPlayer(){
+
+        Random random= new Random();
+        int randomIndex= random.nextInt(userList.size());
+        opponentPlayer = userList.get(randomIndex);
+        if(isOpponentReady()) {
+            displayOpponentStats(opponentPlayer);
+            selectOponent(opponentPlayer);
+        }
+        else
+            selectRandomPlayer();
+    }
+
+    public static void displayOpponentStats(User user){
+        System.out.println(user.getName());
+        System.out.println(user.getXP());
+    }
+    public static void selectOponent(User opponent) {
+        Scanner scanner = new Scanner(System.in);
+        int canBattle ;
 
         System.out.println("Select your opponent");
         System.out.println("If you want to battle enter 1\n If you want to skip enter 2");
 
 
-         while ( skip !=1 ){
-             try{
-                 UserService.selectRandomPlayer();
-                 skip = scanner.nextInt();
-             } catch (InputMismatchException e){
-                 System.out.println("InputMismatchException: Please enter a valid integer.");
-             }
-         }
+        canBattle = scanner.nextInt();
+
+        if(canBattle == 1){
+            opponentPlayer = opponent;
+        }
+        else if(canBattle == 2){
+            selectRandomPlayer();
+        }
+
+        else
+            selectOponent(opponent);
+
+//        do{
+//            try {
+//                skip = scanner.nextInt();
+//                selectRandomPlayer();
+//
+//            } catch (InputMismatchException e) {
+//                System.out.println("InputMismatchException: Please enter a valid integer.");
+//            }
+//
+//        }while (skip != 1);
+
+
+//        while (skip != 1) {
+//            try {
+//                skip = scanner.nextInt();
+//                randomPlayer = selectRandomPlayer();
+//
+//            } catch (InputMismatchException e) {
+//                System.out.println("InputMismatchException: Please enter a valid integer.");
+//            }
+//        }
+
     }
+
+    public static void battle(ArrayList<Character> challenger, ArrayList<Character> Oponent){
+
+        Collections.sort(challenger, new Comparator<Character>() {
+            @Override
+            public int compare(Character c1, Character c2) {
+                return Integer.compare(c1.getSpeed(), c2.getSpeed());
+            }
+        });
+
+        Collections.sort(challenger, new Comparator<Character>() {
+            @Override
+            public int compare(Character o1, Character o2) {
+                return Integer.compare(o1.getDefence(),o2.getDefence());
+            }
+        });
+
+        Collections.sort(Oponent, new Comparator<Character>() {
+            @Override
+            public int compare(Character o1, Character o2) {
+                return Integer.compare(o1.getSpeed(),o2.getSpeed());
+            }
+        });
+
+        Collections.sort(Oponent, new Comparator<Character>() {
+            @Override
+            public int compare(Character o1, Character o2) {
+                return Integer.compare(o1.getDefence(),o2.getDefence());
+            }
+        });
+
+    }
+
+
+
 }
 
 

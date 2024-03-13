@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 public class Artefact implements Serializable {
     String name;
-    double price;
+    int price;
     int attack;
     int defence;
     int health;
     int speed;
 
-    public Artefact(String name, double price, int attack, int defence, int health, int speed) {
+    public Artefact(String name, int price, int attack, int defence, int health, int speed) {
         this.name = name;
         this.price = price;
         this.attack = attack;
@@ -23,16 +23,11 @@ public class Artefact implements Serializable {
     public static Artefact Amulet = new Artefact("Amulet", 200, 1, -1, 1, 1);
     public static Artefact Crystal = new Artefact("Crystal", 210, 2, 1, -1, -1);
 
-
-    public static Artefact[] getAllArtefacts() {
-        return new Artefact[]{Excalibur, Amulet, Crystal};
-    }
-
     public String getName() {
         return name;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 

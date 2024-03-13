@@ -30,9 +30,12 @@ public class Character implements Serializable {
         return armour;
     }
 
+
+
+
     public void adjustStatsByArtefact(){
         if (this.artefact != null){
-            if (Objects.equals(this.artefact.toString(), "Amulet")){
+            if (Objects.equals(this.artefact.toString(), "Amulet")) {
                 health += Artefact.Amulet.getHealth();
                 attack += Artefact.Amulet.getAttack();
                 defence += Artefact.Amulet.getDefence();
@@ -99,6 +102,10 @@ public class Character implements Serializable {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public void IncrementPrice(int value) {
+        this.price += value;
     }
 
     public int getAttack() {

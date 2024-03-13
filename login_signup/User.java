@@ -8,6 +8,7 @@ import Characters.MythicalCreatures.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class User implements Serializable {
     private static int count = 0;
@@ -54,19 +55,19 @@ public class User implements Serializable {
     private ArrayList<Knight> knights = new ArrayList<>();
     private ArrayList<Mage> mages = new ArrayList<>();
     private ArrayList<MythicalCreature> mythicalCreatures = new ArrayList<>();
-    private static ArrayList<Archer> allArchers = new ArrayList<>();
+    private static ArrayList<Archer> allArchers = new ArrayList<>(Arrays.asList(ranger, saggitarus, shooter, sunfire, zing)) ;
 
-    private static ArrayList<Healer> allHealers = new ArrayList<>();
-    private static ArrayList<Knight> allKnights = new ArrayList<>();
-    private static ArrayList<Mage> allMages = new ArrayList<>();
-    private static ArrayList<MythicalCreature> allMythicalCreatures = new ArrayList<>();
+    private static ArrayList<Healer> allHealers = new ArrayList<>(Arrays.asList(soother, medic, alchemist, saint, lightBringer));
+    private static ArrayList<Knight> allKnights = new ArrayList<>(Arrays.asList(squire, cavalier, templar, zoro, swiftblade));
+    private static ArrayList<Mage> allMages = new ArrayList<>(Arrays.asList(warlock, illusionist, enchanter, conjurer, eldritch));
+    private static ArrayList<MythicalCreature> allMythicalCreatures = new ArrayList<>(Arrays.asList(dragon, basilisk, hydra, phoenix, pegasus));
 
     public User(String username, String name, String password) {
         this.username = username;
         this.password = password;
 
         this.XP = 1;
-        this.goldCoins = 500;
+        this.goldCoins = 5000;
         this.name = name;
         this.homeGround = null;
     }
@@ -75,60 +76,33 @@ public class User implements Serializable {
         return name;
     }
 
+
+
     public static ArrayList<Archer> getAllArchers() {
-        allArchers.add(shooter);
-        allArchers.add(ranger);
-        allArchers.add(sunfire);
-        allArchers.add(zing);
-        allArchers.add(saggitarus);
         System.out.println(String.format("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n",
                 "Name", "Price(gp)", "Attack", "Defence", "Health", "Speed"));
         return allArchers;
     }
 
     public static ArrayList<Healer> getAllHealers() {
-        allHealers.add(soother);
-        allHealers.add(medic);
-        allHealers.add(alchemist);
-        allHealers.add(saint);
-        allHealers.add(lightBringer);
-
         System.out.println(String.format("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n",
                 "Name", "Price(gp)", "Attack", "Defence", "Health", "Speed"));
         return allHealers;
     }
 
     public static ArrayList<Knight> getAllKnights() {
-        allKnights.add(squire);
-        allKnights.add(cavalier);
-        allKnights.add(templar);
-        allKnights.add(zoro);
-        allKnights.add(swiftblade);
-
         System.out.println(String.format("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n",
                 "Name", "Price(gp)", "Attack", "Defence", "Health", "Speed"));
         return allKnights;
     }
 
     public static ArrayList<Mage> getAllMages() {
-        allMages.add(warlock);
-        allMages.add(illusionist);
-        allMages.add(enchanter);
-        allMages.add(conjurer);
-        allMages.add(eldritch);
-
         System.out.println(String.format("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n",
                 "Name", "Price(gp)", "Attack", "Defence", "Health", "Speed"));
         return allMages;
     }
 
     public static ArrayList<MythicalCreature> getAllMythicalCreatures() {
-        allMythicalCreatures.add(dragon);
-        allMythicalCreatures.add(basilisk);
-        allMythicalCreatures.add(hydra);
-        allMythicalCreatures.add(phoenix);
-        allMythicalCreatures.add(pegasus);
-
         System.out.println(String.format("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n",
                 "Name", "Price(gp)", "Attack", "Defence", "Health", "Speed"));
         return allMythicalCreatures;
@@ -315,37 +289,50 @@ public class User implements Serializable {
         System.out.println("Archers : ");
         for (Archer archer : archers){
             System.out.println(String.format("| %-35s | %-10s | %-10s | %-10s | %-10s | %-10s |",
-                    archer.getName()+
+                    archer.getName() +
                             ((archer.getArmour() != null) ? (" + " + archer.getArmour().toString()) : "") +
-                            ((archer.getArtefact() != null) ? (" + " + archer.getArtefact().toString()) : ""), archer.getPrice(), archer.getAttack(), archer.getDefence(),archer.getHealth(),archer.getSpeed()));
+                            ((archer.getArtefact() != null) ? (" + " + archer.getArtefact().toString()) : ""),
+                    archer.getPrice(), archer.getAttack(), archer.getDefence(),archer.getHealth(),archer.getSpeed()));
         }
         System.out.println();
 
         System.out.println("Knights : ");
         for (Knight knight : knights){
             System.out.println(String.format("| %-35s | %-10s | %-10s | %-10s | %-10s | %-10s |",
-                    knight.getName(), knight.getPrice(),knight.getAttack(), knight.getDefence(),knight.getHealth(),knight.getSpeed()));
+                    knight.getName() +
+                            ((knight.getArmour() != null) ? (" + " + knight.getArmour().toString()) : "") +
+                            ((knight.getArtefact() != null) ? (" + " + knight.getArtefact().toString()) : ""),
+                    knight.getPrice(),knight.getAttack(), knight.getDefence(),knight.getHealth(),knight.getSpeed()));
         }
         System.out.println();
 
         System.out.println("Mages : ");
         for (Mage mage : mages){
             System.out.println(String.format("| %-35s | %-10s | %-10s | %-10s | %-10s | %-10s |",
-                    mage.getName(), mage.getPrice(), mage.getAttack(), mage.getDefence(),mage.getHealth(),mage.getSpeed()));
+                    mage.getName() +
+                            ((mage.getArmour() != null) ? (" + " + mage.getArmour().toString()) : "") +
+                            ((mage.getArtefact() != null) ? (" + " + mage.getArtefact().toString()) : ""),
+                    mage.getPrice(), mage.getAttack(), mage.getDefence(),mage.getHealth(),mage.getSpeed()));
         }
         System.out.println();
 
         System.out.println("Healers : ");
         for (Healer healer : healers) {
             System.out.println(String.format("| %-35s | %-10s | %-10s | %-10s | %-10s | %-10s |",
-                    healer.getName(), healer.getPrice(), healer.getAttack(), healer.getDefence(), healer.getHealth(), healer.getSpeed()));
+                    healer.getName() +
+                            ((healer.getArmour() != null) ? (" + " + healer.getArmour().toString()) : "") +
+                            ((healer.getArtefact() != null) ? (" + " + healer.getArtefact().toString()) : ""),
+                    healer.getPrice(), healer.getAttack(), healer.getDefence(), healer.getHealth(), healer.getSpeed()));
         }
         System.out.println();
 
         System.out.println("Mythical Creatures : ");
         for (MythicalCreature mythicalCreature : mythicalCreatures){
             System.out.println(String.format("| %-35s | %-10s | %-10s | %-10s | %-10s | %-10s |",
-                    mythicalCreature.getName(), mythicalCreature.getPrice(), mythicalCreature.getAttack(), mythicalCreature.getDefence(),mythicalCreature.getHealth(),mythicalCreature.getSpeed()));
+                    mythicalCreature.getName() +
+                            ((mythicalCreature.getArmour() != null) ? (" + " + mythicalCreature.getArmour().toString()) : "") +
+                            ((mythicalCreature.getArtefact() != null) ? (" + " + mythicalCreature.getArtefact().toString()) : ""),
+                    mythicalCreature.getPrice(), mythicalCreature.getAttack(), mythicalCreature.getDefence(),mythicalCreature.getHealth(),mythicalCreature.getSpeed()));
         }
 
 
