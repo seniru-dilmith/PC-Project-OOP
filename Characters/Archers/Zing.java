@@ -4,7 +4,7 @@ import Characters.Categories.SunChildren;
 
 public class Zing extends Archer implements SunChildren {
     public static Zing zing;
-    private Zing(){
+    public Zing(){
         super("Zing",200,16,9,11,14);
     }
 

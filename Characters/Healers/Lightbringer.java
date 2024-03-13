@@ -5,7 +5,7 @@ import Characters.Categories.SunChildren;
 public class Lightbringer extends Healer implements SunChildren {
 
     public static Lightbringer lightbringer;
-    private Lightbringer() {
+    public Lightbringer() {
         super("Lightbringer", 260, 17, 15, 19, 12);
     }
 

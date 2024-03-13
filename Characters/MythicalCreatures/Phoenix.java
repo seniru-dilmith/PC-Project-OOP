@@ -5,7 +5,7 @@ import Characters.Categories.SunChildren;
 public class Phoenix extends MythicalCreature implements SunChildren {
 
     public static Phoenix phoenix;
-    private Phoenix() {
+    public Phoenix() {
         super("Phoenix", 275, 17, 13, 17, 19);
     }
 

@@ -7,7 +7,7 @@ public class Conjurer extends Mage implements Highlander {
 
     public static Conjurer conjurer;
 
-    private Conjurer() {
+    public Conjurer() {
 
         super("Conjurer", 195, 18, 15, 14, 12);
     }

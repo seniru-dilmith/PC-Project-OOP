@@ -5,7 +5,7 @@ import Characters.Categories.Marshlander;
 public class Hydra extends MythicalCreature implements Marshlander {
 
     public static Hydra hydra;
-    private Hydra() {
+    public Hydra() {
         super("Hydra", 205, 12, 16, 15, 11);
     }
 

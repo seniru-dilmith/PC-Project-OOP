@@ -4,7 +4,7 @@ import Characters.Categories.Highlander;
 
 public class Zoro extends Knight implements Highlander {
     public static Zoro zoro;
-    private Zoro(){
+    public Zoro(){
         super("Zoro",180,17,16,13,14);
     }
 

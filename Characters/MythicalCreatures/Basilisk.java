@@ -5,7 +5,7 @@ import Characters.Categories.Marshlander;
 public class Basilisk extends MythicalCreature implements Marshlander {
 
     public static Basilisk basilisk;
-    private  Basilisk() {
+    public Basilisk() {
 
         super("Basilisk", 165, 15, 11, 10, 12);
     }

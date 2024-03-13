@@ -5,7 +5,7 @@ import Characters.Categories.SunChildren;
 public class Dragon extends MythicalCreature implements SunChildren {
 
     public static Dragon dragon;
-    private Dragon() {
+    public Dragon() {
 
         super("Dragon", 120, 12, 14, 15, 8);
     }

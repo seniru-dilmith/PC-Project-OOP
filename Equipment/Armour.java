@@ -1,6 +1,8 @@
 package Equipment;
 
-public class Armour {
+import java.io.Serializable;
+
+public class Armour implements Serializable {
     String name;
     double price;
     int attack;
@@ -24,5 +26,34 @@ public class Armour {
     // Optional: Static method to get an array of all instances
     public static Armour[] getAllArmours() {
         return new Armour[]{chainmail, regalia, fleece};
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public int getDefence() {
+        return defence;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

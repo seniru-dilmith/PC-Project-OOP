@@ -4,7 +4,7 @@ import Characters.Categories.SunChildren;
 
 public class Templar extends Knight implements SunChildren {
     public static Templar templar;
-    private Templar() {
+    public Templar() {
         super("Templar",155,14,16,12,12);
     }
 

@@ -5,7 +5,7 @@ import Characters.Categories.SunChildren;
 public class Soother extends Healer implements SunChildren {
 
     public static Soother soother;
-    private Soother() {
+    public Soother() {
         super("Soother", 95, 10, 8, 9, 6);
     }
 

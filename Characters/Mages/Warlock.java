@@ -5,7 +5,7 @@ import Characters.Categories.Marshlander;
 public class Warlock extends Mage implements Marshlander {
 
     public static Warlock warlock;
-    private Warlock() {
+    public Warlock() {
 
         super("Warlock", 100, 12, 7, 10, 12);
     }

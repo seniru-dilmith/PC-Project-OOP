@@ -6,7 +6,7 @@ public class Pegasus extends MythicalCreature implements Mystics {
 
     public static Pegasus pegasus;
 
-    private Pegasus() {
+    public Pegasus() {
         super("Pegasus", 340, 14, 18, 20, 20);
     }
 

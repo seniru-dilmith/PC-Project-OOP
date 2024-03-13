@@ -5,7 +5,7 @@ import Characters.Categories.Marshlander;
 
 public class Medic extends Healer implements Highlander {
     public static Medic medic;
-    private Medic() {
+    public Medic() {
         super("Medic", 125, 12, 9, 10, 7);
     }
 

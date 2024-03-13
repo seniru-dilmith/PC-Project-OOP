@@ -2,17 +2,18 @@ package login_signup;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class UserService {
-
-    static Scanner scanner = new Scanner(System.in);
     private static ArrayList<User> userList = new ArrayList<>();
 
     private static User currentUser = null;
 
     public static boolean signUp(){
         retrieveUsers();
+
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter your name: ");
         String name = scanner.nextLine();
@@ -54,8 +55,12 @@ public class UserService {
     }
 
     public static User login(){
+
         retrieveUsers();
-        System.out.println("Enter Your User Name: ");
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter Your username: ");
         String username  = scanner.nextLine();
         System.out.println("Enter Your Password: ");
         String password  = scanner.nextLine();
@@ -87,6 +92,10 @@ public class UserService {
         }
     }
 
+    public static void updateFile() {
+        saveUsers(userList);
+    }
+
     public static void retrieveUsers() {
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("login_signup/users.txt"))){
             userList = (ArrayList<User>) objectInputStream.readObject();
@@ -96,9 +105,23 @@ public class UserService {
         }
     }
 
-    public static void updateUserCount() {
-
+    public static User selectRandomPlayer(){
+        Random random= new Random();
+        int randomIndex= random.nextInt(userList.size());
+        User oponent=userList.get(randomIndex);
+        displayPlayerStats(oponent);
+        return oponent;
     }
+
+    public static void displayPlayerStats(User user){
+        System.out.println(user.getName());
+        System.out.println(user.getXP());
+    }
+
+
+
+    
+    
 
     public static User getCurrentUser() {
         return currentUser;

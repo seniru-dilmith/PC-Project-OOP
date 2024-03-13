@@ -4,7 +4,7 @@ import Characters.Categories.Highlander;
 
 public class Cavalier extends Knight implements Highlander {
     public static Cavalier cavalier;
-    private Cavalier() {
+    public Cavalier() {
         super("Cavalier",110,10,12,7,10);
     }
     public static Cavalier getInstance(){

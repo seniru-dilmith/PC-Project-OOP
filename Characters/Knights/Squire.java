@@ -4,7 +4,7 @@ import Characters.Categories.Marshlander;
 
 public class Squire extends Knight implements Marshlander {
     public static Squire squire;
-    private Squire() {
+    public Squire() {
         super("Squire",85,8,9,7,8);
     }
 

@@ -6,7 +6,7 @@ public class Saggitarius extends Archer implements Mystics {
 
     public static Saggitarius saggitarius;
 
-    private Saggitarius(){
+    public Saggitarius(){
         super("Saggitarius",230,18,7,12,17);
     }
 

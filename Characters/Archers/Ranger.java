@@ -14,4 +14,9 @@ public class Ranger extends Archer implements Highlander {
         }
         return ranger;
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

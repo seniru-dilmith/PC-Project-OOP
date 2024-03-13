@@ -5,7 +5,7 @@ import Characters.Categories.Marshlander;
 public class Alchemist extends Healer implements Marshlander {
 
     public static Alchemist alchemist;
-    private Alchemist() {
+    public Alchemist() {
         super("Alchemist", 150, 13, 13, 13, 13);
     }
 

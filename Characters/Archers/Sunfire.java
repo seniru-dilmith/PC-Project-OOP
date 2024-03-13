@@ -6,7 +6,7 @@ public class Sunfire extends Archer implements SunChildren {
 
     public static Sunfire sunfire;
 
-    private Sunfire(){
+    public Sunfire(){
         super("Sunfire", 160, 15, 5, 7,14);
     }
 

@@ -1,7 +1,8 @@
 package Equipment;
 
-public class
-Artefact {
+import java.io.Serializable;
+
+public class Artefact implements Serializable {
     String name;
     double price;
     int attack;
@@ -25,5 +26,34 @@ Artefact {
 
     public static Artefact[] getAllArtefacts() {
         return new Artefact[]{Excalibur, Amulet, Crystal};
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public int getDefence() {
+        return defence;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

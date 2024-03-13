@@ -5,7 +5,7 @@ import Characters.Categories.Mystics;
 public class Saint extends Healer implements Mystics {
 
     public static Saint saint;
-    private Saint() {
+    public Saint() {
         super("Saint", 200, 16, 14, 17, 9);
     }
 
