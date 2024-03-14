@@ -17,5 +17,7 @@ public class Conjurer extends Mage implements Highlander {
         }
         return conjurer;
     }
+
+
 }
 

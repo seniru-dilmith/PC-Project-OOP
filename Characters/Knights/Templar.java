@@ -14,4 +14,6 @@ public class Templar extends Knight implements SunChildren {
         }
         return templar;
     }
+
+
 }

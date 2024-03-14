@@ -17,4 +17,6 @@ public class Saggitarius extends Archer implements Mystics {
         return saggitarius;
     }
 
+
+
 }

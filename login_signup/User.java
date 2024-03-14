@@ -67,9 +67,17 @@ public class User implements Serializable {
         this.password = password;
 
         this.XP = 1;
-        this.goldCoins = 5000;
+        this.goldCoins = 500;
         this.name = name;
         this.homeGround = null;
+    }
+
+    public User(String username, String password, int XP, int goldCoins, String name) {
+        this.username = username;
+        this.password = password;
+        this.XP = XP;
+        this.goldCoins = goldCoins;
+        this.name = name;
     }
 
     public String getName() {
@@ -80,31 +88,31 @@ public class User implements Serializable {
 
     public static ArrayList<Archer> getAllArchers() {
         System.out.println(String.format("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n",
-                "Name", "Price(gp)", "Attack", "Defence", "Health", "Speed"));
+                "Name", "Price(gc)", "Attack", "Defence", "Health", "Speed"));
         return allArchers;
     }
 
     public static ArrayList<Healer> getAllHealers() {
         System.out.println(String.format("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n",
-                "Name", "Price(gp)", "Attack", "Defence", "Health", "Speed"));
+                "Name", "Price(gc)", "Attack", "Defence", "Health", "Speed"));
         return allHealers;
     }
 
     public static ArrayList<Knight> getAllKnights() {
         System.out.println(String.format("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n",
-                "Name", "Price(gp)", "Attack", "Defence", "Health", "Speed"));
+                "Name", "Price(gc)", "Attack", "Defence", "Health", "Speed"));
         return allKnights;
     }
 
     public static ArrayList<Mage> getAllMages() {
         System.out.println(String.format("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n",
-                "Name", "Price(gp)", "Attack", "Defence", "Health", "Speed"));
+                "Name", "Price(gc)", "Attack", "Defence", "Health", "Speed"));
         return allMages;
     }
 
     public static ArrayList<MythicalCreature> getAllMythicalCreatures() {
         System.out.println(String.format("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n",
-                "Name", "Price(gp)", "Attack", "Defence", "Health", "Speed"));
+                "Name", "Price(gc)", "Attack", "Defence", "Health", "Speed"));
         return allMythicalCreatures;
     }
 
@@ -269,22 +277,18 @@ public class User implements Serializable {
         return phoenix;
     }
 
-    @Override
-    public String toString() {
-        return  "---------------------------------------------Player Details---------------------------------------------\n" +
-                "=>ID: " + ID +
-                "\n=>Name: " + name +
-                "\n=>Username: " + username +
-                "\n=>XP: " + XP +
-                "\n=>Gold Coins: " + goldCoins + "gp" +
-                "\n=>Home Ground: " + ((homeGround == null) ? "Not decided yet" : homeGround.toString()) +
-                "\n--------------------------------------------------------------------------------------------------------";
+    public HomeGround getHomeGround() {
+        return homeGround;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void printCurrentArmy(){
         System.out.println("----------------------------------------------Current Army----------------------------------------------");
         System.out.println(String.format("| %-35s | %-10s | %-10s | %-10s | %-10s | %-10s |%n",
-                "Name", "Price(gp)", "Attack", "Defence", "Health", "Speed"));
+                "Name", "Price(gc)", "Attack", "Defence", "Health", "Speed"));
 
         System.out.println("Archers : ");
         for (Archer archer : archers){
@@ -336,6 +340,17 @@ public class User implements Serializable {
         }
 
 
+    }
+    @Override
+    public String toString() {
+        return  "---------------------------------------------Player Details---------------------------------------------\n" +
+                "=>ID: " + ID +
+                "\n=>Name: " + name +
+                "\n=>Username: " + username +
+                "\n=>XP: " + XP +
+                "\n=>Gold Coins: " + goldCoins + "gc" +
+                "\n=>Home Ground: " + ((homeGround == null) ? "Not decided yet" : homeGround.toString()) +
+                "\n--------------------------------------------------------------------------------------------------------";
     }
 }
 

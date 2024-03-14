@@ -101,6 +101,7 @@ public class Character implements Serializable {
     }
 
     public void setPrice(int price) {
+
         this.price = price;
     }
 
@@ -125,11 +126,18 @@ public class Character implements Serializable {
     }
 
     public double getHealth() {
+        if (health <= 0) {
+            return 0;
+        }
         return health;
     }
 
     public void setHealth(double health) {
-        this.health = health;
+        if (this.getHealth() <= 0) {
+            this.health = 0;
+        } else {
+            this.health = Math.round(health*10) / 10.0;
+        }
     }
 
     public int getSpeed() {
@@ -145,6 +153,7 @@ public class Character implements Serializable {
         return String.format("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |",
                 getName() ,getPrice(), getAttack(), getDefence(), getHealth(), getSpeed());
     }
+
 }
 
 

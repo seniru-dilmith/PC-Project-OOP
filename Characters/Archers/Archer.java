@@ -10,8 +10,4 @@ public class Archer extends Character {
         super(name, price, attack, defence, health, speed);
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
-    }
 }

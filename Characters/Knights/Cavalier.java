@@ -13,4 +13,5 @@ public class Cavalier extends Knight implements Highlander {
         }
         return cavalier;
     }
+
 }

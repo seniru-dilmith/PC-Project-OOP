@@ -90,9 +90,8 @@ public class UserService {
     public static void saveUsers(ArrayList<User> list) {
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("login_signup/users.txt"))) {
             objectOutputStream.writeObject(list);
-            System.out.println("Users saved!");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("If this is your first signup, please don't consider this as an error.");
         }
     }
 
@@ -103,30 +102,10 @@ public class UserService {
     public static void retrieveUsers() {
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("login_signup/users.txt"))){
             userList = (ArrayList<User>) objectInputStream.readObject();
-            System.out.println("Users retrieved");
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("If this is your first signup, please don't consider this as an error.");
         }
     }
-
-//    public static User selectRandomPlayer(){
-//
-//        Random random= new Random();
-//        int randomIndex= random.nextInt(userList.size());
-//        User opponent=userList.get(randomIndex);
-//        displayOpponentStats(opponent);
-//        return opponent;
-//    }
-
-//    public static void displayOpponentStats(User user){
-//        System.out.println(user.getName());
-//        System.out.println(user.getXP());
-//    }
-
-
-
-    
-    
 
     public static User getCurrentUser() {
         return currentUser;

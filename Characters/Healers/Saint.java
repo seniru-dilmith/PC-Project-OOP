@@ -15,4 +15,5 @@ public class Saint extends Healer implements Mystics {
         }
         return saint;
     }
+
 }

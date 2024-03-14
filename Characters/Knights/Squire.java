@@ -14,6 +14,8 @@ public class Squire extends Knight implements Marshlander {
         }
         return squire;
     }
+
+
     
     
 }

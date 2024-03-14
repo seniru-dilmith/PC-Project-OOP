@@ -2,7 +2,7 @@ package Equipment;
 
 import java.io.Serializable;
 
-public class Artefact implements Serializable {
+public class Artefact implements Serializable, Equipments {
     String name;
     int price;
     int attack;
@@ -50,5 +50,13 @@ public class Artefact implements Serializable {
     @Override
     public String toString() {
         return name;
+    }
+    @Override
+    public String viewDetails() {
+        return "\t(Price: " + price +
+                " Attack: " + attack +
+                " Defence: " + defence +
+                " Health: " + health +
+                " Speed: " + speed + ")";
     }
 }

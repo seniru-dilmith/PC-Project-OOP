@@ -17,4 +17,5 @@ public class Eldritch extends Mage implements Mystics {
         return eldritch;
     }
 
+
 }

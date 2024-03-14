@@ -16,4 +16,5 @@ public class Soother extends Healer implements SunChildren {
         return soother;
     }
 
+
 }

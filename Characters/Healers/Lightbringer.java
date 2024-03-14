@@ -15,4 +15,5 @@ public class Lightbringer extends Healer implements SunChildren {
         }
         return lightbringer;
     }
+
 }

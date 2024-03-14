@@ -14,4 +14,6 @@ public class Swiftblade extends Knight implements Marshlander {
         }
         return swiftblade;
     }
+
+
 }

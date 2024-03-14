@@ -15,4 +15,5 @@ public class Alchemist extends Healer implements Marshlander {
         }
         return alchemist;
     }
+
 }

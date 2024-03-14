@@ -15,4 +15,5 @@ public class Medic extends Healer implements Highlander {
         }
         return medic;
     }
+
 }
