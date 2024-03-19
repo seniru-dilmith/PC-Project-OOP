@@ -157,8 +157,11 @@ public class Character implements Serializable {
     public void copy(Character character){
         this.armour = character.getArmour();
         this.artefact = character.getArtefact();
+        this.health = character.getHealth();
+        this.attack = character.getAttack();
+        this.defence = character.getDefence();
+        this.speed = character.getSpeed();
     }
-
 }
 
 

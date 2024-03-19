@@ -59,110 +59,144 @@ public class Main {
 //    mythicalCreatures = new ArrayList<>();
 //    opponentMythicalCreatures = new ArrayList<>();
 
-    private static Archer cloneArcher(Archer archer){ //clone archer to send
-        Archer clonedArcher = null;
-        if(archer instanceof Shooter){
-            clonedArcher = new Shooter();
-            clonedArcher.copy(archer);
-        } else if(archer instanceof Ranger){
-            clonedArcher = new Ranger();
-            clonedArcher.copy(archer);
-        }else if(archer instanceof Sunfire){
-            clonedArcher = new Sunfire();
-            clonedArcher.copy(archer);
-        }else if(archer instanceof Zing){
-            clonedArcher = new Zing();
-            clonedArcher.copy(archer);
-        }else if(archer instanceof Saggitarius){
-            clonedArcher = new Saggitarius();
-            clonedArcher.copy(archer);
+
+    private static Vector<Character> generateAttackerQue(Vector<Character> aliveList){
+
+        Vector<Character> result = new Vector<>();
+        float highestSpeed ;
+        int start, end;
+
+        while (!aliveList.isEmpty()){
+            start = result.size();
+            highestSpeed = aliveList.getFirst().getSpeed();
+            for (int i = 0; i < aliveList.size(); i++){
+                if(highestSpeed < aliveList.get(i).getSpeed()){
+                    highestSpeed = aliveList.get(i).getSpeed();
+                }
+            }
+
+
+            for (int i = 0; i < aliveList.size(); i++){
+                if(highestSpeed == aliveList.get(i).getSpeed()){
+                    result.add(aliveList.get(i));
+//                    aliveList.remove(aliveList.get(i));
+                }
+            }
+
+            for(int i = start; i < result.size(); i++){
+                aliveList.remove(result.get(i));
+            }
+            end = result.size() -1;
+
+            sortByPriority(result,start,end);
         }
-        return clonedArcher;
+
+        return result;
     }
 
-    private static MythicalCreature cloneCreature(MythicalCreature mythicalCreature){ //clone archer to send
-        MythicalCreature clonedCreature = null;
-        if(mythicalCreature instanceof Dragon){
-            clonedCreature = new Dragon();
-            clonedCreature.copy(mythicalCreature);
-        } else if(mythicalCreature instanceof Basilisk){
-            clonedCreature = new Basilisk();
-            clonedCreature.copy(mythicalCreature);
-        }else if(mythicalCreature instanceof Hydra){
-            clonedCreature = new Hydra();
-            clonedCreature.copy(mythicalCreature);
-        }else if(mythicalCreature instanceof Phoenix){
-            clonedCreature = new Phoenix();
-            clonedCreature.copy(mythicalCreature);
-        }else if(mythicalCreature instanceof Pegasus){
-            clonedCreature = new Pegasus();
-            clonedCreature.copy(mythicalCreature);
+    private static void sortByPriority(Vector<Character> arr,int start, int end){
+        Vector<Character> temp = new Vector<>();
+
+        for (int i = start; i <= end; i++){
+            if(arr.get(i) instanceof Archer){
+                temp.add(arr.get(i));
+            }
         }
-        return clonedCreature;
+
+        for (int i = start; i <= end; i++){
+            if(arr.get(i) instanceof Knight){
+                temp.add(arr.get(i));
+            }
+
+        }
+        for (int i = start; i <= end; i++){
+            if(arr.get(i) instanceof MythicalCreature){
+                temp.add(arr.get(i));
+            }
+        }
+        for (int i = start; i <= end; i++){
+            if(arr.get(i) instanceof Mage){
+                temp.add(arr.get(i));
+            }
+        }
+        for (int i = start; i <= end; i++){
+            if(arr.get(i) instanceof Healer){
+                temp.add(arr.get(i));
+            }
+        }
+        for (int i = start; i <= end; i++){
+            arr.set(i,temp.get(i-start));
+        }
+    }
+ private static Vector<Character> generateDefenceQue(Vector<Character> aliveList){
+
+        Vector<Character> result = new Vector<>();
+        float highestSpeed ;
+        int start, end;
+
+        while (!aliveList.isEmpty()){
+            start = result.size();
+            highestSpeed = aliveList.getFirst().getDefence();
+            for (int i = 0; i < aliveList.size(); i++){
+                if(highestSpeed < aliveList.get(i).getDefence()){
+                    highestSpeed = aliveList.get(i).getDefence();
+                }
+            }
+
+            for (int i = 0; i < aliveList.size(); i++){
+                if(highestSpeed == aliveList.get(i).getDefence()){
+                    result.add(aliveList.get(i));
+//                    aliveList.remove(aliveList.get(i));
+                }
+            }
+
+            for(int i = start; i < result.size(); i++){
+                aliveList.remove(result.get(i));
+            }
+            end = result.size() -1;
+
+            sortByPriorityDefence(result,start,end);
+        }
+
+        return result;
     }
 
-    private static Healer cloneHealer(Healer healer){ //clone archer to send
-        Healer clonedHealer = null;
-        if(healer instanceof Soother){
-            clonedHealer = new Soother();
-            clonedHealer.copy(healer);
-        } else if(healer instanceof Medic){
-            clonedHealer = new Medic();
-            clonedHealer.copy(healer);
-        }else if(healer instanceof Alchemist){
-            clonedHealer = new Alchemist();
-            clonedHealer.copy(healer);
-        }else if(healer instanceof Saint){
-            clonedHealer = new Saint();
-            clonedHealer.copy(healer);
-        }else if(healer instanceof Lightbringer){
-            clonedHealer = new Lightbringer();
-            clonedHealer.copy(healer);
+    private static void sortByPriorityDefence(Vector<Character> arr,int start, int end){
+        Vector<Character> temp = new Vector<>();
+
+        for (int i = start; i <= end; i++){
+            if(arr.get(i) instanceof Healer){
+                temp.add(arr.get(i));
+            }
         }
-        return clonedHealer;
+
+        for (int i = start; i <= end; i++){
+            if(arr.get(i) instanceof MythicalCreature){
+                temp.add(arr.get(i));
+            }
+
+        }
+        for (int i = start; i <= end; i++){
+            if(arr.get(i) instanceof Archer){
+                temp.add(arr.get(i));
+            }
+        }
+        for (int i = start; i <= end; i++){
+            if(arr.get(i) instanceof Knight){
+                temp.add(arr.get(i));
+            }
+        }
+        for (int i = start; i <= end; i++){
+            if(arr.get(i) instanceof Mage){
+                temp.add(arr.get(i));
+            }
+        }
+        for (int i = start; i <= end; i++){
+            arr.set(i,temp.get(i-start));
+        }
     }
 
-    private static Mage cloneMage(Mage mage){ //clone archer to send
-        Mage clonedMage = null;
-        if(mage instanceof Warlock){
-            clonedMage = new Warlock();
-            clonedMage.copy(mage);
-        } else if(mage instanceof Illusionist){
-            clonedMage = new Illusionist();
-            clonedMage.copy(mage);
-        }else if(mage instanceof Enchanter){
-            clonedMage = new Enchanter();
-            clonedMage.copy(mage);
-        }else if(mage instanceof Conjurer){
-            clonedMage = new Conjurer();
-            clonedMage.copy(mage);
-        }else if(mage instanceof Eldritch){
-            clonedMage = new Eldritch();
-            clonedMage.copy(mage);
-        }
-        return clonedMage;
-    }
 
-    private static Knight cloneKnight(Knight knight){ //clone archer to send
-        Knight clonedKnight = null;
-        if(knight instanceof Squire){
-            clonedKnight = new Squire();
-            clonedKnight.copy(knight);
-        } else if(knight instanceof Cavalier){
-            clonedKnight = new Cavalier();
-            clonedKnight.copy(knight);
-        }else if(knight instanceof Templar){
-            clonedKnight = new Templar();
-            clonedKnight.copy(knight);
-        }else if(knight instanceof Zoro){
-            clonedKnight = new Zoro();
-            clonedKnight.copy(knight);
-        }else if(knight instanceof Swiftblade){
-            clonedKnight = new Swiftblade();
-            clonedKnight.copy(knight);
-        }
-        return clonedKnight;
-    }
 
 //    public static boolean isArmyReady() {
     public static boolean isChallengerReady() {
@@ -175,30 +209,33 @@ public class Main {
         mythicalCreatures = currentUser.getMythicalCreatures();
 
         try {
-            challengerArcher = archers.get(archers.size() - 1);
-            armyToBattle.add(challengerArcher);
-            copyOfAttackerArmy.add(cloneArcher(challengerArcher));
-            //            armyToBattle.add(archers.get(archers.size() - 1));
+            armyToBattle = new ArrayList<>();
+            copyOfAttackerArmy = new ArrayList<>();
 
-            challengerKnight = knights.get(knights.size() - 1);
-            armyToBattle.add(challengerKnight);
-            copyOfAttackerArmy.add(cloneKnight(challengerKnight));
+//            challengerArcher = archers.get(archers.size() - 1);
+//            armyToBattle.add(challengerArcher);
+//            copyOfAttackerArmy.add(cloneArcher(challengerArcher));
+//            armyToBattle.add(archers.get(archers.size() - 1));
+
+//            challengerKnight = knights.get(knights.size() - 1);
+//            armyToBattle.add(challengerKnight);
+//            copyOfAttackerArmy.add(cloneKnight(challengerKnight));
 //            armyToBattle.add(knights.get(knights.size() - 1));
 
-            challengerMage = mages.get(mages.size() - 1);
-            armyToBattle.add(challengerMage);
-            copyOfAttackerArmy.add(cloneMage(challengerMage));
+//            challengerMage = mages.get(mages.size() - 1);
+//            armyToBattle.add(challengerMage);
+//            copyOfAttackerArmy.add(cloneMage(challengerMage));
 //            armyToBattle.add(mages.get(mages.size() - 1));
 
-            challengerHealer = healers.get(healers.size() - 1);
-            armyToBattle.add(challengerHealer);
-            copyOfAttackerArmy.add(cloneHealer(challengerHealer));
+//            challengerHealer = healers.get(healers.size() - 1);
+//            armyToBattle.add(challengerHealer);
+//            copyOfAttackerArmy.add(cloneHealer(challengerHealer));
 //            armyToBattle.add(healers.get(healers.size() - 1));
 
-            challengerMythicalCreature = mythicalCreatures.get(mythicalCreatures.size() - 1);
-            armyToBattle.add(challengerMythicalCreature);
-            copyOfAttackerArmy.add(cloneCreature(challengerMythicalCreature));
-            
+//            challengerMythicalCreature = mythicalCreatures.get(mythicalCreatures.size() - 1);
+//            armyToBattle.add(challengerMythicalCreature);
+//            copyOfAttackerArmy.add(cloneCreature(challengerMythicalCreature));
+
 //            armyToBattle.add(mythicalCreatures.get(mythicalCreatures.size() - 1));
 
 
@@ -221,28 +258,32 @@ public class Main {
         opponentMythicalCreatures = opponentPlayer.getMythicalCreatures();
 
         try {
-            opponentArcher = opponentArchers.get(opponentArchers.size() - 1);
-            opponentArmy.add(opponentArcher);
-            copyOfOpponentArmy.add(cloneArcher(opponentArcher));
+            opponentArmy = new ArrayList<>();
+            copyOfOpponentArmy = new ArrayList<>();
+
+//            opponentArcher = opponentArchers.get(opponentArchers.size() - 1);
+//            opponentArmy.add(opponentArcher);
+//            copyOfOpponentArmy.add(cloneArcher(opponentArcher));
 //            opponentArmy.add(opponentArchers.get(opponentArchers.size() - 1));
 
-            opponentKnight = opponentKnights.get(opponentKnights.size() - 1);
-            opponentArmy.add(opponentKnight);
-            copyOfOpponentArmy.add(cloneKnight(opponentKnight));
+//            opponentKnight = opponentKnights.get(opponentKnights.size() - 1);
+//            opponentArmy.add(opponentKnight);
+//            copyOfOpponentArmy.add(cloneKnight(opponentKnight));
 //            opponentArmy.add(opponentKnights.get(opponentKnights.size() - 1));
 
-            opponentMage = opponentMages.get(opponentMages.size() - 1);
-            opponentArmy.add(opponentMage);
-            copyOfOpponentArmy.add(cloneMage(opponentMage));
+//            opponentMage = opponentMages.get(opponentMages.size() - 1);
+//            opponentArmy.add(opponentMage);
+//            copyOfOpponentArmy.add(cloneMage(opponentMage));
 //            opponentArmy.add(opponentMages.get(opponentMages.size() - 1));
 
-            opponentHealer = opponentHealers.get(opponentHealers.size() - 1);
-            opponentArmy.add(cloneHealer(opponentHealer));
+//            opponentHealer = opponentHealers.get(opponentHealers.size() - 1);
+//            opponentArmy.add(opponentHealer);
+//            copyOfOpponentArmy.add(cloneHealer(opponentHealer));
 //            opponentArmy.add(opponentHealers.get(opponentHealers.size() - 1));
 
-            opponentMythicalCreature = opponentMythicalCreatures.get(opponentMythicalCreatures.size() - 1);
-            opponentArmy.add(opponentMythicalCreature);
-            copyOfOpponentArmy.add(cloneCreature(opponentMythicalCreature));
+//            opponentMythicalCreature = opponentMythicalCreatures.get(opponentMythicalCreatures.size() - 1);
+//            opponentArmy.add(opponentMythicalCreature);
+//            copyOfOpponentArmy.add(cloneCreature(opponentMythicalCreature));
 //            opponentArmy.add(opponentMythicalCreatures.get(opponentMythicalCreatures.size() - 1));
             ready = true;
         } catch (IndexOutOfBoundsException e) {
@@ -263,7 +304,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);  // scanner object to read inputs from user
         // welocme message
-        System.out.println("!!!Welcome to Mystic Mayhem!!!");
+        System.out.println(Design.mysticMayhem);
         System.out.println("Enter 1: Login");
         System.out.println("Enter 2: Signup");
         System.out.println("Enter 3: Exit");
@@ -313,21 +354,59 @@ public class Main {
                 break;
 
             case "2":
-                if (isChallengerReady()) {
-                    System.out.println("Battle Begins!");
+                if (currentUser.armyIsReady()) {
+                    System.out.println(Design.battleBegins);
                     //selectHomeGround();
-                    selectRandomPlayer();
+                    User openUser = selectRandomPlayer();
 
+                    Vector<Character> currentArmy = currentUser.getBattleArmy();
+                    Vector<Character> openArmy = openUser.getBattleArmy();
+
+
+//                    challengerBySpeed = generateAttackerQue(currentArmy).reversed();
+//                    opponentBySpeed = generateAttackerQue(openArmy).reversed();
+//                    challengerByDefence = ArrayList<>(generateDefenceQue(currentArmy);
+//                    opponentByDefence = ArrayList<>(generateDefenceQue(openArmy);
+
+                    Vector<Character> tempCurrSpeed = currentUser.getBattleArmy();
+                    Vector<Character> tempOppSpeed = openUser.getBattleArmy();
+
+                    ArrayList<Character> curr = new ArrayList<>(tempCurrSpeed);
+                    ArrayList<Character> opp = new ArrayList<>(tempOppSpeed);
+
+                    homegroundFeatures(curr,opp);
+
+                    Vector<Character> tempCurrDef = new Vector<>();
+                    Vector<Character> tempOppDef = new Vector<>();
+
+                    for(Character ch : tempCurrSpeed) tempCurrDef.add(ch);
+                    for(Character ch : tempOppSpeed) tempOppDef.add(ch);
+
+
+
+                    Vector<Character> currSpeed = generateAttackerQue(tempCurrSpeed);
+                    Vector<Character> oppSpeed = generateAttackerQue(tempOppSpeed);
+                    Vector<Character> currDef = generateDefenceQue(tempCurrDef);
+                    Vector<Character> oppDef = generateDefenceQue(tempOppDef);
+
+
+
+                    for (int i = 0 ; i < currSpeed.size() ; i++) challengerBySpeed.add(currSpeed.get(i));
+                    for (int i = currDef.size() -1 ; i >= 0 ; i--) challengerByDefence.add(currDef.get(i));
+                    for (int i = 0 ; i < oppSpeed.size() ; i++) opponentBySpeed.add(oppSpeed.get(i));
+                    for (int i = oppDef.size() -1  ; i >=0 ; i--) opponentByDefence.add(oppDef.get(i));
+
+//                    System.out.println(generateAttackerQue(currentArmy));
 //                    copyOfAttackerArmy = new ArrayList<>(armyToBattle);
 //                    copyOfOpponentArmy = new ArrayList<>(opponentArmy);
 
-                    homegroundFeatures(copyOfAttackerArmy, copyOfOpponentArmy);
 
-                    battle(copyOfAttackerArmy, copyOfOpponentArmy);
+
+                    //battle(copyOfAttackerArmy, copyOfOpponentArmy);
 
                     battleBegin();
                     System.out.println("Battle is over. Returning to previous menu...");
-                    userList = null;
+//                    userList = null;
                     gameFlow();
                     firstScreen();
                 } else {
@@ -396,6 +475,7 @@ public class Main {
         String choice = scanner.nextLine();
         switch (choice) {
             case "1":
+                System.out.println(Design.inventory);
                 User user = UserService.getCurrentUser();
                 System.out.println(user.toString());
                 System.out.println();
@@ -1214,7 +1294,7 @@ public class Main {
         for (Mage mage : allMages) {
             System.out.print(mage.toString() + " \n");
         }
-        System.out.println("");
+        System.out.println();
         System.out.println("Enter 1: Purchase Warlock");
         System.out.println("Enter 2: Purchase Illusionist");
         System.out.println("Enter 3: Purchase Enchanter");
@@ -1315,7 +1395,7 @@ public class Main {
         for (Healer healer : allHealer) {
             System.out.print(healer.toString() + " \n");
         }
-        System.out.println("");
+        System.out.println();
         System.out.println("Enter 1: Purchase Soother ");
         System.out.println("Enter 2: Purchase Medic");
         System.out.println("Enter 3: Purchase Alchemist");
@@ -1424,7 +1504,7 @@ public class Main {
         for (MythicalCreature mythicalCreature : allMythicalCreatures) {
             System.out.print(mythicalCreature.toString() + " \n");
         }
-        System.out.println("");
+        System.out.println();
         System.out.println("Enter 1: Purchase Dragon ");
         System.out.println("Enter 2: Purchase Basilisk");
         System.out.println("Enter 3: Purchase Hydra");
@@ -1868,7 +1948,7 @@ public class Main {
         return (int) (price * 0.9);
     }
 
-    public static void selectRandomPlayer() {
+    public static User selectRandomPlayer() {
 
         Random random = new Random();
         int randomIndex = random.nextInt(userList.size());
@@ -1879,21 +1959,21 @@ public class Main {
             if (isOpponentReady() ) {
                 displayOpponentStats(opponentPlayer);
 
-                selectOponent(opponentPlayer);
+                selectOpponent(opponentPlayer);
 
             }
+            return opponentPlayer;
         }
         else
-            selectRandomPlayer();
-
+            return selectRandomPlayer();
     }
 
     public static void displayOpponentStats(User user) {
-        System.out.println(user.getName());
-        System.out.println(user.getXP());
+        System.out.println("Name: " + user.getName());
+        System.out.println("XP: " + user.getXP());
     }
 
-    public static void selectOponent(User opponent) {
+    public static void selectOpponent(User opponent) {
         Scanner scanner = new Scanner(System.in);
         String canBattle;
 
@@ -1910,7 +1990,7 @@ public class Main {
             selectRandomPlayer();
         } else {
             resetArrays();
-            selectOponent(opponent);
+            selectOpponent(opponent);
         }
 
 //        do{
@@ -1937,138 +2017,226 @@ public class Main {
 
     }
 
-    public static void battle(ArrayList<Character> challenger, ArrayList<Character> opponent) {
+//    public static void battle(ArrayList<Character> challenger, ArrayList<Character> opponent) {
+//
+//        //Set the ascending order of speed of the challenger
+//
+//
+//        Collections.sort(challenger, new Comparator<Character>() {
+//            @Override
+//            public int compare(Character c1, Character c2) {
+//
+//                return Integer.compare(c1.getSpeed(), c2.getSpeed());
+//            }
+//        });
+//
+//
+//        challengerBySpeed.addAll(challenger);
+//
+//        //Recreate the array if there ara same speed characters according to their priority order
+//
+//        for (int i = 0; i < challengerBySpeed.size() - 1; ++i) {
+//            Character currentCharacter = challengerBySpeed.get(i);
+//            Character nextCharacter = challengerBySpeed.get(i + 1);
+//            if (currentCharacter.getSpeed() == nextCharacter.getSpeed()) {
+//                System.out.println("same speed;");
+//                comparePrioritySpeed(i,i+1,challengerBySpeed);
+//            }
+//            System.out.println("array:");
+//
+//            System.out.println(currentCharacter.getName() + " " + currentCharacter.getSpeed());
+//            System.out.println(nextCharacter.getName() + " " + nextCharacter.getSpeed());
+//
+//        }
+//
+//        //reverse the list
+//        Collections.reverse(challengerBySpeed);
+//
+//
+//        //Set the ascending order of defence of the challenger
+//
+//        Collections.sort(challenger, new Comparator<Character>() {
+//            @Override
+//            public int compare(Character o1, Character o2) {
+//                return Integer.compare(o1.getDefence(), o2.getDefence());
+//            }
+//        });
+//
+//        //Recreate the array if there ara same defence characters according to their priority order
+//
+//        challengerByDefence.addAll(challenger);
+//        for (int i = 0; i < challengerByDefence.size() - 1; ++i) {
+//            Character currentCharacter = challengerByDefence.get(i);
+//            Character nextCharacter = challengerByDefence.get(i + 1);
+//            if (currentCharacter.getDefence() == nextCharacter.getDefence()) {
+//                comparePriorityDefence(i,i=1,challengerByDefence);
+//            }
+//        }
+//
+//
+//        //Set the ascending order of speed of opponent
+//
+//        Collections.sort(opponent, new Comparator<Character>() {
+//            @Override
+//            public int compare(Character o1, Character o2) {
+//                return Integer.compare(o1.getSpeed(), o2.getSpeed());
+//            }
+//        });
+//
+//        opponentBySpeed.addAll(opponent);
+//        for (int i = 0; i < opponentBySpeed.size() - 1; ++i) {
+//            Character currentCharacter = opponentBySpeed.get(i);
+//            Character nextCharacter = opponentBySpeed.get(i + 1);
+//            if (currentCharacter.getSpeed() == nextCharacter.getSpeed()) {
+//                comparePrioritySpeed(i, i+1,opponentBySpeed);
+//            }
+//        }
+//        //reverse the arrayList
+//        Collections.reverse(opponentBySpeed);
+//
+//
+//        //Set the ascending order of defence of opponent
+//
+//        Collections.sort(opponent, new Comparator<Character>() {
+//            @Override
+//            public int compare(Character o1, Character o2) {
+//                return Integer.compare(o1.getDefence(), o2.getDefence());
+//            }
+//        });
+//
+//        opponentByDefence.addAll(opponent);
+//        for (int i = 0; i < opponentByDefence.size() - 1; ++i) {
+//            Character currentCharacter = opponentByDefence.get(i);
+//            Character nextCharacter = opponentByDefence.get(i + 1);
+//            if (currentCharacter.getDefence() == nextCharacter.getDefence()) {
+//                comparePriorityDefence(i,i+1,opponentByDefence);
+//            }}
+//
+//
+//    }
 
-        //Set the ascending order of speed of the challenger
-
-
-        Collections.sort(challenger, new Comparator<Character>() {
-            @Override
-            public int compare(Character c1, Character c2) {
-
-                return Integer.compare(c1.getSpeed(), c2.getSpeed());
-            }
-        });
-
-
-        challengerBySpeed.addAll(challenger);
-
-        //Recreate the array if there ara same speed characters according to their priority order
-
-        for (int i = 0; i < challengerBySpeed.size() - 1; ++i) {
-            Character currentCharacter = challengerBySpeed.get(i);
-            Character nextCharacter = challengerBySpeed.get(i + 1);
-            if (currentCharacter.getSpeed() == nextCharacter.getSpeed()) {
-                if (comparePrioritySpeed(currentCharacter, nextCharacter) > 0) {
-                    Collections.swap(challengerBySpeed, i, i + 1);
-                }
-
-            }
-        }
-
-        //reverse the list
-        Collections.reverse(challengerBySpeed);
-
-
-        //Set the ascending order of defence of the challenger
-
-        Collections.sort(challenger, new Comparator<Character>() {
-            @Override
-            public int compare(Character o1, Character o2) {
-                return Integer.compare(o1.getDefence(), o2.getDefence());
-            }
-        });
-
-        //Recreate the array if there ara same defence characters according to their priority order
-
-        challengerByDefence.addAll(challenger);
-        for (int i = 0; i < challengerByDefence.size() - 1; ++i) {
-            Character currentCharacter = challengerByDefence.get(i);
-            Character nextCharacter = challengerByDefence.get(i + 1);
-            if (currentCharacter.getDefence() == nextCharacter.getDefence()) {
-                if (comparePriorityDefence(currentCharacter, nextCharacter) > 0) {
-                    Collections.swap(challengerByDefence, i, i + 1);
-                }
-
-            }
-        }
-
-
-        //Set the ascending order of speed of opponent
-
-        Collections.sort(opponent, new Comparator<Character>() {
-            @Override
-            public int compare(Character o1, Character o2) {
-                return Integer.compare(o1.getSpeed(), o2.getSpeed());
-            }
-        });
-
-        opponentBySpeed.addAll(opponent);
-        for (int i = 0; i < opponentBySpeed.size() - 1; ++i) {
-            Character currentCharacter = opponentBySpeed.get(i);
-            Character nextCharacter = opponentBySpeed.get(i + 1);
-            if (currentCharacter.getSpeed() == nextCharacter.getSpeed()) {
-                if (comparePrioritySpeed(currentCharacter, nextCharacter) > 0) {
-                    Collections.swap(opponentBySpeed, i, i + 1);
-                }
-
-            }
-        }
-        //reverse the arrayList
-        Collections.reverse(opponentBySpeed);
-
-
-        //Set the ascending order of defence of opponent
-
-        Collections.sort(opponent, new Comparator<Character>() {
-            @Override
-            public int compare(Character o1, Character o2) {
-                return Integer.compare(o1.getDefence(), o2.getDefence());
-            }
-        });
-
-        opponentByDefence.addAll(opponent);
-        for (int i = 0; i < opponentByDefence.size() - 1; ++i) {
-            Character currentCharacter = opponentByDefence.get(i);
-            Character nextCharacter = opponentByDefence.get(i + 1);
-            if (currentCharacter.getDefence() == nextCharacter.getDefence()) {
-                if (comparePriorityDefence(currentCharacter, nextCharacter) > 0) {
-                    Collections.swap(opponentByDefence, i, i + 1);
-                }
-
-            }
-        }
-
-
-    }
-
-
-
-
-
-    public static int comparePrioritySpeed(Character c1, Character c2) {
+//    public static void comparePrioritySpeed(int int1, int int2, ArrayList<Character> challenger) {
+//        Character c1 = challenger.get(int1);
+//        Character c2 = challenger.get(int2);
+//        if (c1 instanceof Archer || c2 instanceof Archer) {
+//            if (c1 instanceof Archer) {
+//                challenger.set(int1, c1);
+//                challenger.set(int2, c2);
+//            } else {
+//                challenger.set(int1, c2);
+//                challenger.set(int2, c1);
+//            }
+//
+//
+//        } else if (c1 instanceof Knight || c2 instanceof Knight) {
+//            if (c1 instanceof Knight) {
+//                challenger.set(int1, c1);
+//                challenger.set(int2, c2);
+//            } else {
+//                challenger.set(int1, c2);
+//                challenger.set(int2, c1);
+//            }
+//
+//        } else if (c1 instanceof MythicalCreature || c2 instanceof MythicalCreature) {
+//            if (c1 instanceof MythicalCreature) {
+//                challenger.set(int1, c1);
+//                challenger.set(int2, c2);
+//            } else {
+//                challenger.set(int1, c2);
+//                challenger.set(int2, c1);
+//            }
+//
+//        } else if (c1 instanceof Mage || c2 instanceof Mage) {
+//            if (c1 instanceof Mage) {
+//                challenger.set(int1, c1);
+//                challenger.set(int2, c2);
+//            } else {
+//                challenger.set(int1, c2);
+//                challenger.set(int2, c1);
+//            }
+//
+//        } else if (c1 instanceof Healer || c2 instanceof Healer) {
+//            if (c1 instanceof Healer) {
+//                challenger.set(int1, c1);
+//                challenger.set(int2, c2);
+//            } else {
+//                challenger.set(int1, c2);
+//                challenger.set(int2, c1);
+//            }
+//
+//        }
+//    }
+//    public static void comparePriorityDefence(int int1, int int2, ArrayList<Character> challenger) {
         // Define the priority order
-        String priorityOrder = "Healer Mage Mythical CreatureKnight Archer";
 
-        // Get the index of each character in the priority order
-        int index1 = priorityOrder.indexOf(c1.getClass().getSimpleName());
-        int index2 = priorityOrder.indexOf(c2.getClass().getSimpleName());
-
-        // Compare the indices to determine priority
-        return Integer.compare(index1, index2);
-    }
-
-    public static int comparePriorityDefence(Character c1, Character c2) {
-        // Define the priority order
-        String priorityOrder = "Mage Knight Archer MythicalCreature Healer";
-
-        // Get the index of each character in the priority order
-        int index1 = priorityOrder.indexOf(c1.getClass().getSimpleName());
-        int index2 = priorityOrder.indexOf(c2.getClass().getSimpleName());
-
-        // Compare the indices to determine priority
-        return Integer.compare(index1, index2);
-    }
+//        // Define the priority order
+//        String priorityOrder = "Mage Knight Archer MythicalCreature Healer";
+//
+//        // Get the index of each character in the priority order
+//        int index1 = priorityOrder.indexOf(c1.getClass().getSimpleName());
+//        int index2 = priorityOrder.indexOf(c2.getClass().getSimpleName());
+//
+//        // Compare the indices to determine priority
+//        return Integer.compare(index1, index2);
+//        Character c1=challenger.get(int1);
+//        Character c2=challenger.get(int2);
+//       if (c1 instanceof Healer || c2 instanceof Healer) {
+//           if (c1 instanceof Healer){
+//               challenger.set(int1,c1);
+//               challenger.set(int2,c2);
+//           }
+//           else{
+//               challenger.set(int1,c2);
+//               challenger.set(int2,c1);
+//           }
+//       }
+//
+//       else if (c1 instanceof MythicalCreature || c2 instanceof MythicalCreature) {
+//           if (c1 instanceof MythicalCreature){
+//               challenger.set(int1,c1);
+//               challenger.set(int2,c2);
+//           }
+//           else{
+//               challenger.set(int1,c2);
+//               challenger.set(int2,c1);
+//           }
+//       }
+//
+//       else if (c1 instanceof Archer || c2 instanceof Archer) {
+//           if (c1 instanceof Archer){
+//               challenger.set(int1,c1);
+//               challenger.set(int2,c2);
+//           }
+//           else{
+//               challenger.set(int1,c2);
+//               challenger.set(int2,c1);
+//           }
+//       }
+//
+//       else if (c1 instanceof Knight || c2 instanceof Knight) {
+//           if (c1 instanceof Knight){
+//               challenger.set(int1,c1);
+//               challenger.set(int2,c2);
+//           }
+//           else{
+//               challenger.set(int1,c2);
+//               challenger.set(int2,c1);
+//           }
+//       }
+//
+//       else if (c1 instanceof Mage || c2 instanceof Mage) {
+//           if (c1 instanceof Mage){
+//               challenger.set(int1,c1);
+//               challenger.set(int2,c2);
+//           }
+//           else{
+//               challenger.set(int1,c2);
+//               challenger.set(int2,c1);
+//           }
+//
+//       }
+//
+//    }
 
     public static void homegroundFeatures(ArrayList<Character> player_1, ArrayList<Character> player_2) {
 
@@ -2185,13 +2353,14 @@ public class Main {
     }
 
     public static Character minimumHealthCharacter(ArrayList<Character> characters) {
-        Character minHealthCharacter = characters.get(0);
+
         for (Character character : characters) {
-            if (character.getHealth() < minHealthCharacter.getHealth()) {
-                minHealthCharacter = character;
+            if (character.getHealth() == 0) {
+                continue;
             }
+            return character;
         }
-        return minHealthCharacter;
+       return null;
     }
 
     public static void battleBegin() {
@@ -2199,6 +2368,9 @@ public class Main {
         int countPlayerDefence = 0;
         int countOpponentAttack = 0;
         int countOpponentDefence = 0;
+        int countPlayerAttackloop = 5;
+        int countOpponentAttackloop = 5;
+
         System.out.println("challengerBySpeed: ");
 
         for (Character ch : challengerBySpeed) {
@@ -2223,9 +2395,9 @@ public class Main {
 
 
 
-        for (int i = 1; i < 11; i++) {
+        for (int i = 1; i < 12; i++) {
 
-            if (countPlayerDefence == 4) {
+            if (countPlayerDefence == 5) {
                 System.out.println(opponentPlayer.getName() + " won!");
                 opponentPlayer.incrementXP(1);
                 opponentPlayer.setGoldCoins(opponentPlayer.getGoldCoins() + (int) (currentUser.getGoldCoins() * 0.1));
@@ -2234,7 +2406,7 @@ public class Main {
                 resetArrays();
                 break;
             }
-            if (countOpponentDefence == 4) {
+            if (countOpponentDefence == 5) {
                 System.out.println(currentUser.getName() + " won!");
                 currentUser.incrementXP(1);
                 currentUser.setGoldCoins(currentUser.getGoldCoins() + (int) (opponentPlayer.getGoldCoins() * 0.1));
@@ -2243,7 +2415,7 @@ public class Main {
                 resetArrays();
                 break;
             }
-            if ((countPlayerDefence < 4 && countOpponentDefence < 4) && i == 10 ) {
+            if ((countPlayerDefence < 5 && countOpponentDefence < 5) && i == 11 ) {
                 System.out.println("Draw");
                 resetArrays();
                 break;
@@ -2980,34 +3152,46 @@ public class Main {
 
             } else {
                 if (challengerBySpeed.get(countPlayerAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                    if (challengerBySpeed.get(countPlayerAttack) instanceof Healer)
+
+
                         healerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                    if (opponentBySpeed.get(countOpponentAttack) instanceof Healer)
+                        changeList(challengerBySpeed);
+
+
                         healerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
+                        changeList(opponentBySpeed);
+
+                continue;
+
                 } else if (challengerBySpeed.get(countPlayerAttack) instanceof Healer || opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
                     if (challengerBySpeed.get(countPlayerAttack) instanceof Healer) {
-                        healerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                        normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
+                        Character c1 = minimumHealthCharacter(challengerByDefence);
+                        healerAttack(challengerBySpeed.get(countPlayerAttack), c1);
                         Character character2 = challengerByDefence.get(countPlayerDefence);
+
                         System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
+                                challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + c1.getName() + "\n" +
+                                c1.getName() + "'s health: " + c1.getHealth() + "\n" +
+                                challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n");
+
+                        normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
+
 
                         System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
                                 opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
                                 challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
                                 opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
                                 ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
+                        changeList(challengerBySpeed);
+                        changeList(opponentBySpeed);
                         if (character2.getHealth() <= 0) {
                             challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
                             //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
                             countPlayerDefence++;
                         }
+                        continue;
                     }
                     if (opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                        healerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
                         normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
                         Character character1 = opponentByDefence.get(countOpponentDefence);
                         System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
@@ -3015,28 +3199,39 @@ public class Main {
                                 opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
                                 challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
                                 ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-                        System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
+                        changeList(challengerBySpeed);
                         if (character1.getHealth() <= 0) {
                             opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
                             //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
                             countOpponentDefence++;
                         }
+
+
+                        Character c2 = minimumHealthCharacter(opponentByDefence);
+                        healerAttack(opponentBySpeed.get(countOpponentAttack), c2);
+                        System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
+                                opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + c2.getName() + "\n" +
+                                c2.getName() + "'s health: " + c2.getHealth() + "\n" +
+                                opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n");
+
+
+                        changeList(opponentBySpeed);
+
                     }
+                    continue;
                 }
 
 
                 if (!(challengerBySpeed.get(countPlayerAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Healer)) {
                     normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
+
                     Character character1 = opponentByDefence.get(countOpponentDefence);
                     System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
                             challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
                             opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
                             challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
                             ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
+                    changeList(challengerBySpeed);
                     if (character1.getHealth() <= 0) {
                         opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
                         //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
@@ -3044,17 +3239,20 @@ public class Main {
                     }
 
                     normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
+
                     Character character2 = challengerByDefence.get(countPlayerDefence);
                     System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
                             opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
                             challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
                             opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
                             ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
+                    changeList(opponentBySpeed);
                     if (character2.getHealth() <= 0) {
                         challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
                         //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
                         countPlayerDefence++;
                     }
+                    continue;
                 }
             }
 
@@ -3064,6 +3262,7 @@ public class Main {
 
             copyOfAttackerArmy = new ArrayList<>();
             copyOfOpponentArmy = new ArrayList<>();
+
 
 
         }
@@ -3089,8 +3288,17 @@ public class Main {
         opponentByDefence = new ArrayList<>();
         copyOfAttackerArmy = new ArrayList<>();
         challengerBySpeed = new ArrayList<>();
+
         challengerByDefence = new ArrayList<>();
         armyToBattle = new ArrayList<>();
+    }
+
+    public static void changeList(ArrayList<Character> list){
+        Character temp=list.get(0);
+        for (int i=0;i<list.size()-1;i++){
+            list.set(i,list.get(i+1));
+        }
+        list.set(list.size()-1,temp);
     }
 
 

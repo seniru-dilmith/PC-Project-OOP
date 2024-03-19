@@ -1,6 +1,7 @@
 package login_signup;
 
 import Characters.Archers.*;
+import Characters.Character;
 import Characters.Healers.*;
 import Characters.Knights.*;
 import Characters.Mages.*;
@@ -9,6 +10,7 @@ import Characters.MythicalCreatures.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Vector;
 
 public class User implements Serializable {
     private int ID;
@@ -113,6 +115,144 @@ public class User implements Serializable {
         System.out.printf("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n%n",
                 "Name", "Price(gc)", "Attack", "Defence", "Health", "Speed");
         return allMythicalCreatures;
+    }
+
+
+
+    public boolean armyIsReady(){
+        boolean isArcher=archers.size()==0;
+        boolean isHealer=healers.size()==0;
+        boolean isMage=mages.size()==0;
+        boolean isMythicalCreature=mythicalCreatures.size()==0;
+        boolean isKnight=knights.size()==0;
+        return (!(isKnight || isHealer || isArcher || isMythicalCreature||isMage));
+    }
+
+    private static Archer cloneArcher(Archer archer){ //clone archer to send
+        Archer clonedArcher = null;
+        if(archer instanceof Shooter){
+            clonedArcher = new Shooter();
+            clonedArcher.copy(archer);
+        } else if(archer instanceof Ranger){
+            clonedArcher = new Ranger();
+            clonedArcher.copy(archer);
+        }else if(archer instanceof Sunfire){
+            clonedArcher = new Sunfire();
+            clonedArcher.copy(archer);
+        }else if(archer instanceof Zing){
+            clonedArcher = new Zing();
+            clonedArcher.copy(archer);
+        }else if(archer instanceof Saggitarius){
+            clonedArcher = new Saggitarius();
+            clonedArcher.copy(archer);
+        }
+        return clonedArcher;
+    }
+
+    private static MythicalCreature cloneCreature(MythicalCreature mythicalCreature){ //clone archer to send
+        MythicalCreature clonedCreature = null;
+        if(mythicalCreature instanceof Dragon){
+            clonedCreature = new Dragon();
+            clonedCreature.copy(mythicalCreature);
+        } else if(mythicalCreature instanceof Basilisk){
+            clonedCreature = new Basilisk();
+            clonedCreature.copy(mythicalCreature);
+        }else if(mythicalCreature instanceof Hydra){
+            clonedCreature = new Hydra();
+            clonedCreature.copy(mythicalCreature);
+        }else if(mythicalCreature instanceof Phoenix){
+            clonedCreature = new Phoenix();
+            clonedCreature.copy(mythicalCreature);
+        }else if(mythicalCreature instanceof Pegasus){
+            clonedCreature = new Pegasus();
+            clonedCreature.copy(mythicalCreature);
+        }
+        return clonedCreature;
+    }
+
+    private static Healer cloneHealer(Healer healer){ //clone archer to send
+        Healer clonedHealer = null;
+        if(healer instanceof Soother){
+            clonedHealer = new Soother();
+            clonedHealer.copy(healer);
+        } else if(healer instanceof Medic){
+            clonedHealer = new Medic();
+            clonedHealer.copy(healer);
+        }else if(healer instanceof Alchemist){
+            clonedHealer = new Alchemist();
+            clonedHealer.copy(healer);
+        }else if(healer instanceof Saint){
+            clonedHealer = new Saint();
+            clonedHealer.copy(healer);
+        }else if(healer instanceof Lightbringer){
+            clonedHealer = new Lightbringer();
+            clonedHealer.copy(healer);
+        }
+        return clonedHealer;
+    }
+
+    private static Mage cloneMage(Mage mage){ //clone archer to send
+        Mage clonedMage = null;
+        if(mage instanceof Warlock){
+            clonedMage = new Warlock();
+            clonedMage.copy(mage);
+        } else if(mage instanceof Illusionist){
+            clonedMage = new Illusionist();
+            clonedMage.copy(mage);
+        }else if(mage instanceof Enchanter){
+            clonedMage = new Enchanter();
+            clonedMage.copy(mage);
+        }else if(mage instanceof Conjurer){
+            clonedMage = new Conjurer();
+            clonedMage.copy(mage);
+        }else if(mage instanceof Eldritch){
+            clonedMage = new Eldritch();
+            clonedMage.copy(mage);
+        }
+        return clonedMage;
+    }
+
+    private static Knight cloneKnight(Knight knight){ //clone archer to send
+        Knight clonedKnight = null;
+        if(knight instanceof Squire){
+            clonedKnight = new Squire();
+            clonedKnight.copy(knight);
+        } else if(knight instanceof Cavalier){
+            clonedKnight = new Cavalier();
+            clonedKnight.copy(knight);
+        }else if(knight instanceof Templar){
+            clonedKnight = new Templar();
+            clonedKnight.copy(knight);
+        }else if(knight instanceof Zoro){
+            clonedKnight = new Zoro();
+            clonedKnight.copy(knight);
+        }else if(knight instanceof Swiftblade){
+            clonedKnight = new Swiftblade();
+            clonedKnight.copy(knight);
+        }
+        return clonedKnight;
+    }
+
+
+    public Vector<Character> getBattleArmy(){
+        Vector<Character> army=new Vector<>();
+        if (!archers.isEmpty()){
+            army.add(cloneArcher(archers.getLast()));
+        }
+
+        if (!healers.isEmpty()){
+            army.add(cloneHealer(healers.getLast()));
+        }
+        if (!mages.isEmpty()){
+            army.add(cloneMage(mages.getLast()));
+        }
+        if (!mythicalCreatures.isEmpty()){
+            army.add(cloneCreature(mythicalCreatures.getLast()));
+        }
+        if (!knights.isEmpty()){
+            army.add(cloneKnight(knights.getLast()));
+        }
+        return army;
     }
 
     public ArrayList<Archer> getArchers() {
