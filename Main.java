@@ -59,7 +59,7 @@ public class Main {
 //    mythicalCreatures = new ArrayList<>();
 //    opponentMythicalCreatures = new ArrayList<>();
 
-    private Archer cloneArcher(Archer archer){ //clone archer to send
+    private static Archer cloneArcher(Archer archer){ //clone archer to send
         Archer clonedArcher = null;
         if(archer instanceof Shooter){
             clonedArcher = new Shooter();
@@ -80,7 +80,7 @@ public class Main {
         return clonedArcher;
     }
 
-    private MythicalCreature cloneCreature(MythicalCreature mythicalCreature){ //clone archer to send
+    private static MythicalCreature cloneCreature(MythicalCreature mythicalCreature){ //clone archer to send
         MythicalCreature clonedCreature = null;
         if(mythicalCreature instanceof Dragon){
             clonedCreature = new Dragon();
@@ -101,7 +101,7 @@ public class Main {
         return clonedCreature;
     }
 
-    private Healer cloneHealer(Healer healer){ //clone archer to send
+    private static Healer cloneHealer(Healer healer){ //clone archer to send
         Healer clonedHealer = null;
         if(healer instanceof Soother){
             clonedHealer = new Soother();
@@ -122,7 +122,7 @@ public class Main {
         return clonedHealer;
     }
 
-    private Mage cloneMage(Mage mage){ //clone archer to send
+    private static Mage cloneMage(Mage mage){ //clone archer to send
         Mage clonedMage = null;
         if(mage instanceof Warlock){
             clonedMage = new Warlock();
@@ -143,7 +143,7 @@ public class Main {
         return clonedMage;
     }
 
-    private Knight cloneKnight(Knight knight){ //clone archer to send
+    private static Knight cloneKnight(Knight knight){ //clone archer to send
         Knight clonedKnight = null;
         if(knight instanceof Squire){
             clonedKnight = new Squire();
@@ -164,7 +164,7 @@ public class Main {
         return clonedKnight;
     }
 
-    public static boolean isArmyReady() {
+//    public static boolean isArmyReady() {
     public static boolean isChallengerReady() {
         boolean ready = false;
 
@@ -176,19 +176,30 @@ public class Main {
 
         try {
             challengerArcher = archers.get(archers.size() - 1);
-            armyToBattle.add(archers.get(archers.size() - 1));
+            armyToBattle.add(challengerArcher);
+            copyOfAttackerArmy.add(cloneArcher(challengerArcher));
+            //            armyToBattle.add(archers.get(archers.size() - 1));
 
             challengerKnight = knights.get(knights.size() - 1);
-            armyToBattle.add(knights.get(knights.size() - 1));
+            armyToBattle.add(challengerKnight);
+            copyOfAttackerArmy.add(cloneKnight(challengerKnight));
+//            armyToBattle.add(knights.get(knights.size() - 1));
 
             challengerMage = mages.get(mages.size() - 1);
-            armyToBattle.add(mages.get(mages.size() - 1));
+            armyToBattle.add(challengerMage);
+            copyOfAttackerArmy.add(cloneMage(challengerMage));
+//            armyToBattle.add(mages.get(mages.size() - 1));
 
             challengerHealer = healers.get(healers.size() - 1);
-            armyToBattle.add(healers.get(healers.size() - 1));
+            armyToBattle.add(challengerHealer);
+            copyOfAttackerArmy.add(cloneHealer(challengerHealer));
+//            armyToBattle.add(healers.get(healers.size() - 1));
 
             challengerMythicalCreature = mythicalCreatures.get(mythicalCreatures.size() - 1);
-            armyToBattle.add(mythicalCreatures.get(mythicalCreatures.size() - 1));
+            armyToBattle.add(challengerMythicalCreature);
+            copyOfAttackerArmy.add(cloneCreature(challengerMythicalCreature));
+            
+//            armyToBattle.add(mythicalCreatures.get(mythicalCreatures.size() - 1));
 
 
 
@@ -211,19 +222,28 @@ public class Main {
 
         try {
             opponentArcher = opponentArchers.get(opponentArchers.size() - 1);
-            opponentArmy.add(opponentArchers.get(opponentArchers.size() - 1));
+            opponentArmy.add(opponentArcher);
+            copyOfOpponentArmy.add(cloneArcher(opponentArcher));
+//            opponentArmy.add(opponentArchers.get(opponentArchers.size() - 1));
 
             opponentKnight = opponentKnights.get(opponentKnights.size() - 1);
-            opponentArmy.add(opponentKnights.get(opponentKnights.size() - 1));
+            opponentArmy.add(opponentKnight);
+            copyOfOpponentArmy.add(cloneKnight(opponentKnight));
+//            opponentArmy.add(opponentKnights.get(opponentKnights.size() - 1));
 
             opponentMage = opponentMages.get(opponentMages.size() - 1);
-            opponentArmy.add(opponentMages.get(opponentMages.size() - 1));
+            opponentArmy.add(opponentMage);
+            copyOfOpponentArmy.add(cloneMage(opponentMage));
+//            opponentArmy.add(opponentMages.get(opponentMages.size() - 1));
 
             opponentHealer = opponentHealers.get(opponentHealers.size() - 1);
-            opponentArmy.add(opponentHealers.get(opponentHealers.size() - 1));
+            opponentArmy.add(cloneHealer(opponentHealer));
+//            opponentArmy.add(opponentHealers.get(opponentHealers.size() - 1));
 
             opponentMythicalCreature = opponentMythicalCreatures.get(opponentMythicalCreatures.size() - 1);
-            opponentArmy.add(opponentMythicalCreatures.get(opponentMythicalCreatures.size() - 1));
+            opponentArmy.add(opponentMythicalCreature);
+            copyOfOpponentArmy.add(cloneCreature(opponentMythicalCreature));
+//            opponentArmy.add(opponentMythicalCreatures.get(opponentMythicalCreatures.size() - 1));
             ready = true;
         } catch (IndexOutOfBoundsException e) {
             ready = false;
@@ -298,8 +318,8 @@ public class Main {
                     //selectHomeGround();
                     selectRandomPlayer();
 
-                    copyOfAttackerArmy = new ArrayList<>(armyToBattle);
-                    copyOfOpponentArmy = new ArrayList<>(opponentArmy);
+//                    copyOfAttackerArmy = new ArrayList<>(armyToBattle);
+//                    copyOfOpponentArmy = new ArrayList<>(opponentArmy);
 
                     homegroundFeatures(copyOfAttackerArmy, copyOfOpponentArmy);
 
@@ -955,7 +975,7 @@ public class Main {
                 break;
 
             case "6":
-                if (isArmyReady()) {
+                if (isChallengerReady()) {
                     selectHomeGround();
                 } else {
                     customizeTroops();
