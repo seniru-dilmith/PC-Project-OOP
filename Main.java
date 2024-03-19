@@ -28,6 +28,12 @@ public class Main {
     private static ArrayList<Healer> healers = new ArrayList<>(), opponentHealers = new ArrayList<>();
     private static ArrayList<MythicalCreature> mythicalCreatures = new ArrayList<>(), opponentMythicalCreatures = new ArrayList<>();
 
+    private static Archer challengerArcher = null, opponentArcher = null;
+    private static Knight challengerKnight = null, opponentKnight = null;
+    private static Mage challengerMage = null, opponentMage = null;
+    private static Healer challengerHealer = null, opponentHealer = null;
+    private static MythicalCreature challengerMythicalCreature = null, opponentMythicalCreature = null;
+
 //    challengerBySpeed = new ArrayList<>();
 //    challengerByDefence = new ArrayList<>();
 //    opponentBySpeed = new ArrayList<>();
@@ -52,7 +58,7 @@ public class Main {
 //    opponentHealers = new ArrayList<>();
 //    mythicalCreatures = new ArrayList<>();
 //    opponentMythicalCreatures = new ArrayList<>();
-    public static boolean isArmyReady() {
+    public static boolean isChallengerReady() {
         boolean ready = false;
 
         archers = currentUser.getArchers();
@@ -62,11 +68,23 @@ public class Main {
         mythicalCreatures = currentUser.getMythicalCreatures();
 
         try {
+            challengerArcher = archers.get(archers.size() - 1);
             armyToBattle.add(archers.get(archers.size() - 1));
+
+            challengerKnight = knights.get(knights.size() - 1);
             armyToBattle.add(knights.get(knights.size() - 1));
+
+            challengerMage = mages.get(mages.size() - 1);
             armyToBattle.add(mages.get(mages.size() - 1));
+
+            challengerHealer = healers.get(healers.size() - 1);
             armyToBattle.add(healers.get(healers.size() - 1));
+
+            challengerMythicalCreature = mythicalCreatures.get(mythicalCreatures.size() - 1);
             armyToBattle.add(mythicalCreatures.get(mythicalCreatures.size() - 1));
+
+
+
             ready = true;
         } catch (IndexOutOfBoundsException e) {
             System.out.println("You need to have at least one of each character type to battle!");
@@ -85,10 +103,19 @@ public class Main {
         opponentMythicalCreatures = opponentPlayer.getMythicalCreatures();
 
         try {
+            opponentArcher = opponentArchers.get(opponentArchers.size() - 1);
             opponentArmy.add(opponentArchers.get(opponentArchers.size() - 1));
+
+            opponentKnight = opponentKnights.get(opponentKnights.size() - 1);
             opponentArmy.add(opponentKnights.get(opponentKnights.size() - 1));
+
+            opponentMage = opponentMages.get(opponentMages.size() - 1);
             opponentArmy.add(opponentMages.get(opponentMages.size() - 1));
+
+            opponentHealer = opponentHealers.get(opponentHealers.size() - 1);
             opponentArmy.add(opponentHealers.get(opponentHealers.size() - 1));
+
+            opponentMythicalCreature = opponentMythicalCreatures.get(opponentMythicalCreatures.size() - 1);
             opponentArmy.add(opponentMythicalCreatures.get(opponentMythicalCreatures.size() - 1));
             ready = true;
         } catch (IndexOutOfBoundsException e) {
@@ -159,7 +186,7 @@ public class Main {
                 break;
 
             case "2":
-                if (isArmyReady()) {
+                if (isChallengerReady()) {
                     System.out.println("Battle Begins!");
                     //selectHomeGround();
                     selectRandomPlayer();
@@ -821,7 +848,7 @@ public class Main {
                 break;
 
             case "6":
-                if (isArmyReady()) {
+                if (isChallengerReady()) {
                     selectHomeGround();
                 } else {
                     customizeTroops();
@@ -2933,6 +2960,10 @@ public class Main {
         copyOfOpponentArmy = new ArrayList<>();
         opponentBySpeed = new ArrayList<>();
         opponentByDefence = new ArrayList<>();
+        copyOfAttackerArmy = new ArrayList<>();
+        challengerBySpeed = new ArrayList<>();
+        challengerByDefence = new ArrayList<>();
+        armyToBattle = new ArrayList<>();
     }
 
 
