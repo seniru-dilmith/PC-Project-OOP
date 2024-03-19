@@ -2,7 +2,6 @@ package login_signup;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class UserService {
@@ -34,7 +33,6 @@ public class UserService {
         if (username.isEmpty() || password.isEmpty()){
             System.out.println("Username or Password cannot be empty!!!");
         }
-
 
         saveUsers(userList);
         return true;
@@ -99,7 +97,7 @@ public class UserService {
         saveUsers(userList);
     }
 
-    public static void retrieveUsers() {
+    private static void retrieveUsers() {
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("login_signup/users.txt"))){
             userList = (ArrayList<User>) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {

@@ -11,15 +11,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class User implements Serializable {
-    private static int count = 0;
     private int ID;
     private final String username;
-    private String password;
+    private final String password;
     private int XP;
     private int goldCoins;
     private String name;
     private HomeGround homeGround;
-    private static Archer
+    private static final Archer
             ranger = new Ranger(),
             saggitarus = new Saggitarius(),
             shooter = new Shooter(),
@@ -67,52 +66,52 @@ public class User implements Serializable {
         this.password = password;
 
         this.XP = 1;
-        this.goldCoins = 500;
+        this.goldCoins = 5000;
         this.name = name;
         this.homeGround = null;
     }
 
-    public User(String username, String password, int XP, int goldCoins, String name) {
+    public User(String username, String name, String password, int number) {
         this.username = username;
         this.password = password;
-        this.XP = XP;
-        this.goldCoins = goldCoins;
+
+        this.XP = 32;
+        this.goldCoins = 1030;
         this.name = name;
+        this.homeGround = null;
     }
 
     public String getName() {
         return name;
     }
 
-
-
     public static ArrayList<Archer> getAllArchers() {
-        System.out.println(String.format("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n",
-                "Name", "Price(gc)", "Attack", "Defence", "Health", "Speed"));
+        System.out.printf("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n%n",
+                "Name", "Price(gc)", "Attack", "Defence", "Health", "Speed");
         return allArchers;
     }
 
     public static ArrayList<Healer> getAllHealers() {
-        System.out.println(String.format("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n",
-                "Name", "Price(gc)", "Attack", "Defence", "Health", "Speed"));
+        System.out.printf("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n%n",
+                "Name", "Price(gc)", "Attack", "Defence", "Health", "Speed");
         return allHealers;
     }
 
     public static ArrayList<Knight> getAllKnights() {
-        System.out.println(String.format("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n",
-                "Name", "Price(gc)", "Attack", "Defence", "Health", "Speed"));
+        System.out.printf("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n%n",
+                "Name", "Price(gc)", "Attack", "Defence", "Health", "Speed");
         return allKnights;
     }
 
     public static ArrayList<Mage> getAllMages() {
-        System.out.println(String.format("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n",
-                "Name", "Price(gc)", "Attack", "Defence", "Health", "Speed"));
+        System.out.printf("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n%n",
+                "Name", "Price(gc)", "Attack", "Defence", "Health", "Speed");
         return allMages;
     }
 
     public static ArrayList<MythicalCreature> getAllMythicalCreatures() {
-        System.out.println(String.format("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n",
-                "Name", "Price(gc)", "Attack", "Defence", "Health", "Speed"));
+        System.out.printf("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |%n%n",
+                "Name", "Price(gc)", "Attack", "Defence", "Health", "Speed");
         return allMythicalCreatures;
     }
 
