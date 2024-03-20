@@ -1,4 +1,8 @@
 public class Design {
+    public static final String RESET = "\033[0m";  // Reset to default color
+    public static final String RED = "\033[31m";   // Red color code
+    public static final String GREEN = "\033[32m";
+    public static final String BLUE = "\033[34m";
     public static final String mysticMayhem =
             "\u001B[34m  __  __  __     __   _____   _______   _____    _____     __  __             __     __  _    _   ______   __  __ \n" + // Purple
                     "\u001B[34m |  \\/  | \\ \\   / /  / ____| |__   __| |_   _|  / ____|   |  \\/  |     /\\     \\ \\   / / | |  | | |  ____| |  \\/  |\n" + // Purple
