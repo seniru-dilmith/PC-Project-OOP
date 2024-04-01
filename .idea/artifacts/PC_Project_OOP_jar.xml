@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="PC-Project-OOP:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/PC_Project_OOP_jar</output-path>
-    <root id="archive" name="PC-Project-OOP.jar">
-      <element id="module-output" name="PC-Project-OOP" />
-    </root>
-  </artifact>
-</component>

@@ -33,33 +33,6 @@ public class Main {
     private static Mage challengerMage = null, opponentMage = null;
     private static Healer challengerHealer = null, opponentHealer = null;
     private static MythicalCreature challengerMythicalCreature = null, opponentMythicalCreature = null;
-
-//    challengerBySpeed = new ArrayList<>();
-//    challengerByDefence = new ArrayList<>();
-//    opponentBySpeed = new ArrayList<>();
-//    opponentByDefence = new ArrayList<>();
-
-//    challengerBySpeed = new ArrayList<>();
-//    challengerByDefence = new ArrayList<>();
-//    opponentBySpeed = new ArrayList<>();
-//    opponentByDefence = new ArrayList<>();
-//    userList = UserService.getUserList();
-//    armyToBattle = new ArrayList<>();
-//    opponentArmy = new ArrayList<>();
-//    copyOfAttackerArmy = new ArrayList<>();
-//    copyOfOpponentArmy = new ArrayList<>();
-//    archers = new ArrayList<>();
-//    opponentArchers = new ArrayList<>();
-//    knights = new ArrayList<>();
-//    opponentKnights = new ArrayList<>();
-//    mages = new ArrayList<>();
-//    opponentMages = new ArrayList<>();
-//    healers = new ArrayList<>();
-//    opponentHealers = new ArrayList<>();
-//    mythicalCreatures = new ArrayList<>();
-//    opponentMythicalCreatures = new ArrayList<>();
-
-
     private static Vector<Character> generateAttackerQue(Vector<Character> aliveList){
 
         Vector<Character> result = new Vector<>();
@@ -79,7 +52,6 @@ public class Main {
             for (int i = 0; i < aliveList.size(); i++){
                 if(highestSpeed == aliveList.get(i).getSpeed()){
                     result.add(aliveList.get(i));
-//                    aliveList.remove(aliveList.get(i));
                 }
             }
 
@@ -146,7 +118,6 @@ public class Main {
             for (int i = 0; i < aliveList.size(); i++){
                 if(highestSpeed == aliveList.get(i).getDefence()){
                     result.add(aliveList.get(i));
-//                    aliveList.remove(aliveList.get(i));
                 }
             }
 
@@ -196,9 +167,6 @@ public class Main {
         }
     }
 
-
-
-//    public static boolean isArmyReady() {
     public static boolean isChallengerReady() {
         boolean ready = false;
 
@@ -211,34 +179,6 @@ public class Main {
         try {
             armyToBattle = new ArrayList<>();
             copyOfAttackerArmy = new ArrayList<>();
-
-//            challengerArcher = archers.get(archers.size() - 1);
-//            armyToBattle.add(challengerArcher);
-//            copyOfAttackerArmy.add(cloneArcher(challengerArcher));
-//            armyToBattle.add(archers.get(archers.size() - 1));
-
-//            challengerKnight = knights.get(knights.size() - 1);
-//            armyToBattle.add(challengerKnight);
-//            copyOfAttackerArmy.add(cloneKnight(challengerKnight));
-//            armyToBattle.add(knights.get(knights.size() - 1));
-
-//            challengerMage = mages.get(mages.size() - 1);
-//            armyToBattle.add(challengerMage);
-//            copyOfAttackerArmy.add(cloneMage(challengerMage));
-//            armyToBattle.add(mages.get(mages.size() - 1));
-
-//            challengerHealer = healers.get(healers.size() - 1);
-//            armyToBattle.add(challengerHealer);
-//            copyOfAttackerArmy.add(cloneHealer(challengerHealer));
-//            armyToBattle.add(healers.get(healers.size() - 1));
-
-//            challengerMythicalCreature = mythicalCreatures.get(mythicalCreatures.size() - 1);
-//            armyToBattle.add(challengerMythicalCreature);
-//            copyOfAttackerArmy.add(cloneCreature(challengerMythicalCreature));
-
-//            armyToBattle.add(mythicalCreatures.get(mythicalCreatures.size() - 1));
-
-
 
             ready = true;
         } catch (IndexOutOfBoundsException e) {
@@ -261,30 +201,6 @@ public class Main {
             opponentArmy = new ArrayList<>();
             copyOfOpponentArmy = new ArrayList<>();
 
-//            opponentArcher = opponentArchers.get(opponentArchers.size() - 1);
-//            opponentArmy.add(opponentArcher);
-//            copyOfOpponentArmy.add(cloneArcher(opponentArcher));
-//            opponentArmy.add(opponentArchers.get(opponentArchers.size() - 1));
-
-//            opponentKnight = opponentKnights.get(opponentKnights.size() - 1);
-//            opponentArmy.add(opponentKnight);
-//            copyOfOpponentArmy.add(cloneKnight(opponentKnight));
-//            opponentArmy.add(opponentKnights.get(opponentKnights.size() - 1));
-
-//            opponentMage = opponentMages.get(opponentMages.size() - 1);
-//            opponentArmy.add(opponentMage);
-//            copyOfOpponentArmy.add(cloneMage(opponentMage));
-//            opponentArmy.add(opponentMages.get(opponentMages.size() - 1));
-
-//            opponentHealer = opponentHealers.get(opponentHealers.size() - 1);
-//            opponentArmy.add(opponentHealer);
-//            copyOfOpponentArmy.add(cloneHealer(opponentHealer));
-//            opponentArmy.add(opponentHealers.get(opponentHealers.size() - 1));
-
-//            opponentMythicalCreature = opponentMythicalCreatures.get(opponentMythicalCreatures.size() - 1);
-//            opponentArmy.add(opponentMythicalCreature);
-//            copyOfOpponentArmy.add(cloneCreature(opponentMythicalCreature));
-//            opponentArmy.add(opponentMythicalCreatures.get(opponentMythicalCreatures.size() - 1));
             ready = true;
         } catch (IndexOutOfBoundsException e) {
             ready = false;
@@ -355,18 +271,10 @@ public class Main {
 
             case "2":
                 if (currentUser.armyIsReady()) {
-                    System.out.println(Design.battleBegins);
-                    //selectHomeGround();
                     User openUser = selectRandomPlayer();
 
                     Vector<Character> currentArmy = currentUser.getBattleArmy();
                     Vector<Character> openArmy = openUser.getBattleArmy();
-
-
-//                    challengerBySpeed = generateAttackerQue(currentArmy).reversed();
-//                    opponentBySpeed = generateAttackerQue(openArmy).reversed();
-//                    challengerByDefence = ArrayList<>(generateDefenceQue(currentArmy);
-//                    opponentByDefence = ArrayList<>(generateDefenceQue(openArmy);
 
                     Vector<Character> tempCurrSpeed = currentUser.getBattleArmy();
                     Vector<Character> tempOppSpeed = openUser.getBattleArmy();
@@ -396,17 +304,10 @@ public class Main {
                     for (int i = 0 ; i < oppSpeed.size() ; i++) opponentBySpeed.add(oppSpeed.get(i));
                     for (int i = oppDef.size() -1  ; i >=0 ; i--) opponentByDefence.add(oppDef.get(i));
 
-//                    System.out.println(generateAttackerQue(currentArmy));
-//                    copyOfAttackerArmy = new ArrayList<>(armyToBattle);
-//                    copyOfOpponentArmy = new ArrayList<>(opponentArmy);
-
-
-
-                    //battle(copyOfAttackerArmy, copyOfOpponentArmy);
-
+                    System.out.println(Design.battleBegins);
                     battleBegin();
-                    System.out.println("Battle is over. Returning to previous menu...");
-//                    userList = null;
+                    System.out.println(Design.BLUE+"Battle is over. Returning to previous menu...");
+                    System.out.println("****************************************************************************************************"+Design.RESET);
                     gameFlow();
                     firstScreen();
                 } else {
@@ -1605,8 +1506,6 @@ public class Main {
 
     }
 
-    //_______________________________________________________________________________________________________________
-
     public static void sellTroops() {
         Scanner scanner = new Scanner(System.in);
 
@@ -1896,7 +1795,8 @@ public class Main {
         }
         System.out.println();
 
-
+        System.out.println("Enter 1: Sell Dragon");
+        System.out.println("Enter 2: Sell Bassillisk");
         System.out.println("Enter 3: Sell Hydra");
         System.out.println("Enter 4: Sell Pheonix");
         System.out.println("Enter 5: Sell pegasus");
@@ -1941,8 +1841,6 @@ public class Main {
 
     }
 
-    //_______________________________________________________________________________________________________________________
-
     public static int sellingPrice(Character character) {
         int price = character.getPrice();
         return (int) (price * 0.9);
@@ -1969,8 +1867,8 @@ public class Main {
     }
 
     public static void displayOpponentStats(User user) {
-        System.out.println("Name: " + user.getName());
-        System.out.println("XP: " + user.getXP());
+        System.out.println(Design.BLUE+"Name: " + user.getName());
+        System.out.println("XP: " + user.getXP()+Design.RESET);
     }
 
     public static void selectOpponent(User opponent) {
@@ -1993,254 +1891,14 @@ public class Main {
             selectOpponent(opponent);
         }
 
-//        do{
-//            try {
-//                skip = scanner.nextInt();
-//                selectRandomPlayer();
-//
-//            } catch (InputMismatchException e) {
-//                System.out.println("InputMismatchException: Please enter a valid integer.");
-//            }
-//
-//        }while (skip != 1);
 
-
-//        while (skip != 1) {
-//            try {
-//                skip = scanner.nextInt();
-//                randomPlayer = selectRandomPlayer();
-//
-//            } catch (InputMismatchException e) {
-//                System.out.println("InputMismatchException: Please enter a valid integer.");
-//            }
-//        }
 
     }
 
-//    public static void battle(ArrayList<Character> challenger, ArrayList<Character> opponent) {
-//
-//        //Set the ascending order of speed of the challenger
-//
-//
-//        Collections.sort(challenger, new Comparator<Character>() {
-//            @Override
-//            public int compare(Character c1, Character c2) {
-//
-//                return Integer.compare(c1.getSpeed(), c2.getSpeed());
-//            }
-//        });
-//
-//
-//        challengerBySpeed.addAll(challenger);
-//
-//        //Recreate the array if there ara same speed characters according to their priority order
-//
-//        for (int i = 0; i < challengerBySpeed.size() - 1; ++i) {
-//            Character currentCharacter = challengerBySpeed.get(i);
-//            Character nextCharacter = challengerBySpeed.get(i + 1);
-//            if (currentCharacter.getSpeed() == nextCharacter.getSpeed()) {
-//                System.out.println("same speed;");
-//                comparePrioritySpeed(i,i+1,challengerBySpeed);
-//            }
-//            System.out.println("array:");
-//
-//            System.out.println(currentCharacter.getName() + " " + currentCharacter.getSpeed());
-//            System.out.println(nextCharacter.getName() + " " + nextCharacter.getSpeed());
-//
-//        }
-//
-//        //reverse the list
-//        Collections.reverse(challengerBySpeed);
-//
-//
-//        //Set the ascending order of defence of the challenger
-//
-//        Collections.sort(challenger, new Comparator<Character>() {
-//            @Override
-//            public int compare(Character o1, Character o2) {
-//                return Integer.compare(o1.getDefence(), o2.getDefence());
-//            }
-//        });
-//
-//        //Recreate the array if there ara same defence characters according to their priority order
-//
-//        challengerByDefence.addAll(challenger);
-//        for (int i = 0; i < challengerByDefence.size() - 1; ++i) {
-//            Character currentCharacter = challengerByDefence.get(i);
-//            Character nextCharacter = challengerByDefence.get(i + 1);
-//            if (currentCharacter.getDefence() == nextCharacter.getDefence()) {
-//                comparePriorityDefence(i,i=1,challengerByDefence);
-//            }
-//        }
-//
-//
-//        //Set the ascending order of speed of opponent
-//
-//        Collections.sort(opponent, new Comparator<Character>() {
-//            @Override
-//            public int compare(Character o1, Character o2) {
-//                return Integer.compare(o1.getSpeed(), o2.getSpeed());
-//            }
-//        });
-//
-//        opponentBySpeed.addAll(opponent);
-//        for (int i = 0; i < opponentBySpeed.size() - 1; ++i) {
-//            Character currentCharacter = opponentBySpeed.get(i);
-//            Character nextCharacter = opponentBySpeed.get(i + 1);
-//            if (currentCharacter.getSpeed() == nextCharacter.getSpeed()) {
-//                comparePrioritySpeed(i, i+1,opponentBySpeed);
-//            }
-//        }
-//        //reverse the arrayList
-//        Collections.reverse(opponentBySpeed);
-//
-//
-//        //Set the ascending order of defence of opponent
-//
-//        Collections.sort(opponent, new Comparator<Character>() {
-//            @Override
-//            public int compare(Character o1, Character o2) {
-//                return Integer.compare(o1.getDefence(), o2.getDefence());
-//            }
-//        });
-//
-//        opponentByDefence.addAll(opponent);
-//        for (int i = 0; i < opponentByDefence.size() - 1; ++i) {
-//            Character currentCharacter = opponentByDefence.get(i);
-//            Character nextCharacter = opponentByDefence.get(i + 1);
-//            if (currentCharacter.getDefence() == nextCharacter.getDefence()) {
-//                comparePriorityDefence(i,i+1,opponentByDefence);
-//            }}
-//
-//
-//    }
 
-//    public static void comparePrioritySpeed(int int1, int int2, ArrayList<Character> challenger) {
-//        Character c1 = challenger.get(int1);
-//        Character c2 = challenger.get(int2);
-//        if (c1 instanceof Archer || c2 instanceof Archer) {
-//            if (c1 instanceof Archer) {
-//                challenger.set(int1, c1);
-//                challenger.set(int2, c2);
-//            } else {
-//                challenger.set(int1, c2);
-//                challenger.set(int2, c1);
-//            }
-//
-//
-//        } else if (c1 instanceof Knight || c2 instanceof Knight) {
-//            if (c1 instanceof Knight) {
-//                challenger.set(int1, c1);
-//                challenger.set(int2, c2);
-//            } else {
-//                challenger.set(int1, c2);
-//                challenger.set(int2, c1);
-//            }
-//
-//        } else if (c1 instanceof MythicalCreature || c2 instanceof MythicalCreature) {
-//            if (c1 instanceof MythicalCreature) {
-//                challenger.set(int1, c1);
-//                challenger.set(int2, c2);
-//            } else {
-//                challenger.set(int1, c2);
-//                challenger.set(int2, c1);
-//            }
-//
-//        } else if (c1 instanceof Mage || c2 instanceof Mage) {
-//            if (c1 instanceof Mage) {
-//                challenger.set(int1, c1);
-//                challenger.set(int2, c2);
-//            } else {
-//                challenger.set(int1, c2);
-//                challenger.set(int2, c1);
-//            }
-//
-//        } else if (c1 instanceof Healer || c2 instanceof Healer) {
-//            if (c1 instanceof Healer) {
-//                challenger.set(int1, c1);
-//                challenger.set(int2, c2);
-//            } else {
-//                challenger.set(int1, c2);
-//                challenger.set(int2, c1);
-//            }
-//
-//        }
-//    }
-//    public static void comparePriorityDefence(int int1, int int2, ArrayList<Character> challenger) {
-        // Define the priority order
 
-//        // Define the priority order
-//        String priorityOrder = "Mage Knight Archer MythicalCreature Healer";
-//
-//        // Get the index of each character in the priority order
-//        int index1 = priorityOrder.indexOf(c1.getClass().getSimpleName());
-//        int index2 = priorityOrder.indexOf(c2.getClass().getSimpleName());
-//
-//        // Compare the indices to determine priority
-//        return Integer.compare(index1, index2);
-//        Character c1=challenger.get(int1);
-//        Character c2=challenger.get(int2);
-//       if (c1 instanceof Healer || c2 instanceof Healer) {
-//           if (c1 instanceof Healer){
-//               challenger.set(int1,c1);
-//               challenger.set(int2,c2);
-//           }
-//           else{
-//               challenger.set(int1,c2);
-//               challenger.set(int2,c1);
-//           }
-//       }
-//
-//       else if (c1 instanceof MythicalCreature || c2 instanceof MythicalCreature) {
-//           if (c1 instanceof MythicalCreature){
-//               challenger.set(int1,c1);
-//               challenger.set(int2,c2);
-//           }
-//           else{
-//               challenger.set(int1,c2);
-//               challenger.set(int2,c1);
-//           }
-//       }
-//
-//       else if (c1 instanceof Archer || c2 instanceof Archer) {
-//           if (c1 instanceof Archer){
-//               challenger.set(int1,c1);
-//               challenger.set(int2,c2);
-//           }
-//           else{
-//               challenger.set(int1,c2);
-//               challenger.set(int2,c1);
-//           }
-//       }
-//
-//       else if (c1 instanceof Knight || c2 instanceof Knight) {
-//           if (c1 instanceof Knight){
-//               challenger.set(int1,c1);
-//               challenger.set(int2,c2);
-//           }
-//           else{
-//               challenger.set(int1,c2);
-//               challenger.set(int2,c1);
-//           }
-//       }
-//
-//       else if (c1 instanceof Mage || c2 instanceof Mage) {
-//           if (c1 instanceof Mage){
-//               challenger.set(int1,c1);
-//               challenger.set(int2,c2);
-//           }
-//           else{
-//               challenger.set(int1,c2);
-//               challenger.set(int2,c1);
-//           }
-//
-//       }
-//
-//    }
 
     public static void homegroundFeatures(ArrayList<Character> player_1, ArrayList<Character> player_2) {
-
-        // attacker_attack, attacker_defence, attacker_speed, opponent_attack, opponent_defence, opponent_speed
         if (opponentPlayer.getHomeGround().equals(HomeGround.Hilcrest)) {
             for (Character character_1 : player_1) {
                 if (character_1 instanceof Highlander) {
@@ -2353,14 +2011,18 @@ public class Main {
     }
 
     public static Character minimumHealthCharacter(ArrayList<Character> characters) {
-
-        for (Character character : characters) {
-            if (character.getHealth() == 0) {
-                continue;
+        Character mh = null;
+        for(Character i: characters){
+            if(i.getHealth() != 0){
+                if(mh == null){
+                    mh = i;
+                }else if(i.getHealth()<mh.getHealth()){
+                    mh = i;
+                }
             }
-            return character;
         }
-       return null;
+        return mh;
+
     }
 
     public static void battleBegin() {
@@ -2371,888 +2033,432 @@ public class Main {
         int countPlayerAttackloop = 5;
         int countOpponentAttackloop = 5;
 
-        System.out.println("challengerBySpeed: ");
 
-        for (Character ch : challengerBySpeed) {
-            System.out.print(ch.getName() + " ");
-        }
-        System.out.println("\nChallengerByDefence: ");
-
-        for (Character ch: challengerByDefence){
-            System.out.print(ch.getName() + " ");
-        }
-        System.out.println("\nopponentBySpeed");
-
-        for (Character ch : opponentBySpeed) {
-            System.out.print(ch.getName()  + " ");
-        }
-        System.out.println("\nOpponentByDefence: ");
-
-        for (Character ch: opponentByDefence){
-            System.out.print(ch.getName() + " ");
-        }
         System.out.println();
+
 
 
 
         for (int i = 1; i < 12; i++) {
 
+            System.out.println("----------------------------------------------------------------------------------------------------");
+
             if (countPlayerDefence == 5) {
-                System.out.println(opponentPlayer.getName() + " won!");
+                System.out.println(Design.BLUE+"****************************************************************************************************");
+                System.out.println(opponentPlayer.getName() + " won!"+Design.RESET);
                 opponentPlayer.incrementXP(1);
                 opponentPlayer.setGoldCoins(opponentPlayer.getGoldCoins() + (int) (currentUser.getGoldCoins() * 0.1));
                 currentUser.setGoldCoins(currentUser.getGoldCoins() - (int) (currentUser.getGoldCoins() * 0.1));
+                System.out.println();
+                System.out.println(Design.GREEN+currentUser.getName() + " Gold Coins: " + currentUser.getGoldCoins()+"gc");
+                System.out.println(currentUser.getName() + " XP: " + currentUser.getXP());
+                System.out.println();
+                System.out.println(opponentPlayer.getName() + " Gold Coins: " + opponentPlayer.getGoldCoins()+"gc");
+                System.out.println(opponentPlayer.getName() + " XP: " + opponentPlayer.getXP()+Design.RESET);
+                System.out.println();
                 UserService.updateFile();
                 resetArrays();
                 break;
             }
             if (countOpponentDefence == 5) {
-                System.out.println(currentUser.getName() + " won!");
+                System.out.println(Design.BLUE+"****************************************************************************************************");
+                System.out.println(currentUser.getName() + " won!"+Design.RESET);
                 currentUser.incrementXP(1);
                 currentUser.setGoldCoins(currentUser.getGoldCoins() + (int) (opponentPlayer.getGoldCoins() * 0.1));
                 opponentPlayer.setGoldCoins(opponentPlayer.getGoldCoins() - (int) (opponentPlayer.getGoldCoins() * 0.1));
+                System.out.println();
+                System.out.println(Design.GREEN+currentUser.getName() + " Gold Coins: " + currentUser.getGoldCoins()+"gc");
+                System.out.println(currentUser.getName() + " XP: " + currentUser.getXP());
+                System.out.println();
+                System.out.println(opponentPlayer.getName() + " Gold Coins: " + opponentPlayer.getGoldCoins()+"gc");
+                System.out.println(opponentPlayer.getName() + " XP: " + opponentPlayer.getXP()+Design.RESET);
+                System.out.println();
                 UserService.updateFile();
                 resetArrays();
                 break;
             }
             if ((countPlayerDefence < 5 && countOpponentDefence < 5) && i == 11 ) {
-                System.out.println("Draw");
+                System.out.println(Design.BLUE+"****************************************************************************************************");
+                System.out.println("Draw"+Design.RESET);
+                System.out.println();
+                System.out.println(Design.GREEN+currentUser.getName() + " Gold Coins: " + currentUser.getGoldCoins()+"gc");
+                System.out.println(currentUser.getName() + " XP: " + currentUser.getXP());
+                System.out.println();
+                System.out.println(opponentPlayer.getName() + " Gold Coins: " + opponentPlayer.getGoldCoins()+"gc");
+                System.out.println(opponentPlayer.getName() + " XP: " + opponentPlayer.getXP()+Design.RESET);
+                System.out.println();
                 resetArrays();
                 break;
             }
 
 
             if (opponentPlayer.getHomeGround().equals(HomeGround.Hilcrest)) {
-                if (challengerBySpeed.get(countPlayerAttack) instanceof Highlander && opponentBySpeed.get(countOpponentAttack) instanceof Highlander) {
-                    if (challengerBySpeed.get(countPlayerAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                        if (challengerBySpeed.get(countPlayerAttack) instanceof Healer) {
-                            healerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                            HighlanderHillcrestHealerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                        }
-                        if (opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                            healerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                            HighlanderHillcrestHealerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                        }
-                    } else if (challengerBySpeed.get(countPlayerAttack) instanceof Healer || opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                        if (challengerBySpeed.get(countPlayerAttack) instanceof Healer) {
-                            healerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                            HighlanderHillcrestHealerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                            normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-                            HighLanderHillcrestNormalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-                            Character character2 = challengerByDefence.get(countPlayerDefence);
-                            System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                    opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                    ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
 
-                            System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                    challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                    ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                            if (character2.getHealth() <= 0) {
-                                challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
-                                //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
+                if(challengerBySpeed.get(countPlayerAttack) instanceof Healer && challengerBySpeed.get(countPlayerAttack) instanceof Highlander){
+                    Character c3 = minimumHealthCharacter(challengerByDefence);
+                    healerAttack(challengerBySpeed.get(countPlayerAttack), c3);
 
-                                countPlayerDefence++;
-                            }
-                        }
-                        if (opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                            healerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                            HighlanderHillcrestHealerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                            normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                            HighLanderHillcrestNormalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                            Character character1 = opponentByDefence.get(countOpponentDefence);
-                            System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                    opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                    ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-                            System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                    challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                    ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                            if (character1.getHealth() <= 0) {
-                                opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
-                                //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
+                    System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
+                            Design.GREEN+challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + c3.getName() + "\n" +
+                            c3.getName() + "'s health: " + c3.getHealth() + "\n" +
+                            challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth()+Design.RESET + "\n");
 
-                                countOpponentDefence++;
-                            }
-                        }
-                    }
+                    Character c10 = minimumHealthCharacter(challengerByDefence);
+                    HighlanderHillcrestHealerAttack(challengerBySpeed.get(countPlayerAttack), c10);
+                    System.out.println("Bonus Turn "  + ": " + currentUser.getName() + "\n" +
+                            Design.GREEN+challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + c10.getName() + "\n" +
+                            c10.getName() + "'s health: " + c10.getHealth() + "\n" +
+                            challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth()+Design.RESET + "\n");
+                    changeList(challengerBySpeed);
+                }
 
+                else if (challengerBySpeed.get(countPlayerAttack) instanceof Healer){
 
-                    if (!(challengerBySpeed.get(countPlayerAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Healer)) {
-                        normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                        HighLanderHillcrestNormalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                        Character character1 = opponentByDefence.get(countOpponentDefence);
-                        System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-                        if (character1.getHealth() <= 0) {
-                            opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
-                            //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
+                    Character c3 = minimumHealthCharacter(challengerByDefence);
+                    healerAttack(challengerBySpeed.get(countPlayerAttack), c3);
+                    System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
+                            Design.GREEN+challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + c3.getName() + "\n" +
+                            c3.getName() + "'s health: " + c3.getHealth() + "\n" +
+                            challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth()+Design.RESET + "\n");
+                    changeList(challengerBySpeed);
 
-                            countOpponentDefence++;
-                        }
-
-                        normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-                        HighLanderHillcrestNormalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-                        Character character2 = challengerByDefence.get(countPlayerDefence);
-                        System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                        if (character2.getHealth() <= 0) {
-                            challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
-                            //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlaye
-                            countPlayerDefence++;
-                        }
-                    }
-
-                } else if (challengerBySpeed.get(countPlayerAttack) instanceof Highlander || opponentBySpeed.get(countOpponentAttack) instanceof Highlander) {
-                    if (challengerBySpeed.get(countPlayerAttack) instanceof Highlander) {
-                        if (challengerBySpeed.get(countPlayerAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                            if (challengerBySpeed.get(countPlayerAttack) instanceof Healer) {
-                                healerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                                HighlanderHillcrestHealerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                            }
-                            if (opponentBySpeed.get(countOpponentAttack) instanceof Healer)
-                                healerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                        } else if (challengerBySpeed.get(countPlayerAttack) instanceof Healer || opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                            if (challengerBySpeed.get(countPlayerAttack) instanceof Healer) {
-                                healerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                                HighlanderHillcrestHealerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                                normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-                                Character character2 = challengerByDefence.get(countPlayerDefence);
-                                System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                        challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                        opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                        challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                        ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-
-                                System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                        opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                        challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                        opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                        ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                                if (character2.getHealth() <= 0) {
-                                    challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
-
-                                    countPlayerDefence++;
-                                }
-                            }
-                            if (opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                                healerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                                normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                                HighLanderHillcrestNormalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                                Character character1 = opponentByDefence.get(countOpponentDefence);
-                                System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                        challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                        opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                        challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                        ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-
-                                System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                        opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                        challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                        opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                        ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                                if (character1.getHealth() <= 0) {
-                                    opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
-
-                                    countOpponentDefence++;
-                                }
-                            }
-                        }
-
-                        if (!(challengerBySpeed.get(countPlayerAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Healer)) {
-                            normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                            HighLanderHillcrestNormalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                            Character character1 = opponentByDefence.get(countOpponentDefence);
-                            System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                    opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                    ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-                            if (character1.getHealth() <= 0) {
-                                opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
-
-                                countOpponentDefence++;
-                            }
-
-                            normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-                            Character character2 = challengerByDefence.get(countPlayerDefence);
-                            System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                    challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                    ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                            if (character2.getHealth() <= 0) {
-                                challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
-
-
-                                countPlayerDefence++;
-                            }
-                        }
-                    }
-                    if (opponentBySpeed.get(countOpponentAttack) instanceof Highlander) {
-                        if (challengerBySpeed.get(countPlayerAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                            if (challengerBySpeed.get(countPlayerAttack) instanceof Healer)
-                                healerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                            if (opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                                healerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                                HighlanderHillcrestHealerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                            }
-                        } else if (challengerBySpeed.get(countPlayerAttack) instanceof Healer || opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                            if (challengerBySpeed.get(countPlayerAttack) instanceof Healer) {
-                                healerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                                normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-                                HighLanderHillcrestNormalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-                                Character character2 = challengerByDefence.get(countPlayerDefence);
-                                System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                        challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                        opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                        challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                        ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-
-                                System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                        opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                        challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                        opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                        ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                                if (character2.getHealth() <= 0) {
-                                    challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
-
-                                    countPlayerDefence++;
-                                }
-                            }
-                            if (opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                                healerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                                HighlanderHillcrestHealerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                                normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                                Character character1 = opponentByDefence.get(countOpponentDefence);
-                                System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                        challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                        opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                        challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                        ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-
-                                if (character1.getHealth() <= 0) {
-                                    opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
-                                    countOpponentDefence++;
-                                }
-                            }
-                        }
-
-                        if (!(challengerBySpeed.get(countPlayerAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Healer)) {
-                            normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                            Character character1 = opponentByDefence.get(countOpponentDefence);
-                            System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                    opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                    ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-
-                            if (character1.getHealth() <= 0) {
-                                opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
-                                countOpponentDefence++;
-                            }
-
-                            normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-                            HighLanderHillcrestNormalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-                            Character character2 = challengerByDefence.get(countPlayerDefence);
-                            System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                    challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                    ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                            if (character2.getHealth() <= 0) {
-                                challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
-                                countPlayerDefence++;
-                            }
-                        }
-                    }
 
                 }
 
-                if (!(challengerBySpeed.get(countPlayerAttack) instanceof Highlander && opponentBySpeed.get(countOpponentAttack) instanceof Highlander)) {
-                    if (challengerBySpeed.get(countPlayerAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                        if (challengerBySpeed.get(countPlayerAttack) instanceof Healer)
-                            healerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                        if (opponentBySpeed.get(countOpponentAttack) instanceof Healer)
-                            healerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                    } else if (challengerBySpeed.get(countPlayerAttack) instanceof Healer || opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                        if (challengerBySpeed.get(countPlayerAttack) instanceof Healer) {
-                            healerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                            normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-                            Character character2 = challengerByDefence.get(countPlayerDefence);
-                            System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                    opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                    ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-
-                            System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                    challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                    ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                            if (character2.getHealth() <= 0) {
-                                challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
-                                //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
-                                countPlayerDefence++;
-                            }
-                        }
-                        if (opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                            healerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                            normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                            Character character1 = opponentByDefence.get(countOpponentDefence);
-                            System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                    opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                    ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-                            System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                    challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                    ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                            if (character1.getHealth() <= 0) {
-                                opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
-                                //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
-                                countOpponentDefence++;
-                            }
-                        }
-                    }
-
-
-                    if (!(challengerBySpeed.get(countPlayerAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Healer)) {
-                        normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                        Character character1 = opponentByDefence.get(countOpponentDefence);
-                        System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-                        if (character1.getHealth() <= 0) {
-                            opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
-                            //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
-                            countOpponentDefence++;
-                        }
-
-                        normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-                        Character character2 = challengerByDefence.get(countPlayerDefence);
-                        System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                        if (character2.getHealth() <= 0) {
-                            challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
-                            //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
-                            countPlayerDefence++;
-                        }
-                    }
-                }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            } else if (opponentPlayer.getHomeGround().equals(HomeGround.Arcane)) {
-
-
-
-                if (challengerBySpeed.get(countPlayerAttack) instanceof Mystics && opponentBySpeed.get(countOpponentAttack) instanceof Mystics) {
-                    if (challengerBySpeed.get(countPlayerAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                        if (challengerBySpeed.get(countPlayerAttack) instanceof Healer) {
-                            healerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                            increaseHealth(challengerBySpeed.get(countPlayerAttack));
-                        }
-                        if (opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                            healerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                            increaseHealth(opponentBySpeed.get(countOpponentAttack));
-                        }
-
-                    } else if (challengerBySpeed.get(countPlayerAttack) instanceof Healer || opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                        if (challengerBySpeed.get(countPlayerAttack) instanceof Healer) {
-                            healerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                            normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-                            increaseHealth(challengerBySpeed.get(countPlayerAttack));
-                            increaseHealth(opponentBySpeed.get(countOpponentAttack));
-                            Character character2 = challengerByDefence.get(countPlayerDefence);
-                            System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                    opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                    ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-
-                            System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                    challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                    ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                            if (character2.getHealth() <= 0) {
-                                challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
-                                //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
-                                countPlayerDefence++;
-                            }
-                        }
-                        if (opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                            healerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                            normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                            increaseHealth(challengerBySpeed.get(countPlayerAttack));
-                            increaseHealth(opponentBySpeed.get(countOpponentAttack));
-                            Character character1 = opponentByDefence.get(countOpponentDefence);
-                            System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                    opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                    ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-                            System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                    challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                    ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                            if (character1.getHealth() <= 0) {
-                                opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
-                                //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
-                                countOpponentDefence++;
-                            }
-                        }
-                    }
-
-                    if (!(challengerBySpeed.get(countPlayerAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Healer)) {
-                        normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                        increaseHealth(challengerBySpeed.get(countPlayerAttack));
-
-                        Character character1 = opponentByDefence.get(countOpponentDefence);
-                        System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-                        if (character1.getHealth() <= 0) {
-                            opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
-                            //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
-                            countOpponentDefence++;
-                        }
-
-                        normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-                        increaseHealth(opponentBySpeed.get(countOpponentAttack));
-                        Character character2 = challengerByDefence.get(countPlayerDefence);
-                        System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                        if (character2.getHealth() <= 0) {
-                            challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
-                            //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
-                            countPlayerDefence++;
-                        }
-                    }
-
-                } else if (challengerBySpeed.get(countPlayerAttack) instanceof Mystics || opponentBySpeed.get(countOpponentAttack) instanceof Mystics) {
-                    if (challengerBySpeed.get(countPlayerAttack) instanceof Mystics) {
-                        if (challengerBySpeed.get(countPlayerAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                            if (challengerBySpeed.get(countPlayerAttack) instanceof Healer) {
-                                healerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                                increaseHealth(challengerBySpeed.get(countPlayerAttack));
-                            }
-                            if (opponentBySpeed.get(countOpponentAttack) instanceof Healer)
-                                healerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                        } else if (challengerBySpeed.get(countPlayerAttack) instanceof Healer || opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                            if (challengerBySpeed.get(countPlayerAttack) instanceof Healer) {
-                                healerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                                increaseHealth(challengerBySpeed.get(countPlayerAttack));
-                                normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-                                Character character2 = challengerByDefence.get(countPlayerDefence);
-                                System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                        challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                        opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                        challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                        ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-
-                                System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                        opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                        challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                        opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                        ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                                if (character2.getHealth() <= 0) {
-                                    challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
-                                    countPlayerDefence++;
-                                }
-                            }
-                            if (opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                                healerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                                normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                                increaseHealth(challengerBySpeed.get(countPlayerAttack));
-                                Character character1 = opponentByDefence.get(countOpponentDefence);
-                                System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                        challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                        opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                        challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                        ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-
-                                System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                        opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                        challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                        opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                        ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                                if (character1.getHealth() <= 0) {
-                                    opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
-                                    countOpponentDefence++;
-                                }
-                            }
-                        }
-
-                        if (!(challengerBySpeed.get(countPlayerAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Healer)) {
-                            normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                            increaseHealth(challengerBySpeed.get(countPlayerAttack));
-                            Character character1 = opponentByDefence.get(countOpponentDefence);
-                            System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                    opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                    ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-                            if (character1.getHealth() <= 0) {
-                                opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
-                                countOpponentDefence++;
-                            }
-
-                            normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-                            Character character2 = challengerByDefence.get(countPlayerDefence);
-                            System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                    challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                    ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                            if (character2.getHealth() <= 0) {
-                                challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
-                                countPlayerDefence++;
-                            }
-                        }
-                    }
-                    if (opponentBySpeed.get(countOpponentAttack) instanceof Mystics) {
-                        if (challengerBySpeed.get(countPlayerAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                            if (challengerBySpeed.get(countPlayerAttack) instanceof Healer)
-                                healerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                            if (opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                                healerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                                increaseHealth(opponentBySpeed.get(countOpponentAttack));
-                            }
-                        } else if (challengerBySpeed.get(countPlayerAttack) instanceof Healer || opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                            if (challengerBySpeed.get(countPlayerAttack) instanceof Healer) {
-                                healerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                                normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-                                increaseHealth(opponentBySpeed.get(countOpponentAttack));
-                                Character character2 = challengerByDefence.get(countPlayerDefence);
-                                System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                        challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                        opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                        challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                        ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-
-                                System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                        opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                        challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                        opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                        ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                                if (character2.getHealth() <= 0) {
-                                    challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
-                                    countPlayerDefence++;
-                                }
-                            }
-                            if (opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                                healerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                                increaseHealth(opponentBySpeed.get(countOpponentAttack));
-                                normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                                Character character1 = opponentByDefence.get(countOpponentDefence);
-                                System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                        challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                        opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                        challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                        ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-
-                                System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                        opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                        challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                        opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                        ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                                if (character1.getHealth() <= 0) {
-                                    opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
-                                    countOpponentDefence++;
-                                }
-                            }
-                        }
-
-
-                        if (!(challengerBySpeed.get(countPlayerAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Healer)) {
-                            normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                            Character character1 = opponentByDefence.get(countOpponentDefence);
-                            System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                    opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                    ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-                            if (character1.getHealth() <= 0) {
-                                opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
-                                countOpponentDefence++;
-                            }
-
-                            normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-                            increaseHealth(opponentBySpeed.get(countOpponentAttack));
-                            Character character2 = challengerByDefence.get(countPlayerDefence);
-                            System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                    challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                    ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                            if (character2.getHealth() <= 0) {
-                                challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
-                                countPlayerDefence++;
-                            }
-                        }
-                    }
-
-                }
-
-                if (!(challengerBySpeed.get(countPlayerAttack) instanceof Mystics && opponentBySpeed.get(countOpponentAttack) instanceof Mystics)) {
-                    if (challengerBySpeed.get(countPlayerAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                        if (challengerBySpeed.get(countPlayerAttack) instanceof Healer)
-                            healerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                        if (opponentBySpeed.get(countOpponentAttack) instanceof Healer)
-                            healerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                    } else if (challengerBySpeed.get(countPlayerAttack) instanceof Healer || opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                        if (challengerBySpeed.get(countPlayerAttack) instanceof Healer) {
-                            healerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                            normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-                            Character character2 = challengerByDefence.get(countPlayerDefence);
-                            System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                    opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                    ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-
-                            System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                    challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                    ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                            if (character2.getHealth() <= 0) {
-                                challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
-                                //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
-                                countPlayerDefence++;
-                            }
-                        }
-                        if (opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                            healerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                            normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                            Character character1 = opponentByDefence.get(countOpponentDefence);
-                            System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                    opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                    challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                    ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-                            System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                    challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                    opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                    ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                            if (character1.getHealth() <= 0) {
-                                opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
-                                //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
-                                countOpponentDefence++;
-                            }
-                        }
-                    }
-
-
-                    if (!(challengerBySpeed.get(countPlayerAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Healer)) {
-                        normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                        Character character1 = opponentByDefence.get(countOpponentDefence);
-                        System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-                        if (character1.getHealth() <= 0) {
-                            opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
-                            //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
-                            countOpponentDefence++;
-                        }
-
-                        normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-                        Character character2 = challengerByDefence.get(countPlayerDefence);
-                        System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                        if (character2.getHealth() <= 0) {
-                            challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
-                            //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
-                            countPlayerDefence++;
-                        }
-                    }
-                }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            } else {
-                if (challengerBySpeed.get(countPlayerAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-
-
-                        healerAttack(challengerBySpeed.get(countPlayerAttack), minimumHealthCharacter(challengerByDefence));
-                        changeList(challengerBySpeed);
-
-
-                        healerAttack(opponentBySpeed.get(countOpponentAttack), minimumHealthCharacter(opponentByDefence));
-                        changeList(opponentBySpeed);
-
-                continue;
-
-                } else if (challengerBySpeed.get(countPlayerAttack) instanceof Healer || opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                    if (challengerBySpeed.get(countPlayerAttack) instanceof Healer) {
-                        Character c1 = minimumHealthCharacter(challengerByDefence);
-                        healerAttack(challengerBySpeed.get(countPlayerAttack), c1);
-                        Character character2 = challengerByDefence.get(countPlayerDefence);
-
-                        System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + c1.getName() + "\n" +
-                                c1.getName() + "'s health: " + c1.getHealth() + "\n" +
-                                challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n");
-
-                        normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
-
-
-                        System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
-                                challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                                opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                                ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                        changeList(challengerBySpeed);
-                        changeList(opponentBySpeed);
-                        if (character2.getHealth() <= 0) {
-                            challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
-                            //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
-                            countPlayerDefence++;
-                        }
-                        continue;
-                    }
-                    if (opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
-                        normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
-                        Character character1 = opponentByDefence.get(countOpponentDefence);
-                        System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                                challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
-                                opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                                challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                                ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
-                        changeList(challengerBySpeed);
-                        if (character1.getHealth() <= 0) {
-                            opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
-                            //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
-                            countOpponentDefence++;
-                        }
-
-
-                        Character c2 = minimumHealthCharacter(opponentByDefence);
-                        healerAttack(opponentBySpeed.get(countOpponentAttack), c2);
-                        System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                                opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + c2.getName() + "\n" +
-                                c2.getName() + "'s health: " + c2.getHealth() + "\n" +
-                                opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n");
-
-
-                        changeList(opponentBySpeed);
-
-                    }
-                    continue;
-                }
-
-
-                if (!(challengerBySpeed.get(countPlayerAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Healer)) {
+                else if (!(challengerBySpeed.get(countPlayerAttack) instanceof Healer) && challengerBySpeed.get(countPlayerAttack) instanceof Highlander) {
                     normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
 
                     Character character1 = opponentByDefence.get(countOpponentDefence);
                     System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
-                            challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
+                            Design.GREEN+challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
                             opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
-                            challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() + "\n" +
-                            ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (opponentByDefence.get(countOpponentDefence).getName() + " died!") : "") + "\n");
+                            challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth()+Design.RESET + "\n" +
+                            ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (Design.RED+opponentByDefence.get(countOpponentDefence).getName() + " died!"+Design.RESET) : "") + "\n");
+
+                    if (character1.getHealth() <= 0) {
+                        opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
+                        countOpponentDefence++;
+                        if(countPlayerDefence == 5||countOpponentDefence == 5){
+                            continue;
+                        }
+                    }
+                    HighLanderHillcrestNormalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
+                    Character character3 = opponentByDefence.get(countOpponentDefence);
+                    System.out.println("Bonus Turn " + ": " + currentUser.getName() + "\n" +
+                            Design.GREEN+challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
+                            opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
+                            challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth()+Design.RESET + "\n" +
+                            ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (Design.RED+opponentByDefence.get(countOpponentDefence).getName() + " died!"+Design.RESET) : "") + "\n");
+
+                    if (character3.getHealth() <= 0) {
+                        opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
+                        countOpponentDefence++;
+                        if(countPlayerDefence == 5||countOpponentDefence == 5){
+                            continue;
+                        }
+                    }
+                    changeList(challengerBySpeed);
+
+                }
+
+                else if (!(challengerBySpeed.get(countPlayerAttack) instanceof Healer) ) {
+                    normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
+                    Character character1 = opponentByDefence.get(countOpponentDefence);
+                    System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
+                            Design.GREEN+challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
+                            opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
+                            challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() +Design.RESET+ "\n" +
+                            ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (Design.RED+opponentByDefence.get(countOpponentDefence).getName() + " died!"+Design.RESET) : "") + "\n");
                     changeList(challengerBySpeed);
                     if (character1.getHealth() <= 0) {
                         opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
-                        //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
                         countOpponentDefence++;
+                        if(countPlayerDefence == 5||countOpponentDefence == 5){
+                            continue;
+                        }
                     }
 
+                }
+
+                if (opponentBySpeed.get(countOpponentAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Highlander ) {
+
+                    Character c4 = minimumHealthCharacter(opponentByDefence);
+                    healerAttack(opponentBySpeed.get(countOpponentAttack), c4);
+
+                    System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
+                            Design.GREEN+opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + c4.getName() + "\n" +
+                            c4.getName() + "'s health: " + c4.getHealth() + "\n" +
+                            opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth()+Design.RESET + "\n");
+
+                    Character c11 = minimumHealthCharacter(opponentByDefence);
+                    HighlanderHillcrestHealerAttack(opponentBySpeed.get(countOpponentAttack), c11);
+                    System.out.println("Bonus Turn " + ": " + opponentPlayer.getName() + "\n" +
+                            Design.GREEN+opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + c11.getName() + "\n" +
+                            c11.getName() + "'s health: " + c11.getHealth() + "\n" +
+                            opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth()+Design.RESET + "\n");
+                    changeList(opponentBySpeed);
+
+
+                } else if (opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
+                    Character c4 = minimumHealthCharacter(opponentByDefence);
+
+
+                    System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
+                            Design.GREEN+opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + c4.getName() + "\n" +
+                            c4.getName() + "'s health: " + c4.getHealth() + "\n" +
+                            opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n");
+                    changeList(opponentBySpeed);
+
+                } else if (!(opponentBySpeed.get(countOpponentAttack) instanceof Healer) && opponentBySpeed.get(countOpponentAttack) instanceof Highlander ) {
+                    normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
+
+
+                    Character character2 = challengerByDefence.get(countPlayerDefence);
+                    System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
+                            Design.GREEN+opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
+                            challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
+                            opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth()+Design.RESET + "\n" +
+                            ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (Design.RED+challengerByDefence.get(countPlayerDefence).getName() + " died!"+Design.RESET) : "") + "\n");
+
+                    if (character2.getHealth() <= 0) {
+                        challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
+                        countPlayerDefence++;
+                        if(countPlayerDefence == 5||countOpponentDefence == 5){
+                            continue;
+                        }
+                    }
+                    HighLanderHillcrestNormalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
+                    Character character4 = challengerByDefence.get(countPlayerDefence);
+                    System.out.println("Bonus Turn " + ": " + opponentPlayer.getName() + "\n" +
+                            Design.GREEN+opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
+                            challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
+                            opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth()+Design.RESET + "\n" +
+                            ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (Design.RED+challengerByDefence.get(countPlayerDefence).getName() + " died!"+Design.RESET) : "") + "\n");
+
+                    if (character4.getHealth() <= 0) {
+                        challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
+                        countPlayerDefence++;
+                        if(countPlayerDefence == 5||countOpponentDefence == 5){
+                            continue;
+                        }
+                    }
+                    changeList(opponentBySpeed);
+
+
+                } else if (!(opponentBySpeed.get(countOpponentAttack) instanceof Healer)) {
+                    normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
+
+
+                    Character character2 = challengerByDefence.get(countPlayerDefence);
+                    System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
+                            Design.GREEN+opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
+                            challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
+                            opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth()+Design.RESET + "\n" +
+                            ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (Design.RED+challengerByDefence.get(countPlayerDefence).getName() + " died!"+Design.RESET) : "") + "\n");
+                    changeList(opponentBySpeed);
+                    if (character2.getHealth() <= 0) {
+                        challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
+                        countPlayerDefence++;
+                        if(countPlayerDefence == 5||countOpponentDefence == 5){
+                            continue;
+                        }
+                    }
+
+                }
+
+            } else if (opponentPlayer.getHomeGround().equals(HomeGround.Arcane)) {
+
+                if(challengerBySpeed.get(countPlayerAttack) instanceof Healer && challengerBySpeed.get(countPlayerAttack) instanceof Mystics){
+                    Character c3 = minimumHealthCharacter(challengerByDefence);
+                    healerAttack(challengerBySpeed.get(countPlayerAttack), c3);
+                    increaseHealth(challengerBySpeed.get(countPlayerAttack));
+                    System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
+                            Design.GREEN+challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + c3.getName() + "\n" +
+                            c3.getName() + "'s health: " + c3.getHealth() + "\n" +
+                            challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth()+Design.RESET + "\n");
+                    changeList(challengerBySpeed);
+                }
+
+                else if (challengerBySpeed.get(countPlayerAttack) instanceof Healer){
+
+                    Character c3 = minimumHealthCharacter(challengerByDefence);
+                    healerAttack(challengerBySpeed.get(countPlayerAttack), c3);
+                    System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
+                            Design.GREEN+challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + c3.getName() + "\n" +
+                            c3.getName() + "'s health: " + c3.getHealth() + "\n" +
+                            challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth()+Design.RESET + "\n");
+                    changeList(challengerBySpeed);
+
+
+                }
+
+                else if (!(challengerBySpeed.get(countPlayerAttack) instanceof Healer) && challengerBySpeed.get(countPlayerAttack) instanceof Mystics) {
+                    normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
+                    increaseHealth(challengerBySpeed.get(countPlayerAttack));
+                    Character character1 = opponentByDefence.get(countOpponentDefence);
+                    System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
+                            Design.GREEN+challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
+                            opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
+                            challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth()+Design.RESET + "\n" +
+                            ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (Design.RED+opponentByDefence.get(countOpponentDefence).getName() + " died!"+Design.RESET) : "") + "\n");
+                    changeList(challengerBySpeed);
+                    if (character1.getHealth() <= 0) {
+                        opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
+                        countOpponentDefence++;
+                        if(countPlayerDefence == 5||countOpponentDefence == 5){
+                            continue;
+                        }
+                    }
+
+                }
+
+                else if (!(challengerBySpeed.get(countPlayerAttack) instanceof Healer) ) {
+                    normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
+                    Character character1 = opponentByDefence.get(countOpponentDefence);
+                    System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
+                            Design.GREEN+challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
+                            opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
+                            challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth() +Design.RESET+ "\n" +
+                            ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (Design.RED+opponentByDefence.get(countOpponentDefence).getName() + " died!"+Design.RESET) : "") + "\n");
+                    changeList(challengerBySpeed);
+                    if (character1.getHealth() <= 0) {
+                        opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
+                        countOpponentDefence++;
+                        if(countPlayerDefence == 5||countOpponentDefence == 5){
+                            continue;
+                        }
+                    }
+
+                }
+
+
+
+
+                if (opponentBySpeed.get(countOpponentAttack) instanceof Healer && opponentBySpeed.get(countOpponentAttack) instanceof Mystics ) {
+
+                    Character c4 = minimumHealthCharacter(opponentByDefence);
+                    healerAttack(opponentBySpeed.get(countOpponentAttack), c4);
+                    increaseHealth(opponentBySpeed.get(countOpponentAttack));
+                    System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
+                            Design.GREEN+opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + c4.getName() + "\n" +
+                            c4.getName() + "'s health: " + c4.getHealth() + "\n" +
+                            opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth()+Design.RESET + "\n");
+                    changeList(opponentBySpeed);
+
+
+                } else if (opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
+                    Character c4 = minimumHealthCharacter(opponentByDefence);
+
+
+                    System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
+                            Design.GREEN+opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + c4.getName() + "\n" +
+                            c4.getName() + "'s health: " + c4.getHealth() + "\n" +
+                            opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth()+Design.RESET + "\n");
+                    changeList(opponentBySpeed);
+
+                } else if (!(opponentBySpeed.get(countOpponentAttack) instanceof Healer) && opponentBySpeed.get(countOpponentAttack) instanceof Mystics ) {
+                    normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
+                    increaseHealth(opponentBySpeed.get(countOpponentAttack));
+
+                    Character character2 = challengerByDefence.get(countPlayerDefence);
+                    System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
+                            Design.GREEN+opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
+                            challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
+                            opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth()+Design.RESET + "\n" +
+                            ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (Design.RED+challengerByDefence.get(countPlayerDefence).getName() + " died!"+Design.RESET) : "") + "\n");
+                    changeList(opponentBySpeed);
+                    if (character2.getHealth() <= 0) {
+                        challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
+                        countPlayerDefence++;
+                        if(countPlayerDefence == 5||countOpponentDefence == 5){
+                            continue;
+                        }
+                    }
+                } else if (!(opponentBySpeed.get(countOpponentAttack) instanceof Healer)) {
+                    normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
+
+
+                    Character character2 = challengerByDefence.get(countPlayerDefence);
+                    System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
+                            Design.GREEN+opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
+                            challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
+                            opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth()+Design.RESET + "\n" +
+                            ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (Design.RED+challengerByDefence.get(countPlayerDefence).getName() + " died!"+Design.RESET) : "") + "\n");
+                    changeList(opponentBySpeed);
+                    if (character2.getHealth() <= 0) {
+                        challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
+                        countPlayerDefence++;
+                        if(countPlayerDefence == 5||countOpponentDefence == 5){
+                            continue;
+                        }
+                    }
+
+                }
+
+
+            } else {
+                if (challengerBySpeed.get(countPlayerAttack) instanceof Healer){
+
+                    Character c3 = minimumHealthCharacter(challengerByDefence);
+                    healerAttack(challengerBySpeed.get(countPlayerAttack), c3);
+                    System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
+                            Design.GREEN+challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + c3.getName() + "\n" +
+                            c3.getName() + "'s health: " + c3.getHealth() + "\n" +
+                            challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth()+Design.RESET + "\n");
+                    changeList(challengerBySpeed);
+
+
+                } else if (!(challengerBySpeed.get(countPlayerAttack) instanceof Healer)) {
+                    normalAttack(challengerBySpeed.get(countPlayerAttack), opponentByDefence.get(countOpponentDefence));
+
+                    Character character1 = opponentByDefence.get(countOpponentDefence);
+                    System.out.println("Turn " + i + ": " + currentUser.getName() + "\n" +
+                            Design.GREEN+challengerBySpeed.get(countPlayerAttack).getName() + " attacks " + opponentByDefence.get(countOpponentDefence).getName() + "\n" +
+                            opponentByDefence.get(countOpponentDefence).getName() + "'s health: " + opponentByDefence.get(countOpponentDefence).getHealth() + "\n" +
+                            challengerBySpeed.get(countPlayerAttack).getName() + "'s health: " + challengerBySpeed.get(countPlayerAttack).getHealth()+Design.RESET + "\n" +
+                            ((opponentByDefence.get(countOpponentDefence).getHealth() <= 0) ? (Design.RED+opponentByDefence.get(countOpponentDefence).getName() + " died!"+Design.RESET) : "") + "\n");
+                    changeList(challengerBySpeed);
+                    if (character1.getHealth() <= 0) {
+                        opponentBySpeed.removeIf(item -> item.getName().equals(character1.getName()));
+                        countOpponentDefence++;
+                        if(countPlayerDefence == 5||countOpponentDefence == 5){
+                            continue;
+                        }
+                    }
+
+                }
+
+                if (opponentBySpeed.get(countOpponentAttack) instanceof Healer) {
+
+                    Character c4 = minimumHealthCharacter(opponentByDefence);
+                    healerAttack(opponentBySpeed.get(countOpponentAttack), c4);
+                    System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
+                            Design.GREEN+opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + c4.getName() + "\n" +
+                            c4.getName() + "'s health: " + c4.getHealth() + "\n" +
+                            opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth()+Design.RESET + "\n");
+                    changeList(opponentBySpeed);
+
+
+                } else if (!(opponentBySpeed.get(countOpponentAttack) instanceof Healer)) {
                     normalAttack(opponentBySpeed.get(countOpponentAttack), challengerByDefence.get(countPlayerDefence));
 
                     Character character2 = challengerByDefence.get(countPlayerDefence);
                     System.out.println("Turn " + i + ": " + opponentPlayer.getName() + "\n" +
-                            opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
+                            Design.GREEN+opponentBySpeed.get(countOpponentAttack).getName() + " attacks " + challengerByDefence.get(countPlayerDefence).getName() + "\n" +
                             challengerByDefence.get(countPlayerDefence).getName() + "'s health: " + challengerByDefence.get(countPlayerDefence).getHealth() + "\n" +
-                            opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth() + "\n" +
-                            ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (challengerByDefence.get(countPlayerDefence).getName() + " died!") : "") + "\n");
-                    changeList(opponentBySpeed);
+                            opponentBySpeed.get(countOpponentAttack).getName() + "'s health: " + opponentBySpeed.get(countOpponentAttack).getHealth()+Design.RESET + "\n" +
+                            ((challengerByDefence.get(countPlayerDefence).getHealth() <= 0) ? (Design.RED+challengerByDefence.get(countPlayerDefence).getName() + " died!"+Design.RESET) : "") + "\n");
+
+
                     if (character2.getHealth() <= 0) {
                         challengerBySpeed.removeIf(item -> item.getName().equals(character2.getName()));
-                        //printStats(i,challengerBySpeed,opponentBySpeed,challengerByDefence,opponentByDefence,countPlayerAttack,countPlayerDefence,countOpponentAttack,countPlayerDefence);
                         countPlayerDefence++;
+                        if(countPlayerDefence == 5||countOpponentDefence == 5){
+                            continue;
+                        }
                     }
-                    continue;
+                    changeList(opponentBySpeed);
+
                 }
             }
 

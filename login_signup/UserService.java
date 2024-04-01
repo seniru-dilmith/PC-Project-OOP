@@ -27,7 +27,6 @@ public class UserService {
            User newUser = new User(username, name, password);
            addUser(newUser);
            newUser.setID(userList.size());
-
         }
 
         if (username.isEmpty() || password.isEmpty()){

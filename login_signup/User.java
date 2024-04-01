@@ -56,7 +56,7 @@ public class User implements Serializable {
     private ArrayList<Knight> knights = new ArrayList<>();
     private ArrayList<Mage> mages = new ArrayList<>();
     private ArrayList<MythicalCreature> mythicalCreatures = new ArrayList<>();
-    private static ArrayList<Archer> allArchers = new ArrayList<>(Arrays.asList(ranger, saggitarus, shooter, sunfire, zing)) ;
+    private static ArrayList<Archer> allArchers = new ArrayList<>(Arrays.asList(shooter, ranger, sunfire, zing, saggitarus));
 
     private static ArrayList<Healer> allHealers = new ArrayList<>(Arrays.asList(soother, medic, alchemist, saint, lightBringer));
     private static ArrayList<Knight> allKnights = new ArrayList<>(Arrays.asList(squire, cavalier, templar, zoro, swiftblade));
@@ -68,7 +68,7 @@ public class User implements Serializable {
         this.password = password;
 
         this.XP = 1;
-        this.goldCoins = 5000;
+        this.goldCoins = 500;
         this.name = name;
         this.homeGround = null;
     }
