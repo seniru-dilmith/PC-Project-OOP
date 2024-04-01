@@ -1,24 +1,91 @@
 package Characters;
 
-import Characters.Categories.Category;
+import Equipment.Armour;
+import Equipment.Artefact;
 
-public class Character {
+import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.Objects;
+
+public class Character implements Serializable {
     private String name;
-    private double price;
+    private int price;
     private int attack;
     private int defence;
-    private int health;
+    private double health;
     private int speed;
-    private Category category;
+    private Armour armour = null;
+    private Artefact artefact = null;
 
-    public Character(String name, double price, int attack, int defence, int health, int speed, Category category) {
+    public Character(String name, int price, int attack, int defence, double health, int speed) {
         this.name = name;
         this.price = price;
         this.attack = attack;
         this.defence = defence;
         this.health = health;
         this.speed = speed;
-        this.category = category;
+    }
+
+    public Armour getArmour() {
+        return armour;
+    }
+
+
+
+
+    public void adjustStatsByArtefact(){
+        if (this.artefact != null){
+            if (Objects.equals(this.artefact.toString(), "Amulet")) {
+                health += Artefact.Amulet.getHealth();
+                attack += Artefact.Amulet.getAttack();
+                defence += Artefact.Amulet.getDefence();
+                speed += Artefact.Amulet.getSpeed();
+            } else if (Objects.equals(this.artefact.toString(), "Excalibur")){
+                health += Artefact.Excalibur.getHealth();
+                attack += Artefact.Excalibur.getAttack();
+                defence += Artefact.Excalibur.getDefence();
+                speed += Artefact.Excalibur.getSpeed();
+            } else if (Objects.equals(this.artefact.toString(), "Crystal")){
+                health += Artefact.Crystal.getHealth();
+                attack += Artefact.Crystal.getAttack();
+                defence += Artefact.Crystal.getDefence();
+                speed += Artefact.Crystal.getSpeed();
+
+            }
+        }
+    }
+
+    public void adjustStatsByArmour(){
+        if (this.armour != null)  {
+            if (Objects.equals(this.armour.toString(), "Chainmail")){
+                health += Armour.chainmail.getHealth();
+                attack += Armour.chainmail.getAttack();
+                defence += Armour.chainmail.getDefence();
+                speed += Armour.chainmail.getSpeed();
+            } else if (Objects.equals(this.armour.toString(), "Regalia")){
+                health += Armour.regalia.getHealth();
+                attack += Armour.regalia.getAttack();
+                defence += Armour.regalia.getDefence();
+                speed += Armour.regalia.getSpeed();
+            } else if (Objects.equals(this.armour.toString(), "Fleece")){
+                health += Armour.fleece.getHealth();
+                attack += Armour.fleece.getAttack();
+                defence += Armour.fleece.getDefence();
+                speed += Armour.fleece.getSpeed();
+            }
+        }
+    }
+
+    public void setArmour(Armour armour) {
+        this.armour = armour;
+    }
+
+    public Artefact getArtefact() {
+        return artefact;
+    }
+
+    public void setArtefact(Artefact artefact) {
+        this.artefact = artefact;
     }
 
     public String getName() {
@@ -29,12 +96,17 @@ public class Character {
         this.name = name;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
+
         this.price = price;
+    }
+
+    public void IncrementPrice(int value) {
+        this.price += value;
     }
 
     public int getAttack() {
@@ -53,12 +125,19 @@ public class Character {
         this.defence = defence;
     }
 
-    public int getHealth() {
+    public double getHealth() {
+        if (health <= 0) {
+            return 0;
+        }
         return health;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    public void setHealth(double health) {
+        if (this.getHealth() <= 0) {
+            this.health = 0;
+        } else {
+            this.health = Math.round(health*10) / 10.0;
+        }
     }
 
     public int getSpeed() {
@@ -69,11 +148,20 @@ public class Character {
         this.speed = speed;
     }
 
-    public Category getCategory() {
-        return category;
+    @Override
+    public String toString() {
+        return String.format("| %-25s | %-10s | %-10s | %-10s | %-10s | %-10s |",
+                getName() ,getPrice(), getAttack(), getDefence(), getHealth(), getSpeed());
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void copy(Character character){
+        this.armour = character.getArmour();
+        this.artefact = character.getArtefact();
+        this.health = character.getHealth();
+        this.attack = character.getAttack();
+        this.defence = character.getDefence();
+        this.speed = character.getSpeed();
     }
 }
+
+

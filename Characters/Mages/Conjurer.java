@@ -1,9 +1,23 @@
 package Characters.Mages;
 
-import Characters.Categories.Category;
+import Characters.Archers.Ranger;
+import Characters.Categories.Highlander;
 
-public class Conjurer extends Mage {
+public class Conjurer extends Mage implements Highlander {
+
+    public static Conjurer conjurer;
+
     public Conjurer() {
-        super("Conjurer", 195, 18, 15, 14, 12, Category.Highlander);
+
+        super("Conjurer", 195, 18, 15, 14, 12);
     }
+    public static Conjurer getInstance() {
+        if (conjurer == null) {
+            conjurer = new Conjurer();
+        }
+        return conjurer;
+    }
+
+
 }
+

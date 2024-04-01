@@ -1,9 +1,19 @@
 package Characters.Healers;
 
-import Characters.Categories.Category;
+import Characters.Categories.Marshlander;
 
-public class Alchemist extends Healer {
+public class Alchemist extends Healer implements Marshlander {
+
+    public static Alchemist alchemist;
     public Alchemist() {
-        super("Alchemist", 150, 13, 13, 13, 13, Category.Marshlander);
+        super("Alchemist", 150, 13, 13, 13, 13);
     }
+
+    public static Healer getInstance() {
+        if (alchemist == null) {
+            alchemist = new Alchemist();
+        }
+        return alchemist;
+    }
+
 }

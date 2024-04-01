@@ -5,14 +5,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserService {
-
-    static Scanner scanner = new Scanner(System.in);
     private static ArrayList<User> userList = new ArrayList<>();
 
     private static User currentUser = null;
 
-    public static void signUp(){
+    public static boolean signUp(){
         retrieveUsers();
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter your name: ");
+        String name = scanner.nextLine();
 
         System.out.println("Enter your username: ");
         String username = scanner.nextLine();
@@ -21,14 +24,17 @@ public class UserService {
         String password = scanner.nextLine();
 
         if (!previouslyTaken(username)){
-           User newUser = new User(username,password);
+           User newUser = new User(username, name, password);
            addUser(newUser);
+           newUser.setID(userList.size());
         }
 
         if (username.isEmpty() || password.isEmpty()){
             System.out.println("Username or Password cannot be empty!!!");
         }
+
         saveUsers(userList);
+        return true;
     }
 
     private static void addUser(User user) {
@@ -45,47 +51,56 @@ public class UserService {
         return false;
     }
 
-    public static void login(){
+    public static ArrayList<User> getUserList() {
+        return userList;
+    }
+
+    public static User login(){
+
         retrieveUsers();
-        //User user = new User();
-        //Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter Your User Name: ");
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter Your username: ");
         String username  = scanner.nextLine();
         System.out.println("Enter Your Password: ");
         String password  = scanner.nextLine();
 
-        authorizeUser(username,password);
-
+        currentUser = authorizeUser(username,password);
+        return currentUser;
     }
 
-    public static void authorizeUser(String username, String password){
+    public static User authorizeUser(String username, String password){
 
         for(User user: userList){
             if(user.getUsername().equals(username) && user.getPassword().equals(password)){
                 currentUser = user;
                 System.out.println("Login Successful!");
-                return;
+                return currentUser;
             }
         }
         System.out.println("Invalid Login! Try again.");
+        return null;
     }
 
 
     public static void saveUsers(ArrayList<User> list) {
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("login_signup/users.txt"))) {
             objectOutputStream.writeObject(list);
-            System.out.println("Users saved!");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("If this is your first signup, please don't consider this as an error.");
         }
     }
 
-    public static void retrieveUsers() {
+    public static void updateFile() {
+        saveUsers(userList);
+    }
+
+    private static void retrieveUsers() {
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("login_signup/users.txt"))){
             userList = (ArrayList<User>) objectInputStream.readObject();
-            System.out.println("Users retrieved");
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("If this is your first signup, please don't consider this as an error.");
         }
     }
 
